@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
@@ -17,7 +16,7 @@ public class Product {
 		private String name;
 		private int status;
 		private int currency_code;
-		private BigDecimal interest_rate;
+		private double interest_rate;
 		private int limit;
 		private LocalDate created_at;
 		private LocalDate updated_at;

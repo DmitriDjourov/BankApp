@@ -8,12 +8,13 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
+
 @Builder
 @AllArgsConstructor
 @Data
 public class Agreement {
 		private final UUID id = UUID.randomUUID();
-		private BigDecimal interest_rate;
+		private double interest_rate;
 		private int status;
 		private BigDecimal sum;
 		private LocalDate created_at;

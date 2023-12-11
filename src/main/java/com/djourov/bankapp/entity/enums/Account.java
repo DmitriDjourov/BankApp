@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
+
 @Builder
 @AllArgsConstructor
 @Data
@@ -20,7 +21,7 @@ public class Account {
 		private int currency_code;
 		private LocalDate created_at;
 		private LocalDate updated_at;
-    private  Client client;
+		private Client client;
 
 		@Override
 		public String toString() {
