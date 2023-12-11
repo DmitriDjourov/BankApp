@@ -14,7 +14,7 @@ ___
 
 | Column name | Type        | Description                                   |
 |-------------|-------------|-----------------------------------------------|
-| id          | int         | id key of row - unique, not null, primary key | 
+| id          | binary(16)  | id key of row - unique, not null, primary key | 
 | manager_id  | binary(16)  | manager id                                    |
 | status      | int(1)      | client's status                               |
 | tax_code    | varchar(20) | client's TAX code (external ID)               |
@@ -45,8 +45,8 @@ ___
 ### Table Product ( Sets of Bank's available Products)
 | Column name   | Type           | Description                                                              |
 |---------------|----------------|--------------------------------------------------------------------------|
-| id            | int            | id key of row - unique, not null, primary key                            |
-| manager_id    | int            | manager id                                                               |
+| id            | binary(16)     | id key of row - unique, not null, primary key                            |
+| manager_id    | binary(16)     | manager id                                                               |
 | name          | varchar(70)    | product's name                                                           |
 | status        | int(1)         | product's status                                                         |
 | currency_code | int(2)         | currency of product                                                      |
@@ -57,16 +57,16 @@ ___
 
 ### Table Agreement (Bank's - Client's  Agreement table)
 
-| Column name   | Type           | Description                                   |
-|---------------|----------------|-----------------------------------------------|
-| id            | int            | id key of row - unique, not null, primary key |
-| account_id    | binary(16)     | client's account                              | 
-| product_id    | int            | product id (table product)                    | 
-| interest_rate | numeric(6,4)	  | current interest rate of agreement            | 
-| status        | int            | agreement's status                            | 
-| sum           | numeric(15,2)  | amount of agreement                           | 
-| created_at    | timestamp      | timestamp of row creation                     | 
-| updated_at    | timestamp      | timestamp of last update                      | 
+| Column name   | Type          | Description                                   |
+|---------------|---------------|-----------------------------------------------|
+| id            | binary(16)    | id key of row - unique, not null, primary key |
+| account_id    | binary(16)    | client's account                              | 
+| product_id    | binary(16)    | product id (table product)                    | 
+| interest_rate | numeric(6,4)	 | current interest rate of agreement            | 
+| status        | int           | agreement's status                            | 
+| sum           | numeric(15,2) | amount of agreement                           | 
+| created_at    | timestamp     | timestamp of row creation                     | 
+| updated_at    | timestamp     | timestamp of last update                      | 
 
  ### Table Transaction (Bank's Product table) 
 
@@ -84,9 +84,10 @@ ___
 
 | Column name  | Type          | Description                                   |
 |--------------|---------------|-----------------------------------------------|
-| 	id          | int           | id key of row - unique, not null, primary key | 
+| 	id          | binary(16)    | id key of row - unique, not null, primary key | 
 | 	first_name  | varchar(50)   | manager's name                                | 
 | 	last_name   | varchar(50)   | manager's surname                             | 
 | 	status      | int           | manager's status                              | 
 | 	description | varchar(255)  | description of transaction                    | 
 | 	created_at  | timestamp     | timestamp of row creation                     |
+|  updated_at  | timestamp     | timestamp of last update                      | 
