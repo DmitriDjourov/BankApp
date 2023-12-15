@@ -13,6 +13,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Data
 public class Account {
+
 		private final UUID id = UUID.randomUUID();
 		private String name;
 		private int type;
