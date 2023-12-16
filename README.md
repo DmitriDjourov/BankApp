@@ -30,17 +30,17 @@ ___
 
 ### Table Account (Bank's accounts table)
 
-| Column name     | Type          | Description                                                  |
-|-----------------|---------------|--------------------------------------------------------------|
-| a_id            | varchar(36)   | id key of row - unique, not null, primary key                |
-| a_client_id     | varchar(36)   | client id   foreign key  not null                            |         
-| a_name          | varchar(100)  | a name of account                                            |                              
-| a_type          | int(1)        | account type                                                 |                                   
-| a_status        | tinyint(1)    | status of tne account                                        |                          
-| a_balance       | numeric(15,2) | balance of the account in currency                           | 
-| a_currency_code | int(2)        | account currency code                                        |                          
-| a_created_at    | timestamp     | timestamp of row creation,not null,DEFAULT CURRENT_TIMESTAMP |
-| a_updated_at    | timestamp     | timestamp of last update                                     |
+| Column name      | Type          | Description                                                  |
+|------------------|---------------|--------------------------------------------------------------|
+| a_id             | varchar(36)   | id key of row - unique, not null, primary key                |
+| a_client_id      | varchar(36)   | client id   foreign key  not null                            |         
+| a_account_number | varchar(100)  | a name of account                                            |                              
+| a_type           | int(1)        | account type                                                 |                                   
+| a_status         | tinyint(1)    | status of tne account                                        |                          
+| a_balance        | numeric(15,2) | balance of the account in currency                           | 
+| a_currency_code  | int(2)        | account currency code                                        |                          
+| a_created_at     | timestamp     | timestamp of row creation,not null,DEFAULT CURRENT_TIMESTAMP |
+| a_updated_at     | timestamp     | timestamp of last update                                     |
 
 ### Table Product ( Sets of Bank's available Products)
 | Column name     | Type          | Description                                                              |

@@ -1,21 +1,16 @@
 package com.djourov.bankapp.entity.enums;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 
-@Builder
 @AllArgsConstructor
-@Data
 public class Account {
-
-		private final UUID id = UUID.randomUUID();
-		private String name;
+		private final UUID id;
+		private String accountNumber;
 		private int type;
 		private int status;
 		private BigDecimal balance;
@@ -25,10 +20,25 @@ public class Account {
 		private Client client;
 
 		@Override
+		public boolean equals(Object o) {
+				if (this == o) {
+						return true;
+				}
+				if (o == null || getClass() != o.getClass()) return false;
+				Account that = (Account) o;
+				return Objects.equals(this.id, that.id);
+		}
+
+		@Override
+		public int hashCode() {
+				return Objects.hash(id);
+		}
+
+		@Override
 		public String toString() {
 				return "Account{" +
 						       "id=" + id +
-						       ", name='" + name + '\'' +
+						       ", name='" + accountNumber + '\'' +
 						       ", type=" + type +
 						       ", status=" + status +
 						       ", balance=" + balance +
@@ -37,18 +47,5 @@ public class Account {
 						       ", updated_at=" + updated_at +
 						       ", client=" + client +
 						       '}';
-		}
-
-		@Override
-		public boolean equals(Object o) {
-				if (this == o) return true;
-				if (o == null || getClass() != o.getClass()) return false;
-				Account account = (Account) o;
-				return type == account.type && status == account.status && currency_code == account.currency_code && Objects.equals(id, account.id) && Objects.equals(name, account.name) && Objects.equals(balance, account.balance) && Objects.equals(created_at, account.created_at) && Objects.equals(updated_at, account.updated_at);
-		}
-
-		@Override
-		public int hashCode() {
-				return Objects.hash(id, name, type, status, balance, currency_code, created_at, updated_at);
 		}
 }
