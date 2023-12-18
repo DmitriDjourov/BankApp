@@ -10,6 +10,8 @@ import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 
+import static jakarta.persistence.CascadeType.*;
+
 @AllArgsConstructor
 @Getter
 @Setter
@@ -29,10 +31,10 @@ public class Client {
 		@Column(name = "c_tax_code")
 		private String tax_code;
 
-		@Column(name = "first_name")
+		@Column(name = "c_first_name")
 		private String first_name;
 
-		@Column(name = "last_name")
+		@Column(name = "c_last_name")
 		private String last_name;
 
 		@Column(name = "c_email")
@@ -44,12 +46,14 @@ public class Client {
 		@Column(name = "c_phone")
 		private String phone;
 
-		@Column(name = "created_at")
+		@Column(name = "c_created_at")
 		private LocalDate created_at;
 
-		@Column(name = "updated_at")
+		@Column(name = "c_updated_at")
 		private LocalDate updated_at;
 
+		@OneToOne(mappedBy = "m_id", orphanRemoval = true, cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY)
+		@JoinColumn(name = "c_manager_id", referencedColumnName = "m_id")
 		private Manager manager;
 
 		@Override

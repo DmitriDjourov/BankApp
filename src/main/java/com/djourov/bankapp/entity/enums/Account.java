@@ -5,10 +5,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
+
+import static jakarta.persistence.CascadeType.*;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -43,8 +47,8 @@ public class Account {
 		@Column(name = "a_updated_at")
 		private LocalDate updated_at;
 
-		//		@OneToOne(cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY)
-//		@JoinColumn(name = "a_client_id", referencedColumnName = "c_id")
+		@OneToOne(mappedBy = "c_id", orphanRemoval = true, cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY)
+		@JoinColumn(name = "a_client_id", referencedColumnName = "c_id")
 		private Client client;
 
 		@Override

@@ -8,6 +8,8 @@ import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 
+import static jakarta.persistence.CascadeType.*;
+
 @Entity
 @Table(name = "agreements")
 @AllArgsConstructor
@@ -36,9 +38,14 @@ public class Agreement {
 		@Column(name = "ag_updated_at")
 		private LocalDate updated_at;
 
+		@ManyToOne(fetch = FetchType.LAZY, cascade = {MERGE, PERSIST, REFRESH})
+		@JoinColumn(name = "ag_account_id", referencedColumnName = "a_id")
+		private Account account_id;
+
+		@ManyToOne(fetch = FetchType.LAZY, cascade = {MERGE, PERSIST, REFRESH})
+		@JoinColumn(name = "ag_product_id", referencedColumnName = "p_id")
 		private Product product_id;
 
-		private Account account_id;
 
 		@Override
 		public boolean equals(Object o) {

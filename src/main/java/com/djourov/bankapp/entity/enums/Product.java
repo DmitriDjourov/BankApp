@@ -10,6 +10,8 @@ import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 
+import static jakarta.persistence.CascadeType.*;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -44,19 +46,21 @@ public class Product {
 		@Column(name = "p_updated_at")
 		private LocalDate updated_at;
 
-		private Manager manager_id;
+		@ManyToOne(fetch = FetchType.LAZY, cascade = {MERGE, PERSIST, REFRESH})
+		@JoinColumn(name = "p_manager_id", referencedColumnName = "m_id")
+		private Manager manager;
 
 		@Override
 		public boolean equals(Object o) {
 				if (this == o) return true;
 				if (o == null || getClass() != o.getClass()) return false;
 				Product product = (Product) o;
-				return Objects.equals(id, product.id) && Objects.equals(created_at, product.created_at) && Objects.equals(manager_id, product.manager_id);
+				return Objects.equals(id, product.id) && Objects.equals(created_at, product.created_at) && Objects.equals(manager, product.manager);
 		}
 
 		@Override
 		public int hashCode() {
-				return Objects.hash(id, created_at, manager_id);
+				return Objects.hash(id, created_at, manager);
 		}
 
 		@Override
@@ -70,7 +74,7 @@ public class Product {
 						       ", limit=" + limit +
 						       ", created_at=" + created_at +
 						       ", updated_at=" + updated_at +
-						       ", manager_id=" + manager_id +
+						       ", manager=" + manager +
 						       '}';
 		}
 }
