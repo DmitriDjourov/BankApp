@@ -14,9 +14,9 @@ ___
 
 | Column name | Type        | Description                                                  |
 |-------------|-------------|--------------------------------------------------------------|
-| a_id        | varchar(36) | id key of row - unique, not null, primary key                |
-| a_manager_id| varchar(36) | manager id foreign key not null                              |
-| a_status    | tinyint(1)  | client's status     not null    DEFAULT '1'                             |
+| a_id        | binary(16)  | id key of row - unique, not null, primary key                |
+| a_manager_id| binary(16)  | manager id foreign key not null                              |
+| a_status    | tinyint(1)  | client's status     not null    DEFAULT '1'                  |
 | a_tax_code  | varchar(20) | client's TAX code (external ID)                              |
 | a_first_name| varchar(50) | client's name                                                |
 | a_last_name | varchar(50) | client's surname                                             |
@@ -32,8 +32,8 @@ ___
 
 | Column name      | Type          | Description                                                  |
 |------------------|---------------|--------------------------------------------------------------|
-| a_id             | varchar(36)   | id key of row - unique, not null, primary key                |
-| a_client_id      | varchar(36)   | client id   foreign key  not null                            |         
+| a_id             | binary(16)    | id key of row - unique, not null, primary key                |
+| a_client_id      | binary(16)    | client id   foreign key  not null                            |         
 | a_account_number | varchar(100)  | a name of account                                            |                              
 | a_type           | int(1)        | account type                                                 |                                   
 | a_status         | tinyint(1)    | status of tne account                                        |                          
@@ -45,8 +45,8 @@ ___
 ### Table Product ( Sets of Bank's available Products)
 | Column name     | Type          | Description                                                              |
 |-----------------|---------------|--------------------------------------------------------------------------|
-| p_id            | varchar(36)   | id key of row - unique, not null, primary key                            |
-| p_manager_id    | varchar(36)   | manager id   foreign key   not null                                      |
+| p_id            | binary(16)    | id key of row - unique, not null, primary key                            |
+| p_manager_id    | binary(16)    | manager id   foreign key   not null                                      |
 | p_name          | varchar(70)   | product's name                                                           |
 | p_status        | tinyint(1)    | product's status         not null                                        |
 | p_currency_code | int(2)        | currency of product                                                      |
@@ -59,9 +59,9 @@ ___
 
 | Column name       | Type          | Description                                                  |
 |-------------------|---------------|--------------------------------------------------------------|
-| ag_id             | varchar(36)   | id key of row - unique, not null, primary key                |
-| ag_account_id     | varchar(36)   | client's account  foreign key not null                       | 
-| ag_product_id     | varchar(36)   | product id (table product) foreign key not null              | 
+| ag_id             | binary(16)    | id key of row - unique, not null, primary key                |
+| ag_account_id     | binary(16)    | client's account  foreign key not null                       | 
+| ag_product_id     | binary(16)    | product id (table product) foreign key not null              | 
 | ag_interest_rate  | numeric(6,4)	 | current interest rate of agreement                           | 
 | ag_status         | tinyint(1)    | agreement's status,not null,DEFAULT '1'                      | 
 | ag_sum            | numeric(15,2) | amount of agreement,not null,DEFAULT '0.00'                  | 
@@ -72,9 +72,9 @@ ___
 
 | Column name          | Type          | Description                                                          |
 |----------------------|---------------|----------------------------------------------------------------------|
-| 	t_id                | varchar(36)   | id key of row - unique, not null, primary key                        | 
-| 	t_debit_account_id  | varchar(36)   | transaction's debit account foreign key not null                     | 
-| 	t_credit_account_id | varchar(36)   | transaction's credit account foreign key not null                    | 
+| 	t_id                | binary(16)    | id key of row - unique, not null, primary key                        | 
+| 	t_debit_account_id  | binary(16)    | transaction's debit account foreign key not null                     | 
+| 	t_credit_account_id | binary(16)    | transaction's credit account foreign key not null                    | 
 | 	t_type              | int(1)        | transaction type                                                     | 
 | 	t_amount            | numeric(12,2) | transaction amount in the account currency, not null, DEFAULT '0.00' | 
 | 	t_description       | varchar(255)  | description of transaction                                           | 
@@ -82,12 +82,12 @@ ___
 
  ### Table Manager (Bank's managers )
 
-| Column name    | Type          | Description                                                  |
-|----------------|---------------|--------------------------------------------------------------|
-| 	m_id          | varchar(36)   | id key of row - unique, not null, primary key                | 
-| 	m_first_name  | varchar(50)   | manager's name                                               | 
-| 	m_last_name   | varchar(50)   | manager's surname                                            | 
-| 	m_status      | tinyint(1)    | manager's status,not null,DEFAULT '1'                        | 
-| 	m_description | varchar(255)  | description of transaction                                   | 
-| 	m_created_at  | timestamp     | timestamp of row creation,not null,DEFAULT CURRENT_TIMESTAMP |
-| m_updated_at   | timestamp     | timestamp of last update                                     | 
+| Column name    | Type         | Description                                                  |
+|----------------|--------------|--------------------------------------------------------------|
+| 	m_id          | binary(16)   | id key of row - unique, not null, primary key                | 
+| 	m_first_name  | varchar(50)  | manager's name                                               | 
+| 	m_last_name   | varchar(50)  | manager's surname                                            | 
+| 	m_status      | tinyint(1)   | manager's status,not null,DEFAULT '1'                        | 
+| 	m_description | varchar(255) | description of transaction                                   | 
+| 	m_created_at  | timestamp    | timestamp of row creation,not null,DEFAULT CURRENT_TIMESTAMP |
+| m_updated_at   | timestamp    | timestamp of last update                                     | 

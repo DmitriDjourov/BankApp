@@ -1,17 +1,39 @@
 package com.djourov.bankapp.entity.enums;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 @AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Getter
+@Setter
+@Table(name = "manager")
+
 public class Manager {
-		private final UUID id;
+		@Id
+		@GeneratedValue(strategy = GenerationType.UUID)
+		@Column(name = "m_id")
+		private UUID id;
+
+		@Column(name = "m_first_name")
 		private String first_name;
+
+		@Column(name = "m_last_name")
 		private String last_name;
+
+		@Column(name = "m_status")
 		private int status;
+
+		@Column(name = "m_created_at")
 		private LocalDate created_at;
+
+		@Column(name = "m_updated_at")
 		private LocalDate updated_at;
 
 		@Override
@@ -19,12 +41,12 @@ public class Manager {
 				if (this == o) return true;
 				if (o == null || getClass() != o.getClass()) return false;
 				Manager manager = (Manager) o;
-				return Objects.equals(id, manager.id);
+				return Objects.equals(id, manager.id) && Objects.equals(created_at, manager.created_at);
 		}
 
 		@Override
 		public int hashCode() {
-				return Objects.hash(id);
+				return Objects.hash(id, created_at);
 		}
 
 		@Override

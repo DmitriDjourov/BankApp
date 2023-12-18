@@ -1,21 +1,43 @@
 package com.djourov.bankapp.entity.enums;
 
-import lombok.AllArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 
+@Entity
+@Table(name = "agreements")
 @AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+
 public class Agreement {
-		private final UUID id;
+		@Id
+		@GeneratedValue(strategy = GenerationType.UUID)
+		@Column(name = "ag_id")
+		private UUID id;
+
+		@Column(name = "ag_interest_rate")
 		private double interest_rate;
+
+		@Column(name = "ag_status")
 		private int status;
+
+		@Column(name = "ag_sum")
 		private BigDecimal sum;
+
+		@Column(name = "ag_created_at")
 		private LocalDate created_at;
+
+		@Column(name = "ag_updated_at")
 		private LocalDate updated_at;
+
 		private Product product_id;
+
 		private Account account_id;
 
 		@Override
@@ -23,12 +45,12 @@ public class Agreement {
 				if (this == o) return true;
 				if (o == null || getClass() != o.getClass()) return false;
 				Agreement agreement = (Agreement) o;
-				return Objects.equals(id, agreement.id);
+				return Objects.equals(id, agreement.id) && Objects.equals(product_id, agreement.product_id) && Objects.equals(account_id, agreement.account_id);
 		}
 
 		@Override
 		public int hashCode() {
-				return Objects.hash(id);
+				return Objects.hash(id, product_id, account_id);
 		}
 
 		@Override
