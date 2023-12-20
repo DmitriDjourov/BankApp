@@ -11,7 +11,7 @@ import java.util.UUID;
 import static jakarta.persistence.CascadeType.*;
 
 @Entity
-@Table(name = "agreements")
+@Table(name = "Agreements")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

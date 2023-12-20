@@ -17,7 +17,7 @@ import static jakarta.persistence.CascadeType.*;
 @Setter
 @Entity
 @NoArgsConstructor
-@Table(name = "client")
+@Table(name = "Client")
 
 public class Client {
 		@Id
@@ -52,7 +52,7 @@ public class Client {
 		@Column(name = "c_updated_at")
 		private LocalDate updated_at;
 
-		@OneToOne(mappedBy = "m_id", orphanRemoval = true, cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY)
+		@OneToOne(cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY)
 		@JoinColumn(name = "c_manager_id", referencedColumnName = "m_id")
 		private Manager manager;
 

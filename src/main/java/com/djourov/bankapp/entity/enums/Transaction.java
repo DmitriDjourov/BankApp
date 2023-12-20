@@ -18,7 +18,7 @@ import static jakarta.persistence.CascadeType.*;
 @Entity
 @Getter
 @Setter
-@Table(name = "transaction")
+@Table(name = "Transaction")
 
 public class Transaction {
 		@Id
