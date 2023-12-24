@@ -38,9 +38,9 @@ public class Manager {
     @Column(name = "m_updated_at")
     private LocalDate updated_at;
 
-    @OneToOne(mappedBy = "Client", fetch = FetchType.LAZY,
-            orphanRemoval = true, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    private Client client;
+//    @OneToOne(mappedBy = "Client", fetch = FetchType.LAZY,
+//            orphanRemoval = true, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+//    private Client client;
 
     @Override
     public boolean equals(Object o) {

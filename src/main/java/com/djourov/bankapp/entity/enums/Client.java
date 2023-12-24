@@ -56,9 +56,9 @@ public class Client {
     @JoinColumn(name = "c_manager_id", referencedColumnName = "m_id")
     private Manager manager;
 
-    @OneToOne(mappedBy = "Account", fetch = FetchType.LAZY,
-            orphanRemoval = true, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    private Account account;
+//    @OneToOne(mappedBy = "Account", fetch = FetchType.LAZY,
+//            orphanRemoval = true, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+//    private Account account;
 
     @Override
     public boolean equals(Object o) {
