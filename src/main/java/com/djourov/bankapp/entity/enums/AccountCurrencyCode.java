@@ -15,11 +15,15 @@ public enum AccountCurrencyCode {
     AccountCurrencyCode(String currencyName) {
         this.currencyName = currencyName;
     }
-        @Override
-        public String toString () {
-            return this.name();
-        }
-        public static AccountCurrencyCode accountCurrencyCode(int code) {
+
+    @Override
+    public String toString() {
+        return "AccountCurrencyCode{" +
+                       "currencyName='" + currencyName + '\'' +
+                       '}';
+    }
+
+    public static AccountCurrencyCode accountCurrencyCode(int code) {
         return switch (code) {
             case 1 -> EUR;
             case 2 -> USD;
