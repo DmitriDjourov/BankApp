@@ -1,5 +1,8 @@
-package com.djourov.bankapp.entity.enums;
+package com.djourov.bankapp.entity;
 
+import com.djourov.bankapp.entity.enums.AccountCurrencyCode;
+import com.djourov.bankapp.entity.enums.ProductInterestRateStatus;
+import com.djourov.bankapp.entity.enums.ProductTypeStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,14 +31,17 @@ public class Product {
 		@Column(name = "p_name")
 		private String name;
 
+		@Enumerated(EnumType.ORDINAL)
 		@Column(name = "p_status")
-		private int status;
+		private ProductTypeStatus status;
 
+		@Enumerated(EnumType.ORDINAL)
 		@Column(name = "p_currency_code")
-		private int currencyCode;
+		private AccountCurrencyCode currencyCode;
 
+		@Enumerated(EnumType.ORDINAL)
 		@Column(name = "p_interest_rate")
-		private double interestRate;
+		private ProductInterestRateStatus interestRate;
 
 		@Column(name = "p_limit_")
 		private int limit;

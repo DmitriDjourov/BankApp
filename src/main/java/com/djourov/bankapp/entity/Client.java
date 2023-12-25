@@ -1,5 +1,6 @@
-package com.djourov.bankapp.entity.enums;
+package com.djourov.bankapp.entity;
 
+import com.djourov.bankapp.entity.enums.ClientStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,10 +26,11 @@ public class Client {
     @Column(name = "c_id")
     private UUID id;
 
+    @Enumerated(EnumType.ORDINAL)
     @Column(name = "c_status")
-    private int status;
+    private ClientStatus status;
 
-    @Column(name = "c_tax_code")
+    @Column(name = "c_tax_code")//налоговый номер
     private String taxCode;
 
     @Column(name = "c_first_name")
@@ -56,22 +58,23 @@ public class Client {
     @JoinColumn(name = "c_manager_id", referencedColumnName = "m_id")
     private Manager manager;
 
-//    @OneToOne(mappedBy = "Account", fetch = FetchType.LAZY,
-//            orphanRemoval = true, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-//    private Account account;
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Client client = (Client) o;
-        return Objects.equals(id, client.id) && Objects.equals(manager, client.manager);
+        return Objects.equals(id, client.id) && Objects.equals(taxCode, client.taxCode) && Objects.equals(manager, client.manager);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, manager);
+        return Objects.hash(id, taxCode, manager);
     }
+
+    /**OneToOne(mappedBy = "Account", fetch = FetchType.LAZY,
+            orphanRemoval = true, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private Account account;**/
+
 
     @Override
     public String toString() {

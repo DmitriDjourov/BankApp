@@ -1,5 +1,6 @@
-package com.djourov.bankapp.entity.enums;
+package com.djourov.bankapp.entity;
 
+import com.djourov.bankapp.entity.enums.ManagerStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,8 +30,9 @@ public class Manager {
     @Column(name = "m_last_name")
     private String lastName;
 
+    @Enumerated(EnumType.ORDINAL)
     @Column(name = "m_status")
-    private int status;
+    private ManagerStatus status;
 
     @Column(name = "m_create_at")
     private LocalDate createdAt;

@@ -1,4 +1,4 @@
-package com.djourov.bankapp.entity.enums;
+package com.djourov.bankapp.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

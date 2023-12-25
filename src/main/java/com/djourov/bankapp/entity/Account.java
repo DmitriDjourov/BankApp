@@ -1,5 +1,8 @@
-package com.djourov.bankapp.entity.enums;
+package com.djourov.bankapp.entity;
 
+import com.djourov.bankapp.entity.enums.AccountCurrencyCode;
+import com.djourov.bankapp.entity.enums.AccountStatus;
+import com.djourov.bankapp.entity.enums.AccountTypeStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,17 +32,20 @@ public class Account {
     @Column(name = "a_account_number")
     private String accountNumber;
 
+    @Enumerated(EnumType.ORDINAL)
     @Column(name = "a_type")
-    private int type;
+    private AccountTypeStatus type;
 
+    @Enumerated(EnumType.ORDINAL)
     @Column(name = "a_status")
-    private int status;
+    private AccountStatus status;
 
     @Column(name = "a_balance")
     private BigDecimal balance;
 
+    @Enumerated(EnumType.ORDINAL)
     @Column(name = "a_currency_code")
-    private int currencyCode;
+    private AccountCurrencyCode currencyCode;
 
     @Column(name = "a_create_at")
     private LocalDate createdAt;
