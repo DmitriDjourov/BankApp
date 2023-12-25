@@ -26,7 +26,7 @@ public class Account {
     @Column(name = "a_id")
     private UUID id;
 
-    @Column(name = "a_accountNumber")
+    @Column(name = "a_account_number")
     private String accountNumber;
 
     @Column(name = "a_type")
@@ -39,13 +39,13 @@ public class Account {
     private BigDecimal balance;
 
     @Column(name = "a_currency_code")
-    private int currency_code;
+    private int currencyCode;
 
     @Column(name = "a_create_at")
-    private LocalDate created_at;
+    private LocalDate createdAt;
 
     @Column(name = "a_update_at")
-    private LocalDate updated_at;
+    private LocalDate updatedAt;
 
     @OneToOne(cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY)
     @JoinColumn(name = "a_client_id", referencedColumnName = "c_id")
@@ -72,9 +72,9 @@ public class Account {
                        ", type=" + type +
                        ", status=" + status +
                        ", balance=" + balance +
-                       ", currency_code=" + currency_code +
-                       ", created_at=" + created_at +
-                       ", updated_at=" + updated_at +
+                       ", currency_code=" + currencyCode +
+                       ", created_at=" + createdAt +
+                       ", updated_at=" + updatedAt +
                        ", client=" + client +
                        '}';
     }

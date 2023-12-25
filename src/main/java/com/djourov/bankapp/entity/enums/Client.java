@@ -29,13 +29,13 @@ public class Client {
     private int status;
 
     @Column(name = "c_tax_code")
-    private String tax_code;
+    private String taxCode;
 
     @Column(name = "c_first_name")
-    private String first_name;
+    private String firstName;
 
     @Column(name = "c_last_name")
-    private String last_name;
+    private String lastName;
 
     @Column(name = "c_email")
     private String email;
@@ -47,10 +47,10 @@ public class Client {
     private String phone;
 
     @Column(name = "c_create_at")
-    private LocalDate created_at;
+    private LocalDate createdAt;
 
     @Column(name = "c_update_at")
-    private LocalDate updated_at;
+    private LocalDate updatedAt;
 
     @OneToOne(cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY)
     @JoinColumn(name = "c_manager_id", referencedColumnName = "m_id")
@@ -78,14 +78,14 @@ public class Client {
         return "Client{" +
                        "id=" + id +
                        ", status=" + status +
-                       ", tax_code='" + tax_code + '\'' +
-                       ", first_name='" + first_name + '\'' +
-                       ", last_name='" + last_name + '\'' +
+                       ", taxCode='" + taxCode + '\'' +
+                       ", firstName='" + firstName + '\'' +
+                       ", lastName='" + lastName + '\'' +
                        ", email='" + email + '\'' +
                        ", address='" + address + '\'' +
                        ", phone='" + phone + '\'' +
-                       ", created_at=" + created_at +
-                       ", updated_at=" + updated_at +
+                       ", createdAt=" + createdAt +
+                       ", updatedAt=" + updatedAt +
                        ", manager=" + manager +
                        '}';
     }

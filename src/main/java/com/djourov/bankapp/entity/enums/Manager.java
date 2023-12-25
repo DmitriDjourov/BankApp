@@ -24,46 +24,45 @@ public class Manager {
     private UUID id;
 
     @Column(name = "m_first_name")
-    private String first_name;
+    private String firstName;
 
     @Column(name = "m_last_name")
-    private String last_name;
+    private String lastName;
 
     @Column(name = "m_status")
     private int status;
 
     @Column(name = "m_create_at")
-    private LocalDate created_at;
+    private LocalDate createdAt;
 
     @Column(name = "m_update_at")
-    private LocalDate updated_at;
+    private LocalDate updatedAt;
 
-//    @OneToOne(mappedBy = "Client", fetch = FetchType.LAZY,
-//            orphanRemoval = true, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-//    private Client client;
-
+ /*  @OneToOne(mappedBy = "Client", fetch = FetchType.LAZY,
+            orphanRemoval = true, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+            private Client client */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Manager manager = (Manager) o;
-        return Objects.equals(id, manager.id) && Objects.equals(created_at, manager.created_at);
+        return Objects.equals(id, manager.id) && Objects.equals(createdAt, manager.createdAt);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, created_at);
+        return Objects.hash(id, createdAt);
     }
 
     @Override
     public String toString() {
         return "Manager{" +
                        "id=" + id +
-                       ", first_name='" + first_name + '\'' +
-                       ", last_name='" + last_name + '\'' +
+                       ", firstName='" + firstName + '\'' +
+                       ", lastName='" + lastName + '\'' +
                        ", status=" + status +
-                       ", created_at=" + created_at +
-                       ", updated_at=" + updated_at +
+                       ", createdAt=" + createdAt +
+                       ", updatedAt=" + updatedAt +
                        '}';
     }
 }

@@ -36,39 +36,39 @@ public class Transaction {
 		private String description;
 
 		@Column(name = "t_created_at")
-		private LocalDate created_at;
+		private LocalDate createdAt;
 
 		@ManyToOne(fetch = FetchType.LAZY, cascade = {MERGE, PERSIST, REFRESH})
 		@JoinColumn(name = "t_debit_account_id", referencedColumnName = "a_id")
-		private Account debit_account_id;
+		private Account debitAccountId;
 
 		@ManyToOne(fetch = FetchType.LAZY, cascade = {MERGE, PERSIST, REFRESH})
 		@JoinColumn(name = "t_credit_account_id", referencedColumnName = "a_id")
-		private Account credit_account_id;
+		private Account creditAccountId;
 
 		@Override
 		public boolean equals(Object o) {
 				if (this == o) return true;
 				if (o == null || getClass() != o.getClass()) return false;
 				Transaction that = (Transaction) o;
-				return Objects.equals(id, that.id) && Objects.equals(created_at, that.created_at) && Objects.equals(credit_account_id, that.credit_account_id);
+				return Objects.equals(id, that.id) && Objects.equals(createdAt, that.createdAt) && Objects.equals(creditAccountId, that.creditAccountId);
 		}
 
 		@Override
 		public int hashCode() {
-				return Objects.hash(id, created_at, credit_account_id);
+				return Objects.hash(id, createdAt, creditAccountId);
 		}
 
-		@Override
-		public String toString() {
-				return "Transaction{" +
-						       "id=" + id +
-						       ", type=" + type +
-						       ", amount=" + amount +
-						       ", description='" + description + '\'' +
-						       ", created_at=" + created_at +
-						       ", debit_account_id=" + debit_account_id +
-						       ", credit_account_id=" + credit_account_id +
-						       '}';
-		}
+	@Override
+	public String toString() {
+		return "Transaction{" +
+				       "id=" + id +
+				       ", type=" + type +
+				       ", amount=" + amount +
+				       ", description='" + description + '\'' +
+				       ", createdAt=" + createdAt +
+				       ", debitAccountId=" + debitAccountId +
+				       ", creditAccountId=" + creditAccountId +
+				       '}';
+	}
 }

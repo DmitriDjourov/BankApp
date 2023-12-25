@@ -32,19 +32,19 @@ public class Product {
 		private int status;
 
 		@Column(name = "p_currency_code")
-		private int currency_code;
+		private int currencyCode;
 
 		@Column(name = "p_interest_rate")
-		private double interest_rate;
+		private double interestRate;
 
 		@Column(name = "p_limit_")
 		private int limit;
 
 		@Column(name = "p_create_at")
-		private LocalDate created_at;
+		private LocalDate createdAt;
 
 		@Column(name = "p_update_at")
-		private LocalDate updated_at;
+		private LocalDate updatedAt;
 
 		@ManyToOne(fetch = FetchType.LAZY, cascade = {MERGE, PERSIST, REFRESH})
 		@JoinColumn(name = "p_manager_id", referencedColumnName = "m_id")
@@ -55,26 +55,26 @@ public class Product {
 				if (this == o) return true;
 				if (o == null || getClass() != o.getClass()) return false;
 				Product product = (Product) o;
-				return Objects.equals(id, product.id) && Objects.equals(created_at, product.created_at) && Objects.equals(manager, product.manager);
+				return Objects.equals(id, product.id) && Objects.equals(createdAt, product.createdAt) && Objects.equals(manager, product.manager);
 		}
 
 		@Override
 		public int hashCode() {
-				return Objects.hash(id, created_at, manager);
+				return Objects.hash(id, createdAt, manager);
 		}
 
-		@Override
-		public String toString() {
-				return "Product{" +
-						       "id=" + id +
-						       ", name='" + name + '\'' +
-						       ", status=" + status +
-						       ", currency_code=" + currency_code +
-						       ", interest_rate=" + interest_rate +
-						       ", limit=" + limit +
-						       ", created_at=" + created_at +
-						       ", updated_at=" + updated_at +
-						       ", manager=" + manager +
-						       '}';
-		}
+	@Override
+	public String toString() {
+		return "Product{" +
+				       "id=" + id +
+				       ", name='" + name + '\'' +
+				       ", status=" + status +
+				       ", currencyCode=" + currencyCode +
+				       ", interestRate=" + interestRate +
+				       ", limit=" + limit +
+				       ", createdAt=" + createdAt +
+				       ", updatedAt=" + updatedAt +
+				       ", manager=" + manager +
+				       '}';
+	}
 }
