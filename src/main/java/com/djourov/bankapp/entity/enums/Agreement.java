@@ -11,7 +11,7 @@ import java.util.UUID;
 import static jakarta.persistence.CascadeType.*;
 
 @Entity
-@Table(name = "Agreements")
+@Table(name = "Agreement")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -32,10 +32,10 @@ public class Agreement {
     @Column(name = "ag_sum")
     private BigDecimal sum;
 
-    @Column(name = "ag_created_at")
+    @Column(name = "ag_create_at")
     private LocalDate created_at;
 
-    @Column(name = "ag_updated_at")
+    @Column(name = "ag_update_at")
     private LocalDate updated_at;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {MERGE, PERSIST, REFRESH})

@@ -26,7 +26,7 @@ public class Account {
     @Column(name = "a_id")
     private UUID id;
 
-    @Column(name = "a_account_number")
+    @Column(name = "a_accountNumber")
     private String accountNumber;
 
     @Column(name = "a_type")
@@ -41,10 +41,10 @@ public class Account {
     @Column(name = "a_currency_code")
     private int currency_code;
 
-    @Column(name = "a_created_at")
+    @Column(name = "a_create_at")
     private LocalDate created_at;
 
-    @Column(name = "a_updated_at")
+    @Column(name = "a_update_at")
     private LocalDate updated_at;
 
     @OneToOne(cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY)

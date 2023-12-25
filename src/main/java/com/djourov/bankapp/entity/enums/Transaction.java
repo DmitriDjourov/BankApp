@@ -39,7 +39,7 @@ public class Transaction {
 		private LocalDate created_at;
 
 		@ManyToOne(fetch = FetchType.LAZY, cascade = {MERGE, PERSIST, REFRESH})
-		@JoinColumn(name = "t_account_id", referencedColumnName = "a_id")
+		@JoinColumn(name = "t_debit_account_id", referencedColumnName = "a_id")
 		private Account debit_account_id;
 
 		@ManyToOne(fetch = FetchType.LAZY, cascade = {MERGE, PERSIST, REFRESH})

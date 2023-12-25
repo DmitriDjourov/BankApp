@@ -32,10 +32,10 @@ public class Manager {
     @Column(name = "m_status")
     private int status;
 
-    @Column(name = "m_created_at")
+    @Column(name = "m_create_at")
     private LocalDate created_at;
 
-    @Column(name = "m_updated_at")
+    @Column(name = "m_update_at")
     private LocalDate updated_at;
 
 //    @OneToOne(mappedBy = "Client", fetch = FetchType.LAZY,

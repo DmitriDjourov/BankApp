@@ -37,13 +37,13 @@ public class Product {
 		@Column(name = "p_interest_rate")
 		private double interest_rate;
 
-		@Column(name = "p_limit")
+		@Column(name = "p_limit_")
 		private int limit;
 
-		@Column(name = "p_created_at")
+		@Column(name = "p_create_at")
 		private LocalDate created_at;
 
-		@Column(name = "p_updated_at")
+		@Column(name = "p_update_at")
 		private LocalDate updated_at;
 
 		@ManyToOne(fetch = FetchType.LAZY, cascade = {MERGE, PERSIST, REFRESH})

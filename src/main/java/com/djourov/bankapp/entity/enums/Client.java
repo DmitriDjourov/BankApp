@@ -46,10 +46,10 @@ public class Client {
     @Column(name = "c_phone")
     private String phone;
 
-    @Column(name = "c_created_at")
+    @Column(name = "c_create_at")
     private LocalDate created_at;
 
-    @Column(name = "c_updated_at")
+    @Column(name = "c_update_at")
     private LocalDate updated_at;
 
     @OneToOne(cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY)
