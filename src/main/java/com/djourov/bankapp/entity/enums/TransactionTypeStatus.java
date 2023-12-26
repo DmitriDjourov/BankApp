@@ -20,13 +20,4 @@ public enum TransactionTypeStatus {
                        "transactionName='" + transactionName + '\'' +
                        '}';
     }
-    public static TransactionTypeStatus transactionTypeStatus(int code) {
-        return switch (code) {
-            case 1 -> TRANSFER;
-            case 2 -> PAYMENT;
-            case 3 -> CASH;
-            case 4 -> DEPOSIT;
-            default -> throw new IllegalArgumentException("Unexpected value: " + code);
-        };
-    }
 }

@@ -20,13 +20,4 @@ public enum ProductTypeStatus {
                        "productName='" + productName + '\'' +
                        '}';
     }
-
-    public static ProductTypeStatus productTypeStatus(int code) {
-        return switch (code) {
-            case 1 -> DEPOSIT;
-            case 2 -> DEBIT_CARD;
-            case 3 -> CREDIT_CARD;
-            default -> throw new IllegalArgumentException("Unexpected value: " + code);
-        };
-    }
 }

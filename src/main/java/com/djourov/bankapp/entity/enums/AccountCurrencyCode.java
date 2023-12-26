@@ -22,15 +22,4 @@ public enum AccountCurrencyCode {
                        "currencyName='" + currencyName + '\'' +
                        '}';
     }
-
-    public static AccountCurrencyCode accountCurrencyCode(int code) {
-        return switch (code) {
-            case 1 -> EUR;
-            case 2 -> USD;
-            case 3 -> ILS;
-            case 4 -> UAH;
-            case 5 -> JPY;
-            default -> throw new IllegalArgumentException("Unexpected value: " + code);
-        };
-    }
 }

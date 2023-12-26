@@ -20,14 +20,5 @@ public enum ProductInterestRateStatus {
                        "prodInterestName='" + prodInterestName + '\'' +
                        '}';
     }
-
-    public static ProductInterestRateStatus productInterestRateStatus(int code) {
-        return switch (code) {
-            case 1 -> DEPOSIT;
-            case 2 -> DEBIT_CARD;
-            case 3 -> CREDIT_CARD;
-            default -> throw new IllegalArgumentException("Unexpected value: " + code);
-        };
-    }
 }
 
