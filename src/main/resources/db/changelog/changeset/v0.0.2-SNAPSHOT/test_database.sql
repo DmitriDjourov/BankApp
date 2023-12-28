@@ -1,0 +1,7 @@
+insert into bankapp.manager (m_id, m_first_name, m_last_name, m_status, m_create_at, m_update_at) values ('1763f054-5393-11ee-8c99-0242ac120002', 'Vasiliy', 'Pupkin', 1, '2023-12-28 13:24:51', '2023-12-28 13:24:59');
+insert into bankapp.manager (m_id, m_first_name, m_last_name, m_status, m_create_at, m_update_at) values ('caed40d0-5401-11ee-8c99-0242ac120002', 'Jon', 'Smith', 2, '2023-12-25 13:27:41', '2023-12-27 13:27:50');
+insert into bankapp.manager (m_id, m_first_name, m_last_name, m_status, m_create_at, m_update_at) values ('f74cf29c-5401-11ee-8c99-0242ac120002', 'Michail', 'Lei', 3, '2023-12-25 13:29:25', null);
+
+insert into bankapp.product (p_id, p_manager_id, p_name, p_status, p_currency_code, p_interest_rate, p_limit_, p_create_at, p_update_at) values ('06c2f173-4fac-4520-8666-58c379171019', 'caed40d0-5401-11ee-8c99-0242ac120002', 'Debit card', 1, 2, 2.2500, 20000, '2023-12-28 14:29:42', null);
+insert into bankapp.product (p_id, p_manager_id, p_name, p_status, p_currency_code, p_interest_rate, p_limit_, p_create_at, p_update_at) values ('261241cb-f206-4b29-a779-6fe116538763', '1763f054-5393-11ee-8c99-0242ac120002', 'Deposit', 1, 1, 2.7500, 10000, '2023-12-28 14:01:01', null);
+insert into bankapp.product (p_id, p_manager_id, p_name, p_status, p_currency_code, p_interest_rate, p_limit_, p_create_at, p_update_at) values ('b94c7073-f7c7-454e-8ca7-0180e8f580d1', 'f74cf29c-5401-11ee-8c99-0242ac120002', 'Credit card', 1, 3, 2.0000, 30000, '2023-12-28 14:31:33', null);

@@ -4,22 +4,16 @@ import lombok.Getter;
 
 @Getter
 public enum AccountCurrencyCode {
-    EUR("Euro"),
-    USD("US Dollar"),
-    ILS("New Israeli Sheqel"),
-    GBP("Pound Sterling"),
-    UAH("Hryvnia"),
-    JPY("Yen");
+    EUR(1),
+    USD(2),
+    ILS(3),
+    GBP(4),
+    UAH(5),
+    JPY(6);
 
-    private final String currencyName;
-    AccountCurrencyCode(String currencyName) {
-        this.currencyName = currencyName;
-    }
+    private final int value;
 
-    @Override
-    public String toString() {
-        return "AccountCurrencyCode{" +
-                       "currencyName='" + currencyName + '\'' +
-                       '}';
+    AccountCurrencyCode(int value) {
+        this.value = value;
     }
 }

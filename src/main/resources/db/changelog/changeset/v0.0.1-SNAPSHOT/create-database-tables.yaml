@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
       id: create-manager-table
-      author: Dmitri Djourov
+      author: DmitriDjourov
       changes:
         - createTable:
             tableName: Manager
@@ -39,7 +39,7 @@ databaseChangeLog:
 
   - changeSet:
       id: create-product-table
-      author: Dmitri Djourov
+      author: DmitriDjourov
       changes:
         - createTable:
             tableName: Product
@@ -100,7 +100,7 @@ databaseChangeLog:
 
   - changeSet:
       id: create-client-table
-      author: Dmitri Djourov
+      author: DmitriDjourov
       changes:
         - createTable:
             tableName: Client
@@ -171,7 +171,7 @@ databaseChangeLog:
 
   - changeSet:
       id: create-account-table
-      author: Dmitri Djourov
+      author: DmitriDjourov
       changes:
         - createTable:
             tableName: Account
@@ -232,7 +232,7 @@ databaseChangeLog:
 
   - changeSet:
       id: create-transaction-table
-      author: Dmitri Djourov
+      author: DmitriDjourov
       changes:
         - createTable:
             tableName: Transaction
@@ -283,7 +283,7 @@ databaseChangeLog:
 
   - changeSet:
       id: create-agreement-table
-      author: Dmitri Djourov
+      author: DmitriDjourov
       changes:
         - createTable:
             tableName: Agreement

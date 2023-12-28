@@ -1,14 +1,15 @@
 package com.djourov.bankapp.entity;
 
 import com.djourov.bankapp.entity.enums.AccountCurrencyCode;
-import com.djourov.bankapp.entity.enums.ProductInterestRateStatus;
-import com.djourov.bankapp.entity.enums.ProductTypeStatus;
+import com.djourov.bankapp.entity.enums.ProductName;
+import com.djourov.bankapp.entity.enums.ProductStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
@@ -28,20 +29,20 @@ public class Product {
 		@Column(name = "p_id")
 		private UUID id;
 
+	  @Enumerated(EnumType.ORDINAL)
 		@Column(name = "p_name")
-		private String name;
+		private ProductName name;
 
 		@Enumerated(EnumType.ORDINAL)
 		@Column(name = "p_status")
-		private ProductTypeStatus status;
+		private ProductStatus status;
 
 		@Enumerated(EnumType.ORDINAL)
 		@Column(name = "p_currency_code")
 		private AccountCurrencyCode currencyCode;
 
-		@Enumerated(EnumType.ORDINAL)
 		@Column(name = "p_interest_rate")
-		private ProductInterestRateStatus interestRate;
+		private BigDecimal interestRate;
 
 		@Column(name = "p_limit_")
 		private int limit;
