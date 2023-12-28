@@ -4,20 +4,15 @@ import lombok.Getter;
 
 @Getter
 public enum TransactionTypeStatus {
-    TRANSFER("Transfer"),
-    PAYMENT("Payment"),
-    CASH("Cash"),
-    DEPOSIT("Deposit");
+    TRANSFER(0),
+    PAYMENT(1),
+    CASH(2),
+    DEPOSIT(3);
 
-    private final String transactionName;
+    private final int transactionName;
 
-    TransactionTypeStatus(String transactionName) {
+    TransactionTypeStatus(int transactionName) {
         this.transactionName = transactionName;
     }
-    @Override
-    public String toString() {
-        return "TransactionTypeStatus{" +
-                       "transactionName='" + transactionName + '\'' +
-                       '}';
-    }
+
 }

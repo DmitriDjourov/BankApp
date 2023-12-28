@@ -1,6 +1,5 @@
 package com.djourov.bankapp.entity;
 
-import com.djourov.bankapp.entity.enums.AgreementInterestRateStatus;
 import com.djourov.bankapp.entity.enums.AgreementStatus;
 import jakarta.persistence.*;
 import lombok.*;
@@ -25,9 +24,8 @@ public class Agreement {
     @Column(name = "ag_id")
     private UUID id;
 
-    @Enumerated(EnumType.ORDINAL)
     @Column(name = "ag_interest_rate")
-    private AgreementInterestRateStatus interestRate;
+    private BigDecimal interestRate;
 
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "ag_status")
