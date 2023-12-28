@@ -35,8 +35,8 @@ public class Transaction {
 		@Column(name = "t_description")
 		private String description;
 
-		@Column(name = "t_created_at")
-		private LocalDate createdAt;
+		@Column(name = "t_create_at")
+		private LocalDate createAt;
 
 		@ManyToOne(fetch = FetchType.LAZY, cascade = {MERGE, PERSIST, REFRESH})
 		@JoinColumn(name = "t_debit_account_id", referencedColumnName = "a_id")
@@ -51,12 +51,12 @@ public class Transaction {
 				if (this == o) return true;
 				if (o == null || getClass() != o.getClass()) return false;
 				Transaction that = (Transaction) o;
-				return Objects.equals(id, that.id) && Objects.equals(createdAt, that.createdAt) && Objects.equals(creditAccountId, that.creditAccountId);
+				return Objects.equals(id, that.id) && Objects.equals(createAt, that.createAt) && Objects.equals(creditAccountId, that.creditAccountId);
 		}
 
 		@Override
 		public int hashCode() {
-				return Objects.hash(id, createdAt, creditAccountId);
+				return Objects.hash(id, createAt, creditAccountId);
 		}
 
 	@Override
@@ -66,7 +66,7 @@ public class Transaction {
 				       ", type=" + type +
 				       ", amount=" + amount +
 				       ", description='" + description + '\'' +
-				       ", createdAt=" + createdAt +
+				       ", createAt=" + createAt +
 				       ", debitAccountId=" + debitAccountId +
 				       ", creditAccountId=" + creditAccountId +
 				       '}';

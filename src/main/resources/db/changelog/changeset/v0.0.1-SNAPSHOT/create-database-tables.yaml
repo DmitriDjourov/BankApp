@@ -1,0 +1,341 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-manager-table
+      author: Dmitri Djourov
+      changes:
+        - createTable:
+            tableName: Manager
+            columns:
+              - column:
+                  name: m_id
+                  type: VARCHAR(36)
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: m_first_name
+                  type: varchar(50)
+              - column:
+                  name: m_last_name
+                  type: varchar(50)
+              - column:
+                  name: m_status
+                  type: TINYINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: m_create_at
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: m_update_at
+                  type: timestamp
+                  constraints:
+                    nullable: true
+        - addDefaultValue:
+            tableName: Manager
+            columnName: m_create_at
+            defaultValueDate: current_timestamp
+
+  - changeSet:
+      id: create-product-table
+      author: Dmitri Djourov
+      changes:
+        - createTable:
+            tableName: Product
+            columns:
+              - column:
+                  name: p_id
+                  type: VARCHAR(36)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: p_manager_id
+                  type: VARCHAR(36)
+                  constraints:
+                    foreignKeyName: fk_product_manager
+                    referencedTableName: manager
+                    referencedColumnNames: m_id
+                    nullable: false
+              - column:
+                  name: p_name
+                  type: VARCHAR(70)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: p_status
+                  type: TINYINT
+                  constraints:
+                    nullable: true
+              - column:
+                  name: p_currency_code
+                  type: INT
+                  constraints:
+                    nullable: true
+              - column:
+                  name: p_interest_rate
+                  type: DECIMAL(6, 4)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: p_limit_
+                  type: INT
+                  constraints:
+                    nullable: true
+              - column:
+                  name: p_create_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: p_update_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: true
+        - addDefaultValue:
+            tableName: Product
+            columnName: p_create_at
+            defaultValueDate: current_timestamp
+
+  - changeSet:
+      id: create-client-table
+      author: Dmitri Djourov
+      changes:
+        - createTable:
+            tableName: Client
+            columns:
+              - column:
+                  name: c_id
+                  type: VARCHAR(36)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: c_manager_id
+                  type: VARCHAR(36)
+                  constraints:
+                    foreignKeyName: fk_client_manager
+                    referencedTableName: manager
+                    referencedColumnNames: m_id
+                    nullable: true
+              - column:
+                  name: c_status
+                  type: TINYINT
+                  constraints:
+                    nullable: true
+              - column:
+                  name: c_tax_code
+                  type: VARCHAR(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: c_first_name
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: c_last_name
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: c_email
+                  type: VARCHAR(60)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: c_address
+                  type: VARCHAR(80)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: c_phone
+                  type: VARCHAR(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: c_create_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: c_update_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: true
+        - addDefaultValue:
+            tableName: Client
+            columnName: c_create_at
+            defaultValueDate: current_timestamp
+
+  - changeSet:
+      id: create-account-table
+      author: Dmitri Djourov
+      changes:
+        - createTable:
+            tableName: Account
+            columns:
+              - column:
+                  name: a_id
+                  type: VARCHAR(36)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: a_client_id
+                  type: VARCHAR(36)
+                  constraints:
+                    foreignKeyName: fk_account_client_id
+                    referencedTableName: client
+                    referencedColumnNames: c_id
+                    nullable: true
+              - column:
+                  name: a_account_number
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: a_type
+                  type: INT
+                  constraints:
+                    nullable: true
+              - column:
+                  name: a_status
+                  type: TINYINT
+                  constraints:
+                    nullable: true
+              - column:
+                  name: a_balance
+                  type: DECIMAL(15, 2)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: a_currency_code
+                  type: INT
+                  constraints:
+                    nullable: true
+              - column:
+                  name: a_create_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: a_update_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: true
+        - addDefaultValue:
+            tableName: Account
+            columnName: a_create_at
+            defaultValueDate: current_timestamp
+
+  - changeSet:
+      id: create-transaction-table
+      author: Dmitri Djourov
+      changes:
+        - createTable:
+            tableName: Transaction
+            columns:
+              - column:
+                  name: t_id
+                  type: VARCHAR(36)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: t_debit_account_id
+                  type: VARCHAR(36)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: t_credit_account_id
+                  type: VARCHAR(36)
+                  constraints:
+                    foreignKeyName: fk_transaction_credit_account
+                    referencedTableName: account
+                    referencedColumnNames: a_id
+                    nullable: true
+              - column:
+                  name: t_type
+                  type: INT
+                  constraints:
+                    nullable: true
+              - column:
+                  name: t_amount
+                  type: DECIMAL(12, 4)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: t_description
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: t_create_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+        - addDefaultValue:
+            tableName: Transaction
+            columnName: t_create_at
+            defaultValueDate: current_timestamp
+
+  - changeSet:
+      id: create-agreement-table
+      author: Dmitri Djourov
+      changes:
+        - createTable:
+            tableName: Agreement
+            columns:
+              - column:
+                  name: ag_id
+                  type: VARCHAR(36)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: ag_account_id
+                  type: VARCHAR(36)
+                  constraints:
+                    foreignKeyName: fk_agreement_account
+                    referencedTableName: account
+                    referencedColumnNames: a_id
+                    nullable: true
+              - column:
+                  name: ag_product_id
+                  type: VARCHAR(36)
+                  constraints:
+                    foreignKeyName: fk_agreement_product
+                    referencedTableName: product
+                    referencedColumnNames: p_id
+                    nullable: true
+              - column:
+                  name: ag_interest_rate
+                  type: DECIMAL(6, 4)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: ag_status
+                  type: TINYINT
+                  constraints:
+                    nullable: true
+              - column:
+                  name: ag_sum
+                  type: DECIMAL(15, 2)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: ag_create_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: ag_update_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: true
+        - addDefaultValue:
+            tableName: Agreement
+            columnName: ag_create_at
+            defaultValueDate: current_timestamp
