@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet author="DmitriDjourov" id="drop manager table">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="manager"/>
+        </preConditions>
+        <rollback>
+            <dropTable tableName="manager"/>
+        </rollback>
+        <rollback>
+            <sql>
+                DROP SEQUENCE IF EXISTS seq_for_uuid_generator;
+            </sql>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="DmitriDjourov" id="drop product table">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="product"/>
+        </preConditions>
+        <rollback>
+            <dropTable tableName="product"/>
+        </rollback>
+        <rollback>
+            <sql>
+                DROP SEQUENCE IF EXISTS seq_for_uuid_generator;
+            </sql>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="DmitriDjourov" id="drop client table">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="client"/>
+        </preConditions>
+        <rollback>
+            <dropTable tableName="client"/>
+        </rollback>
+        <rollback>
+            <sql>
+                DROP SEQUENCE IF EXISTS seq_for_uuid_generator;
+            </sql>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="DmitriDjourov" id="drop account table">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="account"/>
+        </preConditions>
+        <rollback>
+            <dropTable tableName="account"/>
+        </rollback>
+        <rollback>
+            <sql>
+                DROP SEQUENCE IF EXISTS seq_for_uuid_generator;
+            </sql>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="DmitriDjourov" id="drop agreement table">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="agreement"/>
+        </preConditions>
+        <rollback>
+            <dropTable tableName="agreement"/>
+        </rollback>
+        <rollback>
+            <sql>
+                DROP SEQUENCE IF EXISTS seq_for_uuid_generator;
+            </sql>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="DmitriDjourov" id="drop transaction table">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="transaction"/>
+        </preConditions>
+        <rollback>
+            <dropTable tableName="transaction"/>
+        </rollback>
+        <rollback>
+            <sql>
+                DROP SEQUENCE IF EXISTS seq_for_uuid_generator;
+            </sql>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>
