@@ -29,7 +29,7 @@ public class Product {
 		@Column(name = "p_id")
 		private UUID id;
 
-	  @Enumerated(EnumType.ORDINAL)
+	  @Enumerated(EnumType.STRING)
 		@Column(name = "p_name")
 		private ProductName name;
 
