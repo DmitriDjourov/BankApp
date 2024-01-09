@@ -18,12 +18,12 @@ public class AccountController {
         return accountServiceImpl.getAllAccounts();
     }
 
-    @GetMapping("/account/{id}")//http:/localhost:8080/app/accounts/account/30633730-6166-6131-2d63-3635342d3437(не работает)
+    @GetMapping("/{id}")//localhost:8080/app/account/30633730-6166-6131-2d63-3635342d3437(не работает)
     public Account getAccountByID(@PathVariable("id") String id) {
         return accountServiceImpl.getAccById(id);
     }
 
-    @GetMapping("/account_number/{a_account_number}")//http:/localhost:8080/app/accounts/account_number/123456789
+    @GetMapping("/account_number/{a_account_number}")//http:/localhost:8080/app/account/account_number/123456789
     public Account findAccountByAccountNumber(@PathVariable("a_account_number") String a_account_number) {
         return accountServiceImpl.findAccountByAccountNumber(a_account_number);
     }
