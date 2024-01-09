@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/app/accounts")
+@RequestMapping("/app/account")
 @RequiredArgsConstructor
 public class AccountController {
     private final AccountServiceImpl accountServiceImpl;
 
-    @GetMapping("/")
+    @GetMapping("/accounts")
     public List<Account> getAllAccounts() {
         return accountServiceImpl.getAllAccounts();
     }

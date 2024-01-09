@@ -54,9 +54,10 @@ public class Account {
     @Column(name = "a_update_at")
     private LocalDate updatedAt;
 
-    @OneToOne(cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY)
-    @JoinColumn(name = "a_client_id", referencedColumnName = "c_id")
-    @JsonIgnore// без него не работает
+    @OneToOne//(cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY)
+    @JoinColumn(name = "a_client_id")
+//    @JoinColumn(name = "a_client_id", referencedColumnName = "c_id")
+//    @JsonIgnore// без него не работает
     private Client client;
 
     @Override
