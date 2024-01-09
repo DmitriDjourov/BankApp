@@ -3,6 +3,7 @@ package com.djourov.bankapp.entity;
 import com.djourov.bankapp.entity.enums.AccountCurrencyCode;
 import com.djourov.bankapp.entity.enums.AccountStatus;
 import com.djourov.bankapp.entity.enums.AccountTypeStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -55,6 +56,7 @@ public class Account {
 
     @OneToOne(cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY)
     @JoinColumn(name = "a_client_id", referencedColumnName = "c_id")
+    @JsonIgnore
     private Client client;
 
     @Override

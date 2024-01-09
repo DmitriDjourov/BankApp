@@ -3,6 +3,7 @@ package com.djourov.bankapp.entity;
 import com.djourov.bankapp.entity.enums.AccountCurrencyCode;
 import com.djourov.bankapp.entity.enums.ProductName;
 import com.djourov.bankapp.entity.enums.ProductStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -55,6 +56,7 @@ public class Product {
 
 		@ManyToOne(fetch = FetchType.LAZY, cascade = {MERGE, PERSIST, REFRESH})
 		@JoinColumn(name = "p_manager_id", referencedColumnName = "m_id")
+		@JsonIgnore
 		private Manager manager;
 
 		@Override
