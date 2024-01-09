@@ -1,5 +1,6 @@
 package com.djourov.bankapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -40,10 +41,12 @@ public class Transaction {
 
 		@ManyToOne(fetch = FetchType.LAZY, cascade = {MERGE, PERSIST, REFRESH})
 		@JoinColumn(name = "t_debit_account_id", referencedColumnName = "a_id")
+		@JsonIgnore // без него не работает
 		private Account debitAccountId;
 
 		@ManyToOne(fetch = FetchType.LAZY, cascade = {MERGE, PERSIST, REFRESH})
 		@JoinColumn(name = "t_credit_account_id", referencedColumnName = "a_id")
+		@JsonIgnore // без него не работает
 		private Account creditAccountId;
 
 		@Override

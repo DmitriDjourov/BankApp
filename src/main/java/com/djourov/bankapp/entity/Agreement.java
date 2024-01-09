@@ -1,6 +1,7 @@
 package com.djourov.bankapp.entity;
 
 import com.djourov.bankapp.entity.enums.AgreementStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -42,10 +43,12 @@ public class Agreement {
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {MERGE, PERSIST, REFRESH})
     @JoinColumn(name = "ag_account_id", referencedColumnName = "a_id")
+    @JsonIgnore// без него не работает
     private Account accountId;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {MERGE, PERSIST, REFRESH})
     @JoinColumn(name = "ag_product_id", referencedColumnName = "p_id")
+    @JsonIgnore// без него не работает
     private Product productId;
 
     @Override

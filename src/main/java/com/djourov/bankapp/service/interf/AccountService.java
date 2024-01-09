@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface AccountService {
     List<Account> getAllAccounts();
+    Account getAccById(String id);
+    Account findAccountByAccountNumber(String a_account_number);
 }

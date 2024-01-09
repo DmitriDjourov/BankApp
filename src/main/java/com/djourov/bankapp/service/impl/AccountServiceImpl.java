@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 public class AccountServiceImpl implements AccountService {
@@ -15,4 +17,15 @@ public class AccountServiceImpl implements AccountService {
     public List<Account> getAllAccounts() {
         return accountRepository.findAll();
     }
+
+    @Override
+    public Account getAccById(String id) {
+        return accountRepository.getReferenceById(UUID.fromString(id));
+    }
+
+    @Override
+    public Account findAccountByAccountNumber(String a_account_number) {
+        return accountRepository.findAccountByAccountNumber(a_account_number);
+    }
+
 }

@@ -56,7 +56,7 @@ public class Product {
 
 		@ManyToOne(fetch = FetchType.LAZY, cascade = {MERGE, PERSIST, REFRESH})
 		@JoinColumn(name = "p_manager_id", referencedColumnName = "m_id")
-		@JsonIgnore
+		@JsonIgnore // без него не работает
 		private Manager manager;
 
 		@Override

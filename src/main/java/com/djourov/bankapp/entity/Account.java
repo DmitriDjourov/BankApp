@@ -56,7 +56,7 @@ public class Account {
 
     @OneToOne(cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY)
     @JoinColumn(name = "a_client_id", referencedColumnName = "c_id")
-    @JsonIgnore
+    @JsonIgnore// без него не работает
     private Client client;
 
     @Override

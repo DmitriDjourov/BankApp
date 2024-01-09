@@ -1,6 +1,7 @@
 package com.djourov.bankapp.entity;
 
 import com.djourov.bankapp.entity.enums.ClientStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -56,6 +57,7 @@ public class Client {
 
     @OneToOne(cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY)
     @JoinColumn(name = "c_manager_id", referencedColumnName = "m_id")
+    @JsonIgnore// без него не работает
     private Manager manager;
 
     @Override
