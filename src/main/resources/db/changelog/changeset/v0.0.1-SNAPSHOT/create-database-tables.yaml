@@ -8,7 +8,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: m_id
-                  type: VARCHAR(36)
+                  type: binary(16)
                   constraints:
                     primaryKey: true
               - column:
@@ -46,13 +46,13 @@ databaseChangeLog:
             columns:
               - column:
                   name: p_id
-                  type: VARCHAR(36)
+                  type: binary(16)
                   constraints:
                     primaryKey: true
                     nullable: false
               - column:
                   name: p_manager_id
-                  type: VARCHAR(36)
+                  type: binary(16)
                   constraints:
                     foreignKeyName: fk_product_manager
                     referencedTableName: manager
@@ -107,13 +107,13 @@ databaseChangeLog:
             columns:
               - column:
                   name: c_id
-                  type: VARCHAR(36)
+                  type: binary(16)
                   constraints:
                     primaryKey: true
                     nullable: false
               - column:
                   name: c_manager_id
-                  type: VARCHAR(36)
+                  type: binary(16)
                   constraints:
                     foreignKeyName: fk_client_manager
                     referencedTableName: manager
@@ -178,13 +178,13 @@ databaseChangeLog:
             columns:
               - column:
                   name: a_id
-                  type: VARCHAR(36)
+                  type: binary(16)
                   constraints:
                     primaryKey: true
                     nullable: false
               - column:
                   name: a_client_id
-                  type: VARCHAR(36)
+                  type: binary(16)
                   constraints:
                     foreignKeyName: fk_account_client_id
                     referencedTableName: client
@@ -239,18 +239,18 @@ databaseChangeLog:
             columns:
               - column:
                   name: t_id
-                  type: VARCHAR(36)
+                  type: binary(16)
                   constraints:
                     primaryKey: true
                     nullable: false
               - column:
                   name: t_debit_account_id
-                  type: VARCHAR(36)
+                  type: binary(16)
                   constraints:
                     nullable: true
               - column:
                   name: t_credit_account_id
-                  type: VARCHAR(36)
+                  type: binary(16)
                   constraints:
                     foreignKeyName: fk_transaction_credit_account
                     referencedTableName: account
@@ -290,13 +290,13 @@ databaseChangeLog:
             columns:
               - column:
                   name: ag_id
-                  type: VARCHAR(36)
+                  type: binary(16)
                   constraints:
                     primaryKey: true
                     nullable: false
               - column:
                   name: ag_account_id
-                  type: VARCHAR(36)
+                  type: binary(16)
                   constraints:
                     foreignKeyName: fk_agreement_account
                     referencedTableName: account
@@ -304,7 +304,7 @@ databaseChangeLog:
                     nullable: true
               - column:
                   name: ag_product_id
-                  type: VARCHAR(36)
+                  type: binary(16)
                   constraints:
                     foreignKeyName: fk_agreement_product
                     referencedTableName: product

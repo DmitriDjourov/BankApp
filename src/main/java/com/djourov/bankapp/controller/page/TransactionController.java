@@ -1,7 +1,7 @@
 package com.djourov.bankapp.controller.page;
 
 import com.djourov.bankapp.entity.Transaction;
-import com.djourov.bankapp.service.impl.TransactionServiceImpl;
+import com.djourov.bankapp.service.interf.TransactionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,10 +13,10 @@ import java.util.List;
 @RequestMapping("/app/transaction")
 @RequiredArgsConstructor
 public class TransactionController {
-    private final TransactionServiceImpl transactionServiceImpl;
+    private final TransactionService transactionService;
 
     @GetMapping("/transactions")//http:/localhost:8080/app/transaction/transactions
     public List<Transaction> getAllTaransactions() {
-        return transactionServiceImpl.getAllTransactions();
+        return transactionService.getAllTransactions();
     }
 }

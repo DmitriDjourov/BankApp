@@ -1,7 +1,7 @@
 package com.djourov.bankapp.controller.page;
 
 import com.djourov.bankapp.entity.Account;
-import com.djourov.bankapp.service.impl.AccountServiceImpl;
+import com.djourov.bankapp.service.interf.AccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,20 +11,20 @@ import java.util.List;
 @RequestMapping("/app/account")
 @RequiredArgsConstructor
 public class AccountController {
-    private final AccountServiceImpl accountServiceImpl;
+    private final AccountService accountService;
 
     @GetMapping("/accounts")
     public List<Account> getAllAccounts() {
-        return accountServiceImpl.getAllAccounts();
+        return accountService.getAllAccounts();
     }
 
     @GetMapping("/{id}")//localhost:8080/app/account/30633730-6166-6131-2d63-3635342d3437(не работает)
     public Account getAccountByID(@PathVariable("id") String id) {
-        return accountServiceImpl.getAccById(id);
+        return accountService.getAccById(id);
     }
 
     @GetMapping("/account_number/{a_account_number}")//http:/localhost:8080/app/account/account_number/123456789
     public Account findAccountByAccountNumber(@PathVariable("a_account_number") String a_account_number) {
-        return accountServiceImpl.findAccountByAccountNumber(a_account_number);
+        return accountService.findAccountByAccountNumber(a_account_number);
     }
 }

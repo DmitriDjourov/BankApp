@@ -1,7 +1,7 @@
 package com.djourov.bankapp.controller.page;
 
 import com.djourov.bankapp.entity.Product;
-import com.djourov.bankapp.service.impl.ProductServiceImpl;
+import com.djourov.bankapp.service.interf.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,10 +13,11 @@ import java.util.List;
 @RequestMapping("/app/product")
 @AllArgsConstructor
 public class ProductController {
-    private final ProductServiceImpl productServiceImpl;
+    private final ProductService productService;
+
     @GetMapping("/products")//http:/localhost:8080/app/product/products
     public List<Product> getAllProducts() {
-        return productServiceImpl.getAllProducts();
+        return productService.getAllProducts();
     }
 
 }

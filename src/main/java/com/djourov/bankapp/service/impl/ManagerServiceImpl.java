@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -17,5 +18,10 @@ public class ManagerServiceImpl implements ManagerService {
     @Override
     public List<Manager> getAllManagers() {
         return managerRepository.findAll();
+    }
+
+    @Override
+    public Manager getManagerById(UUID id) {
+        return managerRepository.getReferenceById(id);
     }
 }

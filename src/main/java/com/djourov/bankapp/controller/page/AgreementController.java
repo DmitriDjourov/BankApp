@@ -1,7 +1,7 @@
 package com.djourov.bankapp.controller.page;
 
 import com.djourov.bankapp.entity.Agreement;
-import com.djourov.bankapp.service.impl.AgreementServiceImpl;
+import com.djourov.bankapp.service.interf.AgreementService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,11 +14,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AgreementController {
 
-    private final AgreementServiceImpl agreementServiceImpl;
+    private final AgreementService agreementService;
 
     @GetMapping("/agreements")//http:/localhost:8080/app/agreement/agreements
     public List<Agreement> getAllagreement() {
-        return agreementServiceImpl.getAllAgreements();
+        return agreementService.getAllAgreements();
     }
 
 }
