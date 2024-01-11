@@ -13,11 +13,10 @@ import java.util.List;
 @RequestMapping("/app/client")
 @RequiredArgsConstructor
 public class ClientController {
-
     private final ClientService clientService;
+
     @GetMapping("/clients")//http:/localhost:8080/app/client/clients
     public List<Client> getAllClients() {
         return clientService.getAllClients();
     }
-
 }

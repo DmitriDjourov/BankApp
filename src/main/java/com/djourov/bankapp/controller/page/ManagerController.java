@@ -27,8 +27,4 @@ public class ManagerController {
         Manager manager = managerService.getManagerById(id);
         return (Manager) Hibernate.unproxy(manager);
     }
-//    @GetMapping("/{id}") // localhost:8080/app/manager/ef62047b-afdf-11ee-a962-00ffe0e1a544
-//    public Manager getManagerById(@PathVariable("id") UUID id) {
-//        return managerService.getManagerById(id);
-//    }
 }

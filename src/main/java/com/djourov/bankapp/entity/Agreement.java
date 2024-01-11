@@ -1,7 +1,6 @@
 package com.djourov.bankapp.entity;
 
 import com.djourov.bankapp.entity.enums.AgreementStatus;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,8 +8,6 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
-
-import static jakarta.persistence.CascadeType.*;
 
 @Entity
 @Table(name = "Agreement")
@@ -41,14 +38,12 @@ public class Agreement {
     @Column(name = "ag_update_at")
     private LocalDate updatedAt;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {MERGE, PERSIST, REFRESH})
+    @ManyToOne()
     @JoinColumn(name = "ag_account_id", referencedColumnName = "a_id")
-    @JsonIgnore// без него не работает
     private Account accountId;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {MERGE, PERSIST, REFRESH})
+    @ManyToOne()
     @JoinColumn(name = "ag_product_id", referencedColumnName = "p_id")
-    @JsonIgnore// без него не работает
     private Product productId;
 
     @Override

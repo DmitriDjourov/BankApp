@@ -16,20 +16,24 @@ CREATE TRIGGER before_insert_product
 CREATE TRIGGER before_insert_client
     BEFORE INSERT ON bankapp.client
     FOR EACH ROW
-    SET NEW.c_id = IFNULL(NEW.c_id, UUID_TO_BIN(UUID()));
+    SET NEW.c_id = IFNULL(NEW.c_id, UUID_TO_BIN(UUID())),
+        NEW.c_create_at = IFNULL(NEW.c_create_at, LOCALTIME);
 
 CREATE TRIGGER before_insert_account
     BEFORE INSERT ON bankapp.account
     FOR EACH ROW
-    SET NEW.a_id = IFNULL(NEW.a_id, UUID_TO_BIN(UUID()));
+    SET NEW.a_id = IFNULL(NEW.a_id, UUID_TO_BIN(UUID())),
+        NEW.a_create_at = IFNULL(NEW.a_create_at, LOCALTIME);
 
 CREATE TRIGGER before_insert_transaction
     BEFORE INSERT ON bankapp.transaction
     FOR EACH ROW
-    SET NEW.t_id = IFNULL(NEW.t_id, UUID_TO_BIN(UUID()));
+    SET NEW.t_id = IFNULL(NEW.t_id, UUID_TO_BIN(UUID())),
+        NEW.t_create_at = IFNULL(NEW.t_create_at, LOCALTIME);
 
 CREATE TRIGGER before_insert_agreement
     BEFORE INSERT ON bankapp.agreement
     FOR EACH ROW
-    SET NEW.ag_id = IFNULL(NEW.ag_id, UUID_TO_BIN(UUID()));
+    SET NEW.ag_id = IFNULL(NEW.ag_id, UUID_TO_BIN(UUID())),
+        NEW.ag_create_at = IFNULL(NEW.ag_create_at, LOCALTIME);
 

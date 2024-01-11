@@ -19,8 +19,8 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Account getAccById(String id) {
-        return accountRepository.getReferenceById(UUID.fromString(id));
+    public Account getAccById(UUID id) {
+        return accountRepository.getReferenceById(id);
     }
 
     @Override

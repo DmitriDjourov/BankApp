@@ -3,7 +3,6 @@ package com.djourov.bankapp.entity;
 import com.djourov.bankapp.entity.enums.AccountCurrencyCode;
 import com.djourov.bankapp.entity.enums.AccountStatus;
 import com.djourov.bankapp.entity.enums.AccountTypeStatus;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,8 +13,6 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
-
-import static jakarta.persistence.CascadeType.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -54,10 +51,8 @@ public class Account {
     @Column(name = "a_update_at")
     private LocalDate updatedAt;
 
-    @OneToOne//(cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY)
-    @JoinColumn(name = "a_client_id")
-//    @JoinColumn(name = "a_client_id", referencedColumnName = "c_id")
-//    @JsonIgnore// без него не работает
+    @ManyToOne()
+    @JoinColumn(name = "a_client_id", referencedColumnName = "c_id")
     private Client client;
 
     @Override

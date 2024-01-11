@@ -54,9 +54,8 @@ public class Product {
 		@Column(name = "p_update_at")
 		private LocalDate updatedAt;
 
-		@ManyToOne(fetch = FetchType.LAZY, cascade = {MERGE, PERSIST, REFRESH})
-		@JoinColumn(name = "p_manager_id", referencedColumnName = "m_id")
-		@JsonIgnore // без него не работает
+		@ManyToOne()
+	  @JoinColumn(name = "p_manager_id", referencedColumnName = "m_id")
 		private Manager manager;
 
 		@Override

@@ -13,12 +13,10 @@ import java.util.List;
 @RequestMapping("/app/agreement")
 @RequiredArgsConstructor
 public class AgreementController {
-
     private final AgreementService agreementService;
 
     @GetMapping("/agreements")//http:/localhost:8080/app/agreement/agreements
     public List<Agreement> getAllagreement() {
         return agreementService.getAllAgreements();
     }
-
 }
