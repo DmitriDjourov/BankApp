@@ -32,7 +32,7 @@ public class ManagerController {
         return (Manager) Hibernate.unproxy(manager);
     }
 
-    @GetMapping("/upd/to_senior/{id}")//localhost:8080/app/manager/upd/to_senior/779d7b80-b0c4-11ee-a812-00ffe0e1a544
+    @GetMapping("/upd/to_senior/{id}")//localhost:8080/app/manager/upd/to_senior/
     public String updateManagerStatusSeniorById(@PathVariable("id") UUID id) {
         boolean isUpdated = managerService.updateManagerStatusSeniorById(id);
 
