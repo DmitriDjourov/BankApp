@@ -40,9 +40,6 @@ public class Manager {
     @Column(name = "m_update_at")
     private LocalDate updatedAt;
 
- /*  @OneToOne(mappedBy = "Client", fetch = FetchType.LAZY,
-            orphanRemoval = true, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-            private Client client */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

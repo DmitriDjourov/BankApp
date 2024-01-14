@@ -11,8 +11,6 @@ import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 
-import static jakarta.persistence.CascadeType.*;
-
 @AllArgsConstructor
 @Getter
 @Setter
@@ -54,7 +52,7 @@ public class Client {
     @Column(name = "c_update_at")
     private LocalDate updatedAt;
 
-    @OneToOne(cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "c_manager_id", referencedColumnName = "m_id")
     private Manager manager;
 
@@ -70,11 +68,6 @@ public class Client {
     public int hashCode() {
         return Objects.hash(id, taxCode, manager);
     }
-
-    /**OneToOne(mappedBy = "Account", fetch = FetchType.LAZY,
-            orphanRemoval = true, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    private Account account;**/
-
 
     @Override
     public String toString() {

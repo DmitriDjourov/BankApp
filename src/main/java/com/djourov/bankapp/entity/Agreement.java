@@ -9,8 +9,6 @@ import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 
-import static jakarta.persistence.CascadeType.*;
-
 @Entity
 @Table(name = "Agreement")
 @AllArgsConstructor
@@ -40,11 +38,11 @@ public class Agreement {
     @Column(name = "ag_update_at")
     private LocalDate updatedAt;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {MERGE, PERSIST, REFRESH})
+    @ManyToOne()
     @JoinColumn(name = "ag_account_id", referencedColumnName = "a_id")
     private Account accountId;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {MERGE, PERSIST, REFRESH})
+    @ManyToOne()
     @JoinColumn(name = "ag_product_id", referencedColumnName = "p_id")
     private Product productId;
 

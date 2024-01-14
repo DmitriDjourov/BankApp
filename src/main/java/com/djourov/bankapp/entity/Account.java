@@ -14,8 +14,6 @@ import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 
-import static jakarta.persistence.CascadeType.*;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -53,7 +51,8 @@ public class Account {
     @Column(name = "a_update_at")
     private LocalDate updatedAt;
 
-    @ManyToOne(cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY)
+
+    @ManyToOne()
     @JoinColumn(name = "a_client_id", referencedColumnName = "c_id")
     private Client client;
 

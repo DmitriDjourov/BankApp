@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: sql-input-managers
+      id: sql-inserts
       author: DmitriDjourov
       changes:
         - sqlFile:

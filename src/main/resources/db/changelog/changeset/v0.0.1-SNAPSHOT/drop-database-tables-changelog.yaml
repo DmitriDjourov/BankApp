@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - changeSet:
+      id: sql-drop-tables
+      author: DmitriDjourov
+      changes:
+        - sqlFile:
+            path: db/changelog/changeset/v0.0.1-SNAPSHOT/drop-database-table.sql
