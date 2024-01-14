@@ -51,6 +51,7 @@ public class Account {
     @Column(name = "a_update_at")
     private LocalDate updatedAt;
 
+
     @ManyToOne()
     @JoinColumn(name = "a_client_id", referencedColumnName = "c_id")
     private Client client;
