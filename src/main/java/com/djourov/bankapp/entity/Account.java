@@ -51,16 +51,7 @@ public class Account {
     @Column(name = "a_update_at")
     private LocalDate updatedAt;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     @ManyToOne()
-=======
-    @ManyToOne(cascade = {MERGE, PERSIST, REFRESH}, fetch = FetchType.LAZY)
->>>>>>> main
-=======
-
-    @ManyToOne()
->>>>>>> a8c0bb97183abf399388a6d62d021f9949199c8b
     @JoinColumn(name = "a_client_id", referencedColumnName = "c_id")
     private Client client;
 

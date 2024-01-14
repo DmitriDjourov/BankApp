@@ -4,11 +4,10 @@ spring:
   main:
     banner-mode: off
 
-
   liquibase:
     enabled: true
     change-log: classpath:db/changelog/db.changelog-master.yaml
-    drop-first: false
+    drop-first: true
 
   datasource:
     url: jdbc:mysql://localhost:3306/bankapp
