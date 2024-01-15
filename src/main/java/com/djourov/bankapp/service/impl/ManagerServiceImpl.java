@@ -7,7 +7,6 @@ import com.djourov.bankapp.service.interf.ManagerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -41,25 +40,48 @@ public class ManagerServiceImpl implements ManagerService {
             return false;// Запись с данным идентификатором не найдена
         }
     }
-    /** localhost:8080/app/manager/createManager
+
+    /**
+     * localhost:8080/app/manager/createManager
      * post postman Body raw JSON
-     *  {
-     "id": null,
-     "firstName": "Vas",
-     "lastName": "Pkin",
-     "status": "CREDIT_MANAGER",
-     "createdAt": "2024-01-17",
-     "updatedAt": null
-     *     }
+     * {
+     * "firstName": "Patrik",
+     * "lastName": "Krolikoff",
+     * "status": "CREDIT_MANAGER"
+     * }
      */
     @Override
     public Manager postCreateManager(Manager manager) {
         manager.setId(null);
-        manager.setFirstName("Patrik");
-        manager.setLastName("Krolikoff");
-       // manager.setStatus(ManagerStatus.SENIOR_MANAGER);
         manager.setCreatedAt(LocalDate.now());
         manager.setUpdatedAt(null);
         return managerRepository.save(manager);
     }
+
+    /**
+     * работает в postman как DELETE
+     * localhost:8080/app/manager/del/799beb00-bfc7-4b10-a5c5-17d9a5be0472-взять из базы
+     */
+    @Override
+    public Manager deleteById(UUID id) {
+        Manager manager = managerRepository.findById(id).orElse(null);
+        if (manager != null) {
+            managerRepository.deleteById(id);
+        }
+        return manager;
+    }
+    /**
+     * работает в postman как PUT
+     * localhost:8080/app/manager/upd/manager_status_senior/83188565-b3f4-11ee-9c53-00ffe0e1a544-взять из базы
+     */
+    @Override
+    public Manager updById(UUID id) {
+        Manager manager = managerRepository.findById(id).orElse(null);
+        if (manager != null) {
+            manager.setStatus(ManagerStatus.SENIOR_MANAGER);
+            managerRepository.save(manager);
+        }
+        return manager;
+    }
+
 }

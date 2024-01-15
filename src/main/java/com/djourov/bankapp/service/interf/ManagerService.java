@@ -13,4 +13,9 @@ public interface ManagerService {
     boolean updateManagerStatusSeniorById(UUID id);
 
     Manager postCreateManager(Manager manager);
+
+    Manager deleteById(UUID id);
+
+    Manager updById(UUID id);
 }
+

@@ -18,7 +18,7 @@ import java.util.UUID;
 public class ManagerController {
     private final ManagerService managerService;
 
-    @GetMapping("/managers") // http:/localhost:8080/app/manager/managers
+    @GetMapping("/managers") // localhost:8080/app/manager/managers
     public List<Manager> getAllManagers() {
         return managerService.getAllManagers();
     }
@@ -39,10 +39,33 @@ public class ManagerController {
             return String.valueOf(new ResponseEntity<>("Manager not found with id: " + id, HttpStatus.NOT_FOUND));
         }
     }
+    /**
+     * localhost:8080/app/manager/createManager
+     * post postman Body raw JSON
+     * {
+     * "firstName": "Patrik",
+     * "lastName": "Krolikoff",
+     * "status": "CREDIT_MANAGER"
+     * }
+     */
     @PostMapping("/createManager")// localhost:8080/app/manager/createManager
-    public Manager postCreateManager(@RequestBody Manager manager){
+    public Manager postCreateManager(@RequestBody Manager manager) {
         return managerService.postCreateManager(manager);
     }
-
-
+    /**
+     * работает в postman как DELETE
+     * localhost:8080/app/manager/del/799beb00-bfc7-4b10-a5c5-17d9a5be0472-взять из базы
+     */
+    @DeleteMapping("/del/{id}")// localhost:8080/app/manager/del/
+    public Manager deleteManagerById(@PathVariable UUID id) {
+        return managerService.deleteById(id);
+    }
+    /**
+     * работает в postman как PUT
+     * localhost:8080/app/manager/upd/manager_status_senior/83188565-b3f4-11ee-9c53-00ffe0e1a544-взять из базы
+     */
+    @PutMapping("/upd/manager_status_senior/{id}")//localhost:8080/app/manager/upd/manager_status_senior/
+    public Manager updPutManagerById(@PathVariable UUID id) {
+        return managerService.updById(id);
+    }
 }
