@@ -7,6 +7,10 @@ import java.util.UUID;
 
 public interface ManagerService {
     List<Manager> getAllManagers();
+
     Manager getManagerById(UUID id);
+
     boolean updateManagerStatusSeniorById(UUID id);
+
+    Manager postCreateManager(Manager manager);
 }

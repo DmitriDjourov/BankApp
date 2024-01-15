@@ -7,10 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.hibernate.Hibernate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -42,4 +39,10 @@ public class ManagerController {
             return String.valueOf(new ResponseEntity<>("Manager not found with id: " + id, HttpStatus.NOT_FOUND));
         }
     }
+    @PostMapping("/createManager")// localhost:8080/app/manager/createManager
+    public Manager postCreateManager(@RequestBody Manager manager){
+        return managerService.postCreateManager(manager);
+    }
+
+
 }

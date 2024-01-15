@@ -6,7 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.UuidGenerator;
+import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -21,7 +23,7 @@ import java.util.UUID;
 
 public class Manager {
     @Id
-    @UuidGenerator
+    @UuidGenerator// @JdbcTypeCode(SqlTypes.BINARY)
     @Column(name = "m_id")
     private UUID id;
 

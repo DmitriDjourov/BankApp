@@ -41,4 +41,25 @@ public class ManagerServiceImpl implements ManagerService {
             return false;// Запись с данным идентификатором не найдена
         }
     }
+    /** localhost:8080/app/manager/createManager
+     * post postman Body raw JSON
+     *  {
+     "id": null,
+     "firstName": "Vas",
+     "lastName": "Pkin",
+     "status": "CREDIT_MANAGER",
+     "createdAt": "2024-01-17",
+     "updatedAt": null
+     *     }
+     */
+    @Override
+    public Manager postCreateManager(Manager manager) {
+        manager.setId(null);
+        manager.setFirstName("Patrik");
+        manager.setLastName("Krolikoff");
+       // manager.setStatus(ManagerStatus.SENIOR_MANAGER);
+        manager.setCreatedAt(LocalDate.now());
+        manager.setUpdatedAt(null);
+        return managerRepository.save(manager);
+    }
 }
