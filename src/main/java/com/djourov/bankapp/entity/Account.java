@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.type.SqlTypes;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -23,7 +24,9 @@ import java.util.UUID;
 
 public class Account {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    //@GeneratedValue(strategy = GenerationType.UUID)
+    //@UuidGenerator
+    //@GeneratedValue(strategy = SqlTypes.CHAR)
     @Column(name = "a_id")
     private UUID id;
 
