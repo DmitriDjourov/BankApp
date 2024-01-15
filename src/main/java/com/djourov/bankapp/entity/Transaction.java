@@ -6,8 +6,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.math.BigDecimal;
+import java.sql.SQLType;
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
@@ -21,7 +23,8 @@ import java.util.UUID;
 
 public class Transaction {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @UuidGenerator
+   // @GeneratedValue(strategy = SQLType.CHAR)
     @Column(name = "t_id")
     private UUID id;
 

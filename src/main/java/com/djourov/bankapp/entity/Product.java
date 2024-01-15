@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -26,7 +27,7 @@ import static jakarta.persistence.CascadeType.*;
 
 public class Product {
 		@Id
-		@GeneratedValue(strategy = GenerationType.UUID)
+		@UuidGenerator
 		@Column(name = "p_id")
 		private UUID id;
 

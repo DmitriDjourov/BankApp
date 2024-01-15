@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -20,7 +21,7 @@ import java.util.UUID;
 
 public class Client {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @UuidGenerator
     @Column(name = "c_id")
     private UUID id;
 

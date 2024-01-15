@@ -3,6 +3,7 @@ package com.djourov.bankapp.entity;
 import com.djourov.bankapp.entity.enums.AgreementStatus;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -18,7 +19,7 @@ import java.util.UUID;
 
 public class Agreement {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @UuidGenerator
     @Column(name = "ag_id")
     private UUID id;
 
