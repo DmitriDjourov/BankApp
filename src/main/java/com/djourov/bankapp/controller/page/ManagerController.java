@@ -1,12 +1,9 @@
 package com.djourov.bankapp.controller.page;
 
 import com.djourov.bankapp.entity.Manager;
-import com.djourov.bankapp.entity.enums.ManagerStatus;
 import com.djourov.bankapp.service.interf.ManagerService;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.Hibernate;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,17 +24,6 @@ public class ManagerController {
     public Manager getManagerById(@PathVariable("id") UUID id) {
         Manager manager = managerService.getManagerById(id);
         return (Manager) Hibernate.unproxy(manager);
-    }
-
-    @GetMapping("/upd/to_senior/{id}")//localhost:8080/app/manager/upd/to_senior/
-    public String updateManagerStatusSeniorById(@PathVariable("id") UUID id) {
-        boolean isUpdated = managerService.updateManagerStatusSeniorById(id);
-
-        if (isUpdated) {
-            return String.valueOf(new ResponseEntity<>("Manager status updated to SENIOR_MANAGER", HttpStatus.OK));
-        } else {
-            return String.valueOf(new ResponseEntity<>("Manager not found with id: " + id, HttpStatus.NOT_FOUND));
-        }
     }
     /**
      * localhost:8080/app/manager/createManager
@@ -65,7 +51,7 @@ public class ManagerController {
      * localhost:8080/app/manager/upd/manager_status_senior/83188565-b3f4-11ee-9c53-00ffe0e1a544-взять из базы
      */
     @PutMapping("/upd/manager_status_senior/{id}")//localhost:8080/app/manager/upd/manager_status_senior/
-    public Manager updPutManagerById(@PathVariable UUID id) {
-        return managerService.updById(id);
+    public Manager updateManagerStatusSeniorById(@PathVariable UUID id) {
+        return managerService.updateManagerStatusSeniorById(id);
     }
 }

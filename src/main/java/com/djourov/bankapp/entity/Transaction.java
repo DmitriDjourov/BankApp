@@ -23,8 +23,7 @@ import java.util.UUID;
 
 public class Transaction {
     @Id
-    @UuidGenerator
-   // @GeneratedValue(strategy = SQLType.CHAR)
+    @UuidGenerator // @GeneratedValue(strategy = SQLType.CHAR)
     @Column(name = "t_id")
     private UUID id;
 

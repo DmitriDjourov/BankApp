@@ -10,12 +10,10 @@ public interface ManagerService {
 
     Manager getManagerById(UUID id);
 
-    boolean updateManagerStatusSeniorById(UUID id);
-
     Manager postCreateManager(Manager manager);
 
     Manager deleteById(UUID id);
 
-    Manager updById(UUID id);
+    Manager updateManagerStatusSeniorById(UUID id);
 }
 

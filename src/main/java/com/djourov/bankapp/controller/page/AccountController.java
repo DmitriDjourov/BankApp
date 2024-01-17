@@ -1,7 +1,6 @@
 package com.djourov.bankapp.controller.page;
 
 import com.djourov.bankapp.entity.Account;
-import com.djourov.bankapp.entity.Manager;
 import com.djourov.bankapp.service.interf.AccountService;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.Hibernate;

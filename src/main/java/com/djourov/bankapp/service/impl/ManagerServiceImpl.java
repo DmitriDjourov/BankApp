@@ -2,6 +2,9 @@ package com.djourov.bankapp.service.impl;
 
 import com.djourov.bankapp.entity.Manager;
 import com.djourov.bankapp.entity.enums.ManagerStatus;
+import com.djourov.bankapp.exception.errorMessage.ErrorMessage;
+import com.djourov.bankapp.exception.errorMessage.ManagerForDeleteNotFoundException;
+import com.djourov.bankapp.exception.errorMessage.ManagerForUpdateNotFoundException;
 import com.djourov.bankapp.repository.ManagerRepository;
 import com.djourov.bankapp.service.interf.ManagerService;
 import lombok.RequiredArgsConstructor;
@@ -9,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -26,19 +28,6 @@ public class ManagerServiceImpl implements ManagerService {
     @Override
     public Manager getManagerById(UUID id) {
         return managerRepository.getReferenceById(id);
-    }
-
-    @Override
-    public boolean updateManagerStatusSeniorById(UUID id) {
-        Optional<Manager> optionalManager = managerRepository.findById(id);
-        if (optionalManager.isPresent()) {
-            Manager manager = optionalManager.get();
-            manager.setStatus(ManagerStatus.SENIOR_MANAGER);
-            managerRepository.save(manager);
-            return true;
-        } else {
-            return false;// Запись с данным идентификатором не найдена
-        }
     }
 
     /**
@@ -64,19 +53,22 @@ public class ManagerServiceImpl implements ManagerService {
      */
     @Override
     public Manager deleteById(UUID id) {
-        Manager manager = managerRepository.findById(id).orElse(null);
+        Manager manager = managerRepository.findById(id)
+                                  .orElseThrow(() -> new ManagerForDeleteNotFoundException(ErrorMessage.NO_MANAGER_DEL_WITH_ID));
         if (manager != null) {
             managerRepository.deleteById(id);
         }
         return manager;
     }
+
     /**
      * работает в postman как PUT
      * localhost:8080/app/manager/upd/manager_status_senior/83188565-b3f4-11ee-9c53-00ffe0e1a544-взять из базы
      */
     @Override
-    public Manager updById(UUID id) {
-        Manager manager = managerRepository.findById(id).orElse(null);
+    public Manager updateManagerStatusSeniorById(UUID id) {
+        Manager manager = managerRepository.findById(id)
+                                  .orElseThrow(() -> new ManagerForUpdateNotFoundException(ErrorMessage.NO_MANAGER_UPD_WITH_ID));
         if (manager != null) {
             manager.setStatus(ManagerStatus.SENIOR_MANAGER);
             managerRepository.save(manager);
