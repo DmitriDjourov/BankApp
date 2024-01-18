@@ -1,4 +1,4 @@
-package com.djourov.bankapp.exception.errorMessage;
+package com.djourov.bankapp.exception;
 
 public class ManagerForUpdateNotFoundException extends RuntimeException {
     public ManagerForUpdateNotFoundException(String message) {

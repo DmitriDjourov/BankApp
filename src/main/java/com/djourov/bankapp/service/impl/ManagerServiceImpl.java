@@ -2,9 +2,9 @@ package com.djourov.bankapp.service.impl;
 
 import com.djourov.bankapp.entity.Manager;
 import com.djourov.bankapp.entity.enums.ManagerStatus;
-import com.djourov.bankapp.exception.errorMessage.ErrorMessage;
-import com.djourov.bankapp.exception.errorMessage.ManagerForDeleteNotFoundException;
-import com.djourov.bankapp.exception.errorMessage.ManagerForUpdateNotFoundException;
+import com.djourov.bankapp.exception.message.ErrorMessage;
+import com.djourov.bankapp.exception.ManagerForDeleteNotFoundException;
+import com.djourov.bankapp.exception.ManagerForUpdateNotFoundException;
 import com.djourov.bankapp.repository.ManagerRepository;
 import com.djourov.bankapp.service.interf.ManagerService;
 import lombok.RequiredArgsConstructor;

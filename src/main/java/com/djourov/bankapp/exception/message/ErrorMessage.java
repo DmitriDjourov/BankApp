@@ -1,4 +1,4 @@
-package com.djourov.bankapp.exception.errorMessage;
+package com.djourov.bankapp.exception.message;
 
 public class ErrorMessage {
     public static final String NO_MANAGER_DEL_WITH_ID = "Нечего удалять! Нет менеджера с таким id.";
