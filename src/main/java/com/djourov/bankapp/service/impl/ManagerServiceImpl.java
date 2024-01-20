@@ -26,10 +26,10 @@ public class ManagerServiceImpl implements ManagerService {
         return managerRepository.findAll();
     }
 
-    @Override
+    @Override// localhost:8080/app/manager/b407a7f7-b49f-11ee-9c53-00ffe0e1a544?format=json(xml)
     public Manager getManagerById(UUID id) {
         return managerRepository.findById(id)
-                                  .orElseThrow(() -> new ManagerNotFoundException(ErrorMessages.NO_MANAGER_WITH_ID));
+                                  .orElseThrow(() -> new ManagerNotFoundException(ErrorMessages.NO_MANAGER_WITH_ID , id));
     }
 
     /**
@@ -56,7 +56,7 @@ public class ManagerServiceImpl implements ManagerService {
     @Override
     public Manager deleteById(UUID id) {
         Manager manager = managerRepository.findById(id)
-                                  .orElseThrow(() -> new ManagerForDeleteNotFoundException(ErrorMessages.NO_MANAGER_DEL_WITH_ID));
+                                  .orElseThrow(() -> new ManagerForDeleteNotFoundException(ErrorMessages.NO_MANAGER_DEL_WITH_ID,id));
         if (manager != null) {
             managerRepository.deleteById(id);
         }
@@ -70,7 +70,7 @@ public class ManagerServiceImpl implements ManagerService {
     @Override
     public Manager updateManagerStatusSeniorById(UUID id) {
         Manager manager = managerRepository.findById(id)
-                                  .orElseThrow(() -> new ManagerForUpdateNotFoundException(ErrorMessages.NO_MANAGER_UPD_WITH_ID));
+                                  .orElseThrow(() -> new ManagerForUpdateNotFoundException(ErrorMessages.NO_MANAGER_UPD_WITH_ID, id));
         if (manager != null) {
             manager.setStatus(ManagerStatus.SENIOR_MANAGER);
             managerRepository.save(manager);
