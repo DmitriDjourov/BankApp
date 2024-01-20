@@ -2,7 +2,8 @@ package com.djourov.bankapp.service.impl;
 
 import com.djourov.bankapp.entity.Manager;
 import com.djourov.bankapp.entity.enums.ManagerStatus;
-import com.djourov.bankapp.exception.message.ErrorMessage;
+import com.djourov.bankapp.exception.ManagerNotFoundException;
+import com.djourov.bankapp.exception.message.ErrorMessages;
 import com.djourov.bankapp.exception.ManagerForDeleteNotFoundException;
 import com.djourov.bankapp.exception.ManagerForUpdateNotFoundException;
 import com.djourov.bankapp.repository.ManagerRepository;
@@ -27,7 +28,8 @@ public class ManagerServiceImpl implements ManagerService {
 
     @Override
     public Manager getManagerById(UUID id) {
-        return managerRepository.getReferenceById(id);
+        return managerRepository.findById(id)
+                                  .orElseThrow(() -> new ManagerNotFoundException(ErrorMessages.NO_MANAGER_WITH_ID));
     }
 
     /**
@@ -54,7 +56,7 @@ public class ManagerServiceImpl implements ManagerService {
     @Override
     public Manager deleteById(UUID id) {
         Manager manager = managerRepository.findById(id)
-                                  .orElseThrow(() -> new ManagerForDeleteNotFoundException(ErrorMessage.NO_MANAGER_DEL_WITH_ID));
+                                  .orElseThrow(() -> new ManagerForDeleteNotFoundException(ErrorMessages.NO_MANAGER_DEL_WITH_ID));
         if (manager != null) {
             managerRepository.deleteById(id);
         }
@@ -68,7 +70,7 @@ public class ManagerServiceImpl implements ManagerService {
     @Override
     public Manager updateManagerStatusSeniorById(UUID id) {
         Manager manager = managerRepository.findById(id)
-                                  .orElseThrow(() -> new ManagerForUpdateNotFoundException(ErrorMessage.NO_MANAGER_UPD_WITH_ID));
+                                  .orElseThrow(() -> new ManagerForUpdateNotFoundException(ErrorMessages.NO_MANAGER_UPD_WITH_ID));
         if (manager != null) {
             manager.setStatus(ManagerStatus.SENIOR_MANAGER);
             managerRepository.save(manager);

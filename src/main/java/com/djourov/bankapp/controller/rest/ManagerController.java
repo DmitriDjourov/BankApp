@@ -1,4 +1,4 @@
-package com.djourov.bankapp.controller.page;
+package com.djourov.bankapp.controller.rest;
 
 import com.djourov.bankapp.entity.Manager;
 import com.djourov.bankapp.service.interf.ManagerService;
@@ -15,12 +15,12 @@ import java.util.UUID;
 public class ManagerController {
     private final ManagerService managerService;
 
-    @GetMapping("/managers") // localhost:8080/app/manager/managers
+    @GetMapping("/managers") // localhost:8080/app/manager/managers?format=json(xml)
     public List<Manager> getAllManagers() {
         return managerService.getAllManagers();
     }
 
-    @GetMapping("/{id}")// localhost:8080/app/manager/
+    @GetMapping("/{id}")// localhost:8080/app/manager/b407a7f7-b49f-11ee-9c53-00ffe0e1a544?format=json(xml)
     public Manager getManagerById(@PathVariable("id") UUID id) {
         Manager manager = managerService.getManagerById(id);
         return (Manager) Hibernate.unproxy(manager);

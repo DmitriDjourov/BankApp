@@ -1,4 +1,4 @@
-package com.djourov.bankapp.controller.page;
+package com.djourov.bankapp.controller.rest;
 
 import com.djourov.bankapp.entity.Client;
 import com.djourov.bankapp.service.interf.ClientService;

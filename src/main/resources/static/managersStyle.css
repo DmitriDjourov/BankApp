@@ -1,0 +1,29 @@
+h2 {
+    text-align: center;
+}
+th {
+    font-size: large;
+    color: yellow;
+    background: blue;
+}
+.odd-row {
+    font-weight: bold;
+}
+td.centered {
+    text-align: center;
+    vertical-align: middle;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid black;
+    text-align: center;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2; /* Цвет фона для четных строк */
+}

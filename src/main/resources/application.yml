@@ -7,6 +7,16 @@ spring:
   main:
     banner-mode: off
 
+  thymeleaf:
+    cache: false
+    prefix: file:src/main/resources/templates/
+
+  web:
+    resources:
+      static-locations: file:src/main/resources/static/
+      cache:
+        period: 0
+
   liquibase:
     enabled: true
     change-log: classpath:db/changelog/db.changelog-master.yaml
