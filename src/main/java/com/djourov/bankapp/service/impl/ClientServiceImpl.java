@@ -2,8 +2,7 @@ package com.djourov.bankapp.service.impl;
 
 import com.djourov.bankapp.dto.ClientDto;
 import com.djourov.bankapp.entity.Client;
-import com.djourov.bankapp.entity.Manager;
-import com.djourov.bankapp.exception.ManagerNotFoundException;
+import com.djourov.bankapp.exception.ClientNotFountException;
 import com.djourov.bankapp.exception.message.ErrorMessages;
 import com.djourov.bankapp.mapper.ClientMapper;
 import com.djourov.bankapp.repository.ClientRepository;
@@ -26,7 +25,8 @@ public class ClientServiceImpl implements ClientService {
     }
     @Override
     public ClientDto getClientById(UUID id) {
-        return clientMapper.toDto(clientRepository.getReferenceById(id));
+        return clientMapper.toDto(clientRepository.findById(id)
+                                          .orElseThrow(() -> new ClientNotFountException(ErrorMessages.NO_CLIENT_WITH_ID , id)));
     }
 
 }

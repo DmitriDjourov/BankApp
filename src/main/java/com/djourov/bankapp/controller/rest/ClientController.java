@@ -2,10 +2,8 @@ package com.djourov.bankapp.controller.rest;
 
 import com.djourov.bankapp.dto.ClientDto;
 import com.djourov.bankapp.entity.Client;
-import com.djourov.bankapp.entity.Manager;
 import com.djourov.bankapp.service.interf.ClientService;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.Hibernate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,8 +25,6 @@ public class ClientController {
 
     @GetMapping("/{id}")//localhost:8080/app/client/b40a6773-b49f-11ee-9c53-00ffe0e1a544
     public ClientDto getClientById(@PathVariable("id") UUID id) {
-//        Client client = clientService.getClientById(id);
-//        return (Client) Hibernate.unproxy(client);
         return clientService.getClientById(id);
 
     }
