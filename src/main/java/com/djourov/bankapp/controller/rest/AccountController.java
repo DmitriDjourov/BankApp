@@ -1,5 +1,6 @@
 package com.djourov.bankapp.controller.rest;
 
+import com.djourov.bankapp.dto.AccountDto;
 import com.djourov.bankapp.entity.Account;
 import com.djourov.bankapp.service.interf.AccountService;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,11 @@ public class AccountController {
     @GetMapping("/accounts")
     public List<Account> getAllAccounts() {
         return accountService.getAllAccounts();
+    }
+
+    @GetMapping("/account_client_manager/{id}")// localhost:8080/app/account/account_client_manager/30633730-6166-6131-2d63-3635342d3437
+    public AccountDto getAccountAndClientAndManger(@PathVariable("id") UUID id){
+        return accountService.getACMId(id);
     }
 
     @GetMapping("/{id}")//localhost:8080/app/account/30633730-6166-6131-2d63-3635342d3437(не работает)

@@ -1,11 +1,10 @@
 package com.djourov.bankapp.controller.rest;
 
+import com.djourov.bankapp.dto.ProductDto;
 import com.djourov.bankapp.entity.Product;
 import com.djourov.bankapp.service.interf.ProductService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,9 +14,16 @@ import java.util.List;
 public class ProductController {
     private final ProductService productService;
 
-    @GetMapping("/products")//http:/localhost:8080/app/product/products
+    @GetMapping("/products")// localhost:8080/app/product/products
     public List<Product> getAllProducts() {
         return productService.getAllProducts();
     }
 
+//    {
+//        "name": "CURRENT_ACCOUNT"
+//    }
+    @PostMapping("/create")// localhost:8080/app/product/create
+    public Product createProduct(@RequestBody ProductDto productDto) {
+        return productService.create(productDto);
+    }
 }
