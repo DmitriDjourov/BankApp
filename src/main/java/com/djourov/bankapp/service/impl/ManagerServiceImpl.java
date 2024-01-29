@@ -78,4 +78,12 @@ public class ManagerServiceImpl implements ManagerService {
         return manager;
     }
 
+    @Override
+    public Manager getManagerReferenceById(UUID id){
+
+
+        return managerRepository.getReferenceById(id);
+
+    }
+
 }

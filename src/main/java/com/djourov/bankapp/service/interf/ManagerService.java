@@ -15,5 +15,7 @@ public interface ManagerService {
     Manager deleteById(UUID id);
 
     Manager updateManagerStatusSeniorById(UUID id);
+
+    Manager getManagerReferenceById(UUID id);
 }
 
