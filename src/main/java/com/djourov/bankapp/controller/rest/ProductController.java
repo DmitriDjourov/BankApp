@@ -18,12 +18,17 @@ public class ProductController {
     public List<Product> getAllProducts() {
         return productService.getAllProducts();
     }
-
 //    {
-//        "name": "CURRENT_ACCOUNT"
+//        "name": "CURRENT_ACCOUNT",
+//        "managerId": "b407a7f7-b49f-11ee-9c53-00ffe0e1a544",
+//        "limit": 1000,
+//        "interestRate": 2.25,
+//        "currencyCode": "EUR",
+//        "status": "ACTIVE"
 //    }
     @PostMapping("/create")// localhost:8080/app/product/create
     public Product createProduct(@RequestBody ProductDto productDto) {
+
         return productService.create(productDto);
     }
 }

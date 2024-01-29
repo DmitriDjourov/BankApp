@@ -56,6 +56,7 @@ public class Product {
 		private LocalDate updatedAt;
 
 		@ManyToOne()
+		@JsonIgnore
 	  @JoinColumn(name = "p_manager_id", referencedColumnName = "m_id")
 		private Manager manager;
 
