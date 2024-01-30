@@ -16,8 +16,6 @@ import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 
-import static jakarta.persistence.CascadeType.*;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity

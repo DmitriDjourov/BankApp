@@ -22,7 +22,6 @@ public abstract class ProductMapper {
 
 
     @Mappings({
-//            @Mapping(defaultValue = "ACTIVE", target = "status"),
             @Mapping(target = "status", qualifiedByName = "statusParseString", source = "status"),
             @Mapping(target = "currencyCode", qualifiedByName = "currencyCodeParseString", source = "currencyCode"),
             @Mapping(target = "interestRate", qualifiedByName = "parseBigDecimal", source = "interestRate"),

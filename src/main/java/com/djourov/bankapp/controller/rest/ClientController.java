@@ -1,5 +1,6 @@
 package com.djourov.bankapp.controller.rest;
 
+import com.djourov.bankapp.dto.ClientActiveDto;
 import com.djourov.bankapp.dto.ClientDto;
 import com.djourov.bankapp.entity.Client;
 import com.djourov.bankapp.service.interf.ClientService;
@@ -27,5 +28,10 @@ public class ClientController {
     public ClientDto getClientById(@PathVariable("id") UUID id) {
         return clientService.getClientById(id);
 
+    }
+
+    @GetMapping("/active")// localhost:8080/app/client/active
+    public List<ClientActiveDto> getClientActive() {
+        return clientService.getClientActiveDto();
     }
 }

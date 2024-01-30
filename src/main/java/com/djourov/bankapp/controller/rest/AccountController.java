@@ -16,7 +16,7 @@ import java.util.UUID;
 public class AccountController {
     private final AccountService accountService;
 
-    @GetMapping("/accounts")
+    @GetMapping("/accounts")//localhost:8080/app/account/accounts
     public List<Account> getAllAccounts() {
         return accountService.getAllAccounts();
     }
