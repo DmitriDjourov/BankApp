@@ -31,7 +31,7 @@ public class AccountController {
         Account account = accountService.getAccById(id);
         return (Account) Hibernate.unproxy(account);
     }
-    @GetMapping("/account_number/{a_account_number}")//http:/localhost:8080/app/account/account_number/123456789
+    @GetMapping("/account_number/{a_account_number}")//localhost:8080/app/account/account_number/123456789
     public Account findAccountByAccountNumber(@PathVariable("a_account_number") String a_account_number) {
         return accountService.findAccountByAccountNumber(a_account_number);
     }

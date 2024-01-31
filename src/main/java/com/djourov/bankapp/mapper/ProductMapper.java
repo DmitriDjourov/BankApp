@@ -20,7 +20,6 @@ public abstract class ProductMapper {
     @Autowired
     protected ManagerService managerService;
 
-
     @Mappings({
             @Mapping(target = "status", qualifiedByName = "statusParseString", source = "status"),
             @Mapping(target = "currencyCode", qualifiedByName = "currencyCodeParseString", source = "currencyCode"),

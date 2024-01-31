@@ -3,6 +3,7 @@ package com.djourov.bankapp.service.impl;
 import com.djourov.bankapp.dto.ClientActiveDto;
 import com.djourov.bankapp.dto.ClientDto;
 import com.djourov.bankapp.entity.Client;
+import com.djourov.bankapp.entity.enums.ClientStatus;
 import com.djourov.bankapp.exception.ClientNotFountException;
 import com.djourov.bankapp.exception.message.ErrorMessages;
 import com.djourov.bankapp.mapper.ClientActiveMapper;
@@ -30,18 +31,29 @@ public class ClientServiceImpl implements ClientService {
     public List<Client> getAllClients() {
         return clientRepository.findAll();
     }
+
     @Override
     public ClientDto getClientById(UUID id) {
         return clientMapper.toDto(clientRepository.findById(id)
-                                          .orElseThrow(() -> new ClientNotFountException(ErrorMessages.NO_CLIENT_WITH_ID , id)));
+                                          .orElseThrow(() -> new ClientNotFountException(ErrorMessages.NO_CLIENT_WITH_ID, id)));
     }
 
     @Override
-    public List<ClientActiveDto> getClientActiveDto(){
+    public List<ClientActiveDto> getClientActiveDto(Integer status) {
+        return clientActiveMapper.toDtoList(clientRepository.findClientByStatus(findStatus(status)));
+    }
 
-        return clientActiveMapper.toDtoList(clientRepository.findClientsWithZeroStatus());
+    private ClientStatus findStatus(Integer status) {
+        return switch (status) {
+            case 0 -> ClientStatus.ACTIVE;
+            case 1 -> ClientStatus.FROZEN;
+            case 2 -> ClientStatus.OVERDUE;
+            case 3 -> ClientStatus.PRIVILEGED;
+            case 4 -> ClientStatus.CLOSED;
+            default -> null;
+        };
     }
-    }
+}
 
 
 

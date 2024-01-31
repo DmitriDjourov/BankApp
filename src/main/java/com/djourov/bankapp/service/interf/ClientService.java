@@ -9,7 +9,8 @@ import java.util.UUID;
 
 public interface ClientService {
     List<Client> getAllClients();
+
     ClientDto getClientById(UUID id);
 
-    List<ClientActiveDto> getClientActiveDto();
+    List<ClientActiveDto> getClientActiveDto(Integer status);
 }

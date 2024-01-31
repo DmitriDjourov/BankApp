@@ -1,6 +1,7 @@
 package com.djourov.bankapp.entity;
 
 import com.djourov.bankapp.entity.enums.ManagerStatus;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,6 +12,7 @@ import org.hibernate.annotations.UuidGenerator;
 import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -42,6 +44,14 @@ public class Manager {
 
     @Column(name = "m_update_at")
     private LocalDate updatedAt;
+
+    @OneToMany(mappedBy = "manager")
+    @JsonManagedReference("fk_product_manager")
+    private List<Product> products;
+
+    @OneToMany(mappedBy = "manager")
+    @JsonManagedReference("fk_client_manager")
+    private List<Client> clients;
 
     @Override
     public boolean equals(Object o) {

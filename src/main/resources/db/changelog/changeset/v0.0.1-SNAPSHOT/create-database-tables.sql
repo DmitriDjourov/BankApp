@@ -70,7 +70,9 @@ create table IF NOT EXISTS transaction
     t_description       varchar(255),
     t_create_at         timestamp              NOT NULL DEFAULT CURRENT_TIMESTAMP,
     constraint fk_transaction_credit_account
-        foreign key (t_credit_account_id) references account (a_id)
+        foreign key (t_credit_account_id) references account (a_id),
+    constraint fk_transaction_debit_account
+        foreign key (t_debit_account_id) references account (a_id)
 );
 
 -- create-agreement-table

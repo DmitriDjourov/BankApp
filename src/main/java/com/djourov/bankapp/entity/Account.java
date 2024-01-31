@@ -3,6 +3,8 @@ package com.djourov.bankapp.entity;
 import com.djourov.bankapp.entity.enums.AccountCurrencyCode;
 import com.djourov.bankapp.entity.enums.AccountStatus;
 import com.djourov.bankapp.entity.enums.AccountTypeStatus;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,6 +15,7 @@ import org.hibernate.type.SqlTypes;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -54,8 +57,21 @@ public class Account {
     private LocalDate updatedAt;
 
     @ManyToOne()
+    @JsonBackReference("fk_account_client_id")
     @JoinColumn(name = "a_client_id", referencedColumnName = "c_id")
     private Client client;
+
+    @OneToMany(mappedBy = "debitAccountId")
+    @JsonManagedReference("fk_transaction_debit_account")
+    private List<Transaction> debitTransactions;
+
+    @OneToMany(mappedBy = "creditAccountId")
+    @JsonManagedReference("fk_transaction_credit_account")
+    private List<Transaction> creditTransactions;
+
+    @OneToMany(mappedBy = "id")
+    @JsonManagedReference("fk_agreement_account")
+    private List<Agreement> agreements;
 
     @Override
     public boolean equals(Object o) {

@@ -1,8 +1,12 @@
 package com.djourov.bankapp.entity;
 
 import com.djourov.bankapp.entity.enums.AgreementStatus;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.UuidGenerator;
 
 import java.math.BigDecimal;
@@ -40,10 +44,12 @@ public class Agreement {
     private LocalDate updatedAt;
 
     @ManyToOne()
+    @JsonBackReference("fk_agreement_account")//
     @JoinColumn(name = "ag_account_id", referencedColumnName = "a_id")
     private Account accountId;
 
     @ManyToOne()
+    @JsonBackReference("fk_agreement_product")
     @JoinColumn(name = "ag_product_id", referencedColumnName = "p_id")
     private Product productId;
 

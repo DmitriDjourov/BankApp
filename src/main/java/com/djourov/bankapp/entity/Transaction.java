@@ -1,6 +1,7 @@
 package com.djourov.bankapp.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -40,10 +41,12 @@ public class Transaction {
     private LocalDate createAt;
 
     @ManyToOne()
+    @JsonBackReference("fk_transaction_debit_account")
     @JoinColumn(name = "t_debit_account_id", referencedColumnName = "a_id")
     private Account debitAccountId;
 
     @ManyToOne()
+    @JsonBackReference("fk_transaction_credit_account")
     @JoinColumn(name = "t_credit_account_id", referencedColumnName = "a_id")
     private Account creditAccountId;
 
