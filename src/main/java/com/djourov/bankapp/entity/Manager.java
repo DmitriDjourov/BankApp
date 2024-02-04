@@ -75,6 +75,8 @@ public class Manager {
                        ", status=" + status +
                        ", createdAt=" + createdAt +
                        ", updatedAt=" + updatedAt +
+                       ", products=" + products +
+                       ", clients=" + clients +
                        '}';
     }
 }

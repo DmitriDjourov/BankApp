@@ -70,13 +70,13 @@ public class Agreement {
     public String toString() {
         return "Agreement{" +
                        "id=" + id +
-                       ", interest_rate=" + interestRate +
+                       ", interestRate=" + interestRate +
                        ", status=" + status +
                        ", sum=" + sum +
-                       ", created_at=" + createdAt +
-                       ", updated_at=" + updatedAt +
-                       ", product_id=" + productId +
-                       ", account_id=" + accountId +
+                       ", createdAt=" + createdAt +
+                       ", updatedAt=" + updatedAt +
+                       ", accountId=" + accountId +
+                       ", productId=" + productId +
                        '}';
     }
 }

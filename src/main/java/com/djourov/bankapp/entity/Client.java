@@ -92,6 +92,7 @@ public class Client {
                        ", createdAt=" + createdAt +
                        ", updatedAt=" + updatedAt +
                        ", manager=" + manager +
+                       ", accounts=" + accounts +
                        '}';
     }
 }

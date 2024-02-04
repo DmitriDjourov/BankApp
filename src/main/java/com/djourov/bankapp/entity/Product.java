@@ -81,7 +81,7 @@ public class Product {
     public String toString() {
         return "Product{" +
                        "id=" + id +
-                       ", name='" + name + '\'' +
+                       ", name=" + name +
                        ", status=" + status +
                        ", currencyCode=" + currencyCode +
                        ", interestRate=" + interestRate +
@@ -89,6 +89,7 @@ public class Product {
                        ", createdAt=" + createdAt +
                        ", updatedAt=" + updatedAt +
                        ", manager=" + manager +
+                       ", products=" + products +
                        '}';
     }
 }

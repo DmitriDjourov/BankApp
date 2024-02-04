@@ -90,14 +90,17 @@ public class Account {
     public String toString() {
         return "Account{" +
                        "id=" + id +
-                       ", name='" + accountNumber + '\'' +
+                       ", accountNumber='" + accountNumber + '\'' +
                        ", type=" + type +
                        ", status=" + status +
                        ", balance=" + balance +
-                       ", currency_code=" + currencyCode +
-                       ", created_at=" + createdAt +
-                       ", updated_at=" + updatedAt +
+                       ", currencyCode=" + currencyCode +
+                       ", createdAt=" + createdAt +
+                       ", updatedAt=" + updatedAt +
                        ", client=" + client +
+                       ", debitTransactions=" + debitTransactions +
+                       ", creditTransactions=" + creditTransactions +
+                       ", agreements=" + agreements +
                        '}';
     }
 }
