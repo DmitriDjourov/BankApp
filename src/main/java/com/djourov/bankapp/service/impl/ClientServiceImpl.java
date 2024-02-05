@@ -4,7 +4,7 @@ import com.djourov.bankapp.dto.ClientActiveDto;
 import com.djourov.bankapp.dto.ClientDto;
 import com.djourov.bankapp.entity.Client;
 import com.djourov.bankapp.entity.enums.ClientStatus;
-import com.djourov.bankapp.exception.ClientNotFountException;
+import com.djourov.bankapp.exception.ClientByIdNotFountException;
 import com.djourov.bankapp.exception.message.ErrorMessages;
 import com.djourov.bankapp.mapper.ClientActiveMapper;
 import com.djourov.bankapp.mapper.ClientMapper;
@@ -35,7 +35,7 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public ClientDto getClientById(UUID id) {
         return clientMapper.toDto(clientRepository.findById(id)
-                                          .orElseThrow(() -> new ClientNotFountException(ErrorMessages.NO_CLIENT_WITH_ID, id)));
+                                          .orElseThrow(() -> new ClientByIdNotFountException(ErrorMessages.NO_CLIENT_WITH_ID, id)));
     }
 
     @Override
