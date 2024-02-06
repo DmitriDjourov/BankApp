@@ -1,6 +1,7 @@
 package com.djourov.bankapp.entity;
 
 import com.djourov.bankapp.entity.enums.ManagerStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -47,6 +48,7 @@ public class Manager {
 
     @OneToMany(mappedBy = "manager")
     @JsonManagedReference("fk_product_manager")
+    @JsonIgnore
     private List<Product> products;
 
     @OneToMany(mappedBy = "manager")

@@ -1,6 +1,8 @@
 package com.djourov.bankapp.service.interf;
 
+import com.djourov.bankapp.dto.ManagerDTO;
 import com.djourov.bankapp.entity.Manager;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.UUID;
@@ -17,5 +19,7 @@ public interface ManagerService {
     Manager updateManagerStatusSeniorById(UUID id);
 
     Manager getManagerReferenceById(UUID id);
+
+    ManagerDTO getManagerByIdFirstLastName(UUID id);
 }
 

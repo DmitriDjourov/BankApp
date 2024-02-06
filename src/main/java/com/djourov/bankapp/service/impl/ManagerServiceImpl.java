@@ -1,11 +1,14 @@
 package com.djourov.bankapp.service.impl;
 
+
+import com.djourov.bankapp.dto.ManagerDTO;
 import com.djourov.bankapp.entity.Manager;
 import com.djourov.bankapp.entity.enums.ManagerStatus;
 import com.djourov.bankapp.exception.ManagerNotFoundException;
 import com.djourov.bankapp.exception.message.ErrorMessages;
 import com.djourov.bankapp.exception.ManagerForDeleteNotFoundException;
 import com.djourov.bankapp.exception.ManagerForUpdateNotFoundException;
+import com.djourov.bankapp.mapper.ManagerMapper;
 import com.djourov.bankapp.repository.ManagerRepository;
 import com.djourov.bankapp.service.interf.ManagerService;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +23,7 @@ import java.util.UUID;
 public class ManagerServiceImpl implements ManagerService {
 
     private final ManagerRepository managerRepository;
+    private final ManagerMapper managerMapper;
 
     @Override
     public List<Manager> getAllManagers() {
@@ -85,5 +89,12 @@ public class ManagerServiceImpl implements ManagerService {
         return managerRepository.getReferenceById(id);
 
     }
+
+    @Override
+    public ManagerDTO getManagerByIdFirstLastName(UUID id) {
+        return managerMapper.toDto(managerRepository.findById(id)
+                                           .orElseThrow(() -> new ManagerNotFoundException(ErrorMessages.NO_MANAGER_WITH_ID,id)));
+    }
+
 
 }

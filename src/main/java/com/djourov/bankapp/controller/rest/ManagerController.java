@@ -1,5 +1,6 @@
 package com.djourov.bankapp.controller.rest;
 
+import com.djourov.bankapp.dto.ManagerDTO;
 import com.djourov.bankapp.entity.Manager;
 import com.djourov.bankapp.service.interf.ManagerService;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,11 @@ public class ManagerController {
     @GetMapping("/managers") // localhost:8080/app/manager/managers?format=json(xml)
     public List<Manager> getAllManagers() {
         return managerService.getAllManagers();
+    }
+
+    @GetMapping("/first_last_name/{id}")// localhost:8080/app/manager/first_last_name/1b0f92f6-c45d-11ee-bf28-00155d558765
+    public ManagerDTO getManagerByIdFirstLastName(@PathVariable("id") UUID id){
+        return managerService.getManagerByIdFirstLastName(id);
     }
 
     @GetMapping("/{id}")// localhost:8080/app/manager/b407a7f7-b49f-11ee-9c53-00ffe0e1a544?format=json(xml)
