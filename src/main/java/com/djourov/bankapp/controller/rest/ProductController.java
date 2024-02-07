@@ -7,12 +7,18 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/app/product")
 @AllArgsConstructor
 public class ProductController {
     private final ProductService productService;
+
+    @GetMapping("/{id}")//localhost:8080/app/product/1b109afa-c45d-11ee-bf28-00155d558765
+    public ProductDto getProductById(@PathVariable UUID id){
+        return productService.getPBId(id);
+    }
 
     @GetMapping("/products")// localhost:8080/app/product/products
     public List<Product> getAllProducts() {
