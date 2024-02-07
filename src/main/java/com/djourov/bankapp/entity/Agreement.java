@@ -1,8 +1,13 @@
 package com.djourov.bankapp.entity;
 
 import com.djourov.bankapp.entity.enums.AgreementStatus;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -18,7 +23,7 @@ import java.util.UUID;
 
 public class Agreement {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @UuidGenerator
     @Column(name = "ag_id")
     private UUID id;
 
@@ -39,10 +44,12 @@ public class Agreement {
     private LocalDate updatedAt;
 
     @ManyToOne()
+    @JsonBackReference("fk_agreement_account")//
     @JoinColumn(name = "ag_account_id", referencedColumnName = "a_id")
     private Account accountId;
 
     @ManyToOne()
+    @JsonBackReference("fk_agreement_product")
     @JoinColumn(name = "ag_product_id", referencedColumnName = "p_id")
     private Product productId;
 
@@ -63,13 +70,13 @@ public class Agreement {
     public String toString() {
         return "Agreement{" +
                        "id=" + id +
-                       ", interest_rate=" + interestRate +
+                       ", interestRate=" + interestRate +
                        ", status=" + status +
                        ", sum=" + sum +
-                       ", created_at=" + createdAt +
-                       ", updated_at=" + updatedAt +
-                       ", product_id=" + productId +
-                       ", account_id=" + accountId +
+                       ", createdAt=" + createdAt +
+                       ", updatedAt=" + updatedAt +
+                       ", accountId=" + accountId +
+                       ", productId=" + productId +
                        '}';
     }
 }

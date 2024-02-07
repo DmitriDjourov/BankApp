@@ -1,13 +1,17 @@
 package com.djourov.bankapp.entity;
 
 import com.djourov.bankapp.entity.enums.ClientStatus;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -20,7 +24,7 @@ import java.util.UUID;
 
 public class Client {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @UuidGenerator
     @Column(name = "c_id")
     private UUID id;
 
@@ -53,8 +57,13 @@ public class Client {
     private LocalDate updatedAt;
 
     @ManyToOne()
+    @JsonBackReference("fk_client_manager")
     @JoinColumn(name = "c_manager_id", referencedColumnName = "m_id")
     private Manager manager;
+
+    @OneToMany(mappedBy = "client")
+    @JsonManagedReference("fk_account_client_id")
+    private List<Account> accounts;
 
     @Override
     public boolean equals(Object o) {
@@ -83,6 +92,7 @@ public class Client {
                        ", createdAt=" + createdAt +
                        ", updatedAt=" + updatedAt +
                        ", manager=" + manager +
+                       ", accounts=" + accounts +
                        '}';
     }
 }

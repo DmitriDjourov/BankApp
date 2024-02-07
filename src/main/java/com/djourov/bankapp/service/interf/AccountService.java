@@ -1,5 +1,6 @@
 package com.djourov.bankapp.service.interf;
 
+import com.djourov.bankapp.dto.AccountDto;
 import com.djourov.bankapp.entity.Account;
 
 import java.util.List;
@@ -9,4 +10,5 @@ public interface AccountService {
     List<Account> getAllAccounts();
     Account getAccById(UUID id);
     Account findAccountByAccountNumber(String a_account_number);
+    AccountDto getACMId(UUID id);
 }

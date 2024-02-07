@@ -3,14 +3,19 @@ package com.djourov.bankapp.entity;
 import com.djourov.bankapp.entity.enums.AccountCurrencyCode;
 import com.djourov.bankapp.entity.enums.AccountStatus;
 import com.djourov.bankapp.entity.enums.AccountTypeStatus;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.UuidGenerator;
+import org.hibernate.type.SqlTypes;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -23,7 +28,7 @@ import java.util.UUID;
 
 public class Account {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @UuidGenerator
     @Column(name = "a_id")
     private UUID id;
 
@@ -51,10 +56,22 @@ public class Account {
     @Column(name = "a_update_at")
     private LocalDate updatedAt;
 
-
     @ManyToOne()
+    @JsonBackReference("fk_account_client_id")
     @JoinColumn(name = "a_client_id", referencedColumnName = "c_id")
     private Client client;
+
+    @OneToMany(mappedBy = "debitAccountId")
+    @JsonManagedReference("fk_transaction_debit_account")
+    private List<Transaction> debitTransactions;
+
+    @OneToMany(mappedBy = "creditAccountId")
+    @JsonManagedReference("fk_transaction_credit_account")
+    private List<Transaction> creditTransactions;
+
+    @OneToMany(mappedBy = "id")
+    @JsonManagedReference("fk_agreement_account")
+    private List<Agreement> agreements;
 
     @Override
     public boolean equals(Object o) {
@@ -73,14 +90,17 @@ public class Account {
     public String toString() {
         return "Account{" +
                        "id=" + id +
-                       ", name='" + accountNumber + '\'' +
+                       ", accountNumber='" + accountNumber + '\'' +
                        ", type=" + type +
                        ", status=" + status +
                        ", balance=" + balance +
-                       ", currency_code=" + currencyCode +
-                       ", created_at=" + createdAt +
-                       ", updated_at=" + updatedAt +
+                       ", currencyCode=" + currencyCode +
+                       ", createdAt=" + createdAt +
+                       ", updatedAt=" + updatedAt +
                        ", client=" + client +
+                       ", debitTransactions=" + debitTransactions +
+                       ", creditTransactions=" + creditTransactions +
+                       ", agreements=" + agreements +
                        '}';
     }
 }

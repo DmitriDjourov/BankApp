@@ -1,13 +1,19 @@
 package com.djourov.bankapp.entity;
 
 import com.djourov.bankapp.entity.enums.ManagerStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.annotations.UuidGenerator;
+import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -20,7 +26,7 @@ import java.util.UUID;
 
 public class Manager {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @UuidGenerator// @JdbcTypeCode(SqlTypes.BINARY)
     @Column(name = "m_id")
     private UUID id;
 
@@ -39,6 +45,15 @@ public class Manager {
 
     @Column(name = "m_update_at")
     private LocalDate updatedAt;
+
+    @OneToMany(mappedBy = "manager")
+    @JsonManagedReference("fk_product_manager")
+    @JsonIgnore
+    private List<Product> products;
+
+    @OneToMany(mappedBy = "manager")
+    @JsonManagedReference("fk_client_manager")
+    private List<Client> clients;
 
     @Override
     public boolean equals(Object o) {
@@ -62,6 +77,8 @@ public class Manager {
                        ", status=" + status +
                        ", createdAt=" + createdAt +
                        ", updatedAt=" + updatedAt +
+                       ", products=" + products +
+                       ", clients=" + clients +
                        '}';
     }
 }

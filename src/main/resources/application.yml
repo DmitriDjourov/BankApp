@@ -1,9 +1,21 @@
 server:
   port: 8080
 spring:
+  mvc:
+    content-negotiation:
+      favor-parameter: true
   main:
     banner-mode: off
 
+  thymeleaf:
+    cache: false
+    prefix: file:src/main/resources/templates/
+
+  web:
+    resources:
+      static-locations: file:src/main/resources/static/
+      cache:
+        period: 0
 
   liquibase:
     enabled: true
@@ -24,3 +36,20 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
+
+springdoc:
+  webjars:
+    prefix:
+
+  swagger-ui:
+    path: /bankapp/v3/swagger-ui.html
+    disable-swagger-default-url: true
+    operation-sorter: method
+    enabled: true
+    operationsSorter: alpha
+    tagsSorter: alpha
+    doc-expansion: none
+
+  api-docs:
+    enabled: true
+    path: /bankapp/v3/api-docs
