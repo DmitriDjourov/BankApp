@@ -50,7 +50,7 @@ public class ManagerServiceImpl implements ManagerService {
      * }
      */
     @Override
-    @Transactional(isolation = Isolation.READ_COMMITTED,readOnly = true)
+    @Transactional(isolation = Isolation.REPEATABLE_READ,readOnly = true)
     public Manager postCreateManager(Manager manager) {
         manager.setId(null);
         manager.setCreatedAt(LocalDate.now());
@@ -78,7 +78,7 @@ public class ManagerServiceImpl implements ManagerService {
      * localhost:8080/app/manager/upd/manager_status_senior/83188565-b3f4-11ee-9c53-00ffe0e1a544-взять из базы
      */
     @Override
-    @Transactional(isolation = Isolation.READ_COMMITTED)
+    @Transactional(isolation = Isolation.REPEATABLE_READ)
     public Manager updateManagerStatusSeniorById(UUID id) {
         Manager manager = managerRepository.findById(id)
                                   .orElseThrow(() -> new ManagerForUpdateNotFoundException(ErrorMessages.NO_MANAGER_UPD_WITH_ID, id));
