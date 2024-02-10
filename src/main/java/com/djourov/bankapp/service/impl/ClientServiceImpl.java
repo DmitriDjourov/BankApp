@@ -13,6 +13,8 @@ import com.djourov.bankapp.service.interf.ClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
@@ -28,17 +30,20 @@ public class ClientServiceImpl implements ClientService {
     private final ClientActiveMapper clientActiveMapper;
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED, readOnly = true)
     public List<Client> getAllClients() {
         return clientRepository.findAll();
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public ClientDto getClientById(UUID id) {
         return clientMapper.toDto(clientRepository.findById(id)
                                           .orElseThrow(() -> new ClientByIdNotFountException(ErrorMessages.NO_CLIENT_WITH_ID, id)));
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED, readOnly = true)
     public List<ClientActiveDto> getClientActiveDto(Integer status) {
         return clientActiveMapper.toDtoList(clientRepository.findClientByStatus(findStatus(status)));
     }

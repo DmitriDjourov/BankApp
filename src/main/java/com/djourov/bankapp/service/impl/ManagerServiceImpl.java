@@ -13,6 +13,8 @@ import com.djourov.bankapp.repository.ManagerRepository;
 import com.djourov.bankapp.service.interf.ManagerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -26,11 +28,13 @@ public class ManagerServiceImpl implements ManagerService {
     private final ManagerMapper managerMapper;
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED,readOnly = true)
     public List<Manager> getAllManagers() {
         return managerRepository.findAll();
     }
 
     @Override// localhost:8080/app/manager/b407a7f7-b49f-11ee-9c53-00ffe0e1a544?format=json(xml)
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public Manager getManagerById(UUID id) {
         return managerRepository.findById(id)
                                   .orElseThrow(() -> new ManagerNotFoundException(ErrorMessages.NO_MANAGER_WITH_ID , id));
@@ -46,6 +50,7 @@ public class ManagerServiceImpl implements ManagerService {
      * }
      */
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED,readOnly = true)
     public Manager postCreateManager(Manager manager) {
         manager.setId(null);
         manager.setCreatedAt(LocalDate.now());
@@ -58,6 +63,7 @@ public class ManagerServiceImpl implements ManagerService {
      * localhost:8080/app/manager/del/799beb00-bfc7-4b10-a5c5-17d9a5be0472-взять из базы
      */
     @Override
+    @Transactional(isolation = Isolation.SERIALIZABLE)
     public Manager deleteById(UUID id) {
         Manager manager = managerRepository.findById(id)
                                   .orElseThrow(() -> new ManagerForDeleteNotFoundException(ErrorMessages.NO_MANAGER_DEL_WITH_ID,id));
@@ -72,6 +78,7 @@ public class ManagerServiceImpl implements ManagerService {
      * localhost:8080/app/manager/upd/manager_status_senior/83188565-b3f4-11ee-9c53-00ffe0e1a544-взять из базы
      */
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public Manager updateManagerStatusSeniorById(UUID id) {
         Manager manager = managerRepository.findById(id)
                                   .orElseThrow(() -> new ManagerForUpdateNotFoundException(ErrorMessages.NO_MANAGER_UPD_WITH_ID, id));
@@ -83,14 +90,13 @@ public class ManagerServiceImpl implements ManagerService {
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED,readOnly = true)
     public Manager getManagerReferenceById(UUID id){
-
-
         return managerRepository.getReferenceById(id);
-
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public ManagerDTO getManagerByIdFirstLastName(UUID id) {
         return managerMapper.toDto(managerRepository.findById(id)
                                            .orElseThrow(() -> new ManagerNotFoundException(ErrorMessages.NO_MANAGER_WITH_ID,id)));

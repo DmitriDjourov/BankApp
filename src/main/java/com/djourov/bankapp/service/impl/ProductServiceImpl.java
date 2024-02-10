@@ -12,6 +12,8 @@ import com.djourov.bankapp.repository.ProductRepository;
 import com.djourov.bankapp.service.interf.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
@@ -25,11 +27,13 @@ public class ProductServiceImpl implements ProductService {
     private final ProductMapperById productMapperById;
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED, readOnly = true)
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public Product create(ProductDto productDto) {
         Product product = productRepository.getProductByName(ProductName.valueOf(productDto.getName()));
         if (product != null)
@@ -39,6 +43,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public ProductDto getPBId(UUID id) {
         Product entity = productRepository.findById(id).orElseThrow(()-> new ProductByIdNotFoundException(ErrorMessages.NO_PRODUCT_WITH_ID, id));
         return productMapperById.toDto(entity);
