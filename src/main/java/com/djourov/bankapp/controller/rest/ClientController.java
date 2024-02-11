@@ -28,7 +28,7 @@ public class ClientController {
     }
 
     @GetMapping("/{id}")//localhost:8080/app/client/b40a6773-b49f-11ee-9c53-00ffe0e1a544
-    public ClientDto getClientById(@UuidChecker @PathVariable("id") UUID id) {
+    public ClientDto getClientById(@PathVariable("id") UUID id) {
         return clientService.getClientById(id);
     }
 
