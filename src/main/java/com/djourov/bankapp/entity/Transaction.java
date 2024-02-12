@@ -1,6 +1,7 @@
 package com.djourov.bankapp.entity;
 
 
+import com.djourov.bankapp.entity.enums.TransactionTypeStatus;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -28,8 +29,9 @@ public class Transaction {
     @Column(name = "t_id")
     private UUID id;
 
+    @Enumerated(EnumType.ORDINAL)
     @Column(name = "t_type")
-    private int type;
+    private TransactionTypeStatus type;
 
     @Column(name = "t_amount")
     private BigDecimal amount;
