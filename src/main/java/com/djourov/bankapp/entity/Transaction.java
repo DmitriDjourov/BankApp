@@ -11,7 +11,6 @@ import lombok.Setter;
 import org.hibernate.annotations.UuidGenerator;
 
 import java.math.BigDecimal;
-import java.sql.SQLType;
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;

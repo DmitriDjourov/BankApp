@@ -16,7 +16,7 @@ public class TransactionController {
     private final TransactionService transactionService;
 
     @GetMapping("/transactions")//http:/localhost:8080/app/transaction/transactions
-    public List<Transaction> getAllTaransactions() {
+    public List<Transaction> getAllTransactions() {
         return transactionService.getAllTransactions();
     }
 }

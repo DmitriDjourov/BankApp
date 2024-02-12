@@ -12,6 +12,6 @@ public class UuidAnnotationChecker implements ConstraintValidator<UuidChecker, S
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        return false;
+        return true;
     }
 }
