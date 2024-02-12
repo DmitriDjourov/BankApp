@@ -50,7 +50,7 @@ public class ManagerServiceImpl implements ManagerService {
      * }
      */
     @Override
-    @Transactional(isolation = Isolation.REPEATABLE_READ,readOnly = true)
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public Manager postCreateManager(Manager manager) {
         manager.setId(null);
         manager.setCreatedAt(LocalDate.now());
@@ -63,7 +63,7 @@ public class ManagerServiceImpl implements ManagerService {
      * localhost:8080/app/manager/del/799beb00-bfc7-4b10-a5c5-17d9a5be0472-взять из базы
      */
     @Override
-    @Transactional(isolation = Isolation.SERIALIZABLE)
+    @Transactional(isolation = Isolation.REPEATABLE_READ)
     public Manager deleteById(UUID id) {
         Manager manager = managerRepository.findById(id)
                                   .orElseThrow(() -> new ManagerForDeleteNotFoundException(ErrorMessages.NO_MANAGER_DEL_WITH_ID,id));
