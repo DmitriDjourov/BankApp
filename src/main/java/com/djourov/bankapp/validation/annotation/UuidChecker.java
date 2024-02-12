@@ -4,16 +4,18 @@ import com.djourov.bankapp.validation.constraint.UuidAnnotationChecker;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
-import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target(ElementType.PARAMETER)
+import static java.lang.annotation.ElementType.*;
+
+@Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE})
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = UuidAnnotationChecker.class)
+@Constraint(validatedBy = {UuidAnnotationChecker.class})
 public @interface UuidChecker {
-    String message() default "Uuid не проходит валидацию ! ";
+
+    String message() default "Invalid UUID format !!!";
 
     Class<?>[] groups() default {};
 
