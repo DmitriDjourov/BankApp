@@ -14,15 +14,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class ExceptionHandlerAspect {
-    @ExceptionHandler(ManagerForUpdateNotFoundException.class)
-    public ResponseEntity<String> handleManagerForUpdateNotFoundException(ManagerForUpdateNotFoundException ex) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        return ResponseEntity
-                       .status(HttpStatus.NOT_FOUND)
-                       .headers(headers)
-                       .body("Не найден менеджер с таким айдишником !!! " + ex.getMessage());
-    }
     @ExceptionHandler(ProductByIdNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleProductByIdNotFoundException(ProductByIdNotFoundException ex, HttpServletRequest request) {
         HttpHeaders headers = new HttpHeaders();

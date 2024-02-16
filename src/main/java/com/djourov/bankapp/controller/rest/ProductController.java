@@ -3,6 +3,7 @@ package com.djourov.bankapp.controller.rest;
 import com.djourov.bankapp.dto.ProductDto;
 import com.djourov.bankapp.entity.Product;
 import com.djourov.bankapp.service.interf.ProductService;
+import com.djourov.bankapp.validation.annotation.UuidChecker;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +17,7 @@ public class ProductController {
     private final ProductService productService;
 
     @GetMapping("/{id}")//localhost:8080/app/product/1b109afa-c45d-11ee-bf28-00155d558765
-    public ProductDto getProductById(@PathVariable UUID id){
+    public ProductDto getProductById(@UuidChecker @PathVariable UUID id){
         return productService.getPBId(id);
     }
 
