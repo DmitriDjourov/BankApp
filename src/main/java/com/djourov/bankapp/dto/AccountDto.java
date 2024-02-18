@@ -1,9 +1,13 @@
 package com.djourov.bankapp.dto;
 
 import com.djourov.bankapp.entity.enums.ManagerStatus;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
+@Builder
 public class AccountDto {
     /**
      * Account
