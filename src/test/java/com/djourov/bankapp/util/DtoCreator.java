@@ -46,12 +46,13 @@ public class DtoCreator {
                        .build();
     }
 
-    public static ErrorResponse getErrorResponse() {
-        return ErrorResponse.builder()
-                       .message("This is massage !!!! ")
-                       .url("localhost:8080/app/client")
-                       .build();
-    }
+//    public static ErrorResponse getErrorResponse() {
+//        return ErrorResponse.builder()
+//                       .message("This is massage !!!! ")
+//                       .url("localhost:8080/app/client")
+//                       .build();
+//    }
+
 
     public static ManagerDTO getManagerDTO() {
         return ManagerDTO.builder()
