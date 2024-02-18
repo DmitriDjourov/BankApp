@@ -44,6 +44,7 @@
             </pattern>
         </encoder>
     </appender>
+    <!--0 FATAL-->
     <!--1 ERROR-->
     <!--2 WARN-->
     <!--3 INFO-->
