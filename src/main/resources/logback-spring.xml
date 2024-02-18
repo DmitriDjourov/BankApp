@@ -50,7 +50,7 @@
     <!--3 INFO-->
     <!--4 DEBUG-->
     <!--5 TRACE-->
-    <root level="${DATASOURCE.LOGLEVEL4}">
+    <root level="${DATASOURCE.LOGLEVEL2}">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="FILE"/>
     </root>
