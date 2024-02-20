@@ -13,8 +13,8 @@ import java.util.UUID;
 public class EntityCreator {
     public static Account getAccount() {
         Account account = new Account();
-        account.setId(UUID.fromString("66664999-3333-1111-a456-426655440000"));
-        account.setAccountNumber("123456999");
+        account.setId(UUID.fromString("91384699-c928-11ee-87e5-00155d26ef58"));
+        account.setAccountNumber("123456789");
         account.setType(AccountTypeStatus.BUSINESS_ACCOUNT);
         account.setStatus(AccountStatus.ACTIVE);
         account.setBalance(new BigDecimal("2222.00"));
