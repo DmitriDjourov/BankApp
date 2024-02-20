@@ -45,8 +45,7 @@ public class AccountController {
         return accountService.getAllAccounts();
     }
 
-    @GetMapping("/account_client_manager/{id}")
-// localhost:8080/app/account/account_client_manager/30633730-6166-6131-2d63-3635342d3437
+    @GetMapping("/account_client_manager/{id}")// localhost:8080/app/account/account_client_manager/30633730-6166-6131-2d63-3635342d3437
     @Operation(summary = "This method returns information about the account by its identifier.",
             description = "TThis method returns a account record from the accounts table by the unique account" +
                                   " identifier. The information includes fields from the accounts table, the first" +
