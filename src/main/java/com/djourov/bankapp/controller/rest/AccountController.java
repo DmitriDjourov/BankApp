@@ -45,7 +45,8 @@ public class AccountController {
         return accountService.getAllAccounts();
     }
 
-    @GetMapping("/account_client_manager/{id}")// localhost:8080/app/account/account_client_manager/30633730-6166-6131-2d63-3635342d3437
+    @GetMapping("/account_client_manager/{id}")
+// localhost:8080/app/account/account_client_manager/30633730-6166-6131-2d63-3635342d3437
     @Operation(summary = "This method returns information about the account by its identifier.",
             description = "TThis method returns a account record from the accounts table by the unique account" +
                                   " identifier. The information includes fields from the accounts table, the first" +
@@ -65,7 +66,7 @@ public class AccountController {
             },
             hidden = false
     )
-    public AccountDto getAccountAndClientAndManger(@PathVariable("id") UUID id){
+    public AccountDto getAccountAndClientAndManger(@PathVariable("id") UUID id) {
         return accountService.getACMId(id);
     }
 
@@ -90,6 +91,7 @@ public class AccountController {
         Account account = accountService.getAccById(id);
         return (Account) Hibernate.unproxy(account);
     }
+
     @GetMapping("/account_number/{a_account_number}")//localhost:8080/app/account/account_number/123456789
     @Operation(summary = "The method returns information about account by its account number",
             description = "This method returns a complete account record from the accounts table by the account's " +
