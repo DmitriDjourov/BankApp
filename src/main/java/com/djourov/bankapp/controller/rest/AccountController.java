@@ -9,7 +9,11 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.Hibernate;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.UUID;
@@ -45,8 +49,8 @@ public class AccountController {
     @Operation(summary = "This method returns information about the account by its identifier.",
             description = "TThis method returns a account record from the accounts table by the unique account" +
                                   " identifier. The information includes fields from the accounts table, the first" +
-                                  " and last name of the account owner and the status of the manager servicing this" +
-                                  " account.",
+                                  " and last name of the account owner and the status(specialization) of the manager" +
+                                  " servicing this account.",
             tags = "Accounts",
             externalDocs = @ExternalDocumentation(
                     description = "Documentation",
@@ -97,14 +101,19 @@ public class AccountController {
             ),
             responses = {
                     @ApiResponse(responseCode = "200", description = "Found"),
-                    @ApiResponse(responseCode = "500", description = "Not Found")
+                    @ApiResponse(responseCode = "404", description = "Not Found")
             },
             security = {
                     @SecurityRequirement(name = "security requirements")
             },
             hidden = false
     )
-    public Account findAccountByAccountNumber(@PathVariable("a_account_number") String a_account_number) {
-        return accountService.findAccountByAccountNumber(a_account_number);
+    public ResponseEntity<Account> findAccountByAccountNumber(@PathVariable("a_account_number") String a_account_number) {
+        Account account = accountService.findAccountByAccountNumber(a_account_number);
+        if (account != null) {
+            return ResponseEntity.ok(account);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
