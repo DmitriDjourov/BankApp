@@ -25,7 +25,8 @@ public class ExceptionHandlerAspect {
                     @ApiResponse(responseCode = "404", description = "Product by ID is not found",
                             content = @Content(mediaType = "application/json",
                                     schema = @Schema(implementation = ErrorResponse.class)))
-            })
+            },
+            hidden = false)
     public ResponseEntity<ErrorResponse> handleProductByIdNotFoundException(ProductByIdNotFoundException ex, HttpServletRequest request) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -48,7 +49,8 @@ public class ExceptionHandlerAspect {
                     @ApiResponse(responseCode = "404", description = "Client by ID is not found",
                             content = @Content(mediaType = "application/json",
                                     schema = @Schema(implementation = ErrorResponse.class)))
-            })
+            },
+            hidden = false)
     public ResponseEntity<ErrorResponse> handleClientByIdNotFountException(ClientByIdNotFountException ex, HttpServletRequest request) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
