@@ -23,7 +23,7 @@ class TransactionServiceImplTest {
     private TransactionServiceImpl transactionService;
 
     @Test
-    void getAllTransactions() {
+    void getAllTransactionsTest() {
         List<Transaction> transactionList = new ArrayList<>();
         transactionList.add(EntityCreator.transaction());
         when(transactionRepository.findAll()).thenReturn(transactionList);

@@ -23,7 +23,7 @@ class AgreementServiceImplTest {
     private AgreementServiceImpl agreementService;
 
     @Test
-    void getAllAgreements() {
+    void getAllAgreementsTest() {
         List<Agreement> agreementList = new ArrayList<>();
         agreementList.add(EntityCreator.getAgreement());
         when(agreementRepository.findAll()).thenReturn(agreementList);

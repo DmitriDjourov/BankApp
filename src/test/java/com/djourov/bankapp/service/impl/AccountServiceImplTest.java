@@ -35,11 +35,11 @@ class AccountServiceImplTest {
 
     @AfterEach
     public void clearMocks() {
-        clearInvocations(accountMapper, accountMapper);
+        clearInvocations(accountRepository, accountMapper);
     }
 
     @Test
-    void getAllAccounts() {
+    void getAllAccountsTest() {
         List<Account> accountList = new ArrayList<>();
         accountList.add(EntityCreator.getAccount());
         when(accountRepository.findAll()).thenReturn(accountList);
@@ -48,7 +48,7 @@ class AccountServiceImplTest {
     }
 
     @Test
-    void getAccById() {
+    void getAccByIdTest() {
         Account account = EntityCreator.getAccount();
         when(accountRepository.getReferenceById(account.getId())).thenReturn(account);
         Account result = accountService.getAccById(account.getId());
@@ -56,7 +56,7 @@ class AccountServiceImplTest {
     }
 
     @Test
-    void findAccountByAccountNumber() {
+    void findAccountByAccountNumberTest() {
         Account account = EntityCreator.getAccount();
         when(accountRepository.findAccountByAccountNumber(account.getAccountNumber())).thenReturn(account);
         Account result = accountService.findAccountByAccountNumber((account.getAccountNumber()));
@@ -75,7 +75,7 @@ class AccountServiceImplTest {
     }
 
     @Test
-    void getACMId_AccountDTOThrowException() {
+    void getACMId_AccountDTOThrowExceptionTest() {
         UUID id = EntityCreator.getAccount().getId();
         when(accountRepository.findById(id)).thenReturn(Optional.empty());
         Assertions.assertThrows(AccountByIdNotFoundException.class, () -> accountService.getACMId(id));
