@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Managers</title>
+</head>
+<body>
+<h2>MANAGERS</h2>
+<table>
+    <thead>
+    <tr>
+        <th>№</th>
+        <th>Name</th>
+        <th>Last Name</th>
+        <th>Position</th>
+    </tr>
+    <tr></tr>
+    </thead>
+    <tbody>
+    <tr th:each="c, iter : ${managersForModel}">
+        <link rel="stylesheet" href="/managersStyle.css">
+    <tr th:each="c, iter : ${managersForModel}" th:class="${iter.odd}? 'odd-row'">
+        <td th:text="${iter.index}+1"></td>
+        <td class="centered" th:text="${c.firstName}"></td>
+        <td class="centered" th:text="${c.lastName}"></td>
+        <td class="centered" th:text="${c.status}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - changeSet:
+      id: sql-inserts
+      author: DmitriDjourov
+      changes:
+        - sqlFile:
+            path: db/changelog/changeset/v0.0.1-SNAPSHOT/test_database.sql

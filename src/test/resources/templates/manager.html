@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manager Details</title>
+    <link rel="stylesheet" href="/managerStyle.css">
+</head>
+<body>
+
+<h2>Manager Details :</h2>
+
+<table>
+    <tr>
+        <td><strong>First Name:</strong></td>
+        <td th:text="${managerByIdForModel.firstName}"></td>
+    </tr>
+    <tr>
+        <td><strong>Last Name:</strong></td>
+        <td th:text="${managerByIdForModel.lastName}"></td>
+    </tr>
+    <tr>
+        <td><strong>Position:</strong></td>
+        <td th:text="${managerByIdForModel.status}"></td>
+    </tr>
+</table>
+</body>
+</html>
