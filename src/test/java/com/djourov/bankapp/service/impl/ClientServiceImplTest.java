@@ -36,13 +36,12 @@ class ClientServiceImplTest {
     @Mock
     private ClientActiveMapper clientActiveMapper;
 
-
     @InjectMocks
     private ClientServiceImpl clientService;
 
     @AfterEach
     public void clearMocks() {
-        clearInvocations(clientRepository, clientMapper);
+        clearInvocations(clientRepository, clientMapper,clientActiveMapper);
     }
 
     @Test
