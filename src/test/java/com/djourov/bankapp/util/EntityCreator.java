@@ -52,7 +52,7 @@ public class EntityCreator {
 
     public static Manager getManager() {
         Manager manager = new Manager();
-        manager.setId(UUID.fromString("1b0f92f6-c45d-11ee-bf28-00155d558777"));
+        manager.setId(UUID.fromString("912f26ae-c928-11ee-87e5-00155d26ef58"));
         manager.setFirstName("Coco");
         manager.setLastName("Chanel");
         manager.setStatus(ManagerStatus.SENIOR_MANAGER);

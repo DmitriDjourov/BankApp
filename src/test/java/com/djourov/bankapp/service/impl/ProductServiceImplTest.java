@@ -59,7 +59,6 @@ class ProductServiceImplTest {
        when(productMapper.toEntity(productDto)).thenReturn(product);
        when(productRepository.getProductByName(ProductName.valueOf(productDto.getName()))).thenReturn(null);
        when(productRepository.save(product)).thenReturn(product);
-       Product result = productService.create(productDto);
        verify(productMapper, times(1)).toEntity(productDto);
        verify(productRepository, times(1)).save(product);
     }
