@@ -10,7 +10,6 @@ import com.djourov.bankapp.mapper.ClientMapper;
 import com.djourov.bankapp.repository.ClientRepository;
 import com.djourov.bankapp.util.DtoCreator;
 import com.djourov.bankapp.util.EntityCreator;
-import org.junit.Assert;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -61,7 +60,7 @@ class ClientServiceImplTest {
         when(clientRepository.findById(client.getId())).thenReturn(Optional.of(client));
         when(clientMapper.toDto(client)).thenReturn(clientDto);
         ClientDto actualClientDto = clientService.getClientById(client.getId());
-        Assert.assertEquals(actualClientDto, clientDto);
+        Assertions.assertEquals(actualClientDto, clientDto);
     }
 
     @Test
@@ -80,7 +79,6 @@ class ClientServiceImplTest {
         clientActiveDtoList.add(DtoCreator.getClientActiveDto());
         when(clientRepository.findClientByStatus(ClientStatus.ACTIVE)).thenReturn(clients);
         when(clientActiveMapper.toDtoList(clients)).thenReturn(clientActiveDtoList);
-
         List<ClientActiveDto> actualClientDto = clientService.getClientActiveDto(status);
         Assertions.assertNotNull(actualClientDto);
         Assertions.assertEquals(actualClientDto, clientActiveDtoList);

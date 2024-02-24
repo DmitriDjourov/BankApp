@@ -10,7 +10,6 @@ import com.djourov.bankapp.mapper.ProductMapperById;
 import com.djourov.bankapp.repository.ProductRepository;
 import com.djourov.bankapp.util.DtoCreator;
 import com.djourov.bankapp.util.EntityCreator;
-import org.junit.Assert;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -42,6 +41,9 @@ class ProductServiceImplTest {
         clearInvocations(productRepository, productMapper, productMapperById);
     }
 
+    private final Product product = EntityCreator.getProduct();
+    private final ProductDto productDto = DtoCreator.getProductDto();
+
     @Test
     void getAllProductsTest() {
         List<Product> productList = new ArrayList<>();
@@ -52,21 +54,17 @@ class ProductServiceImplTest {
         Assertions.assertEquals(productList, result);
     }
 
-   @Test
+    @Test
     void createTest() {
-       Product product = EntityCreator.getProduct();
-       ProductDto productDto = DtoCreator.getProductDto();
-       when(productMapper.toEntity(productDto)).thenReturn(product);
-       when(productRepository.getProductByName(ProductName.valueOf(productDto.getName()))).thenReturn(null);
-       when(productRepository.save(product)).thenReturn(product);
-       verify(productMapper, times(1)).toEntity(productDto);
-       verify(productRepository, times(1)).save(product);
+        when(productRepository.getProductByName(ProductName.valueOf(productDto.getName()))).thenReturn(null);
+        when(productMapper.toEntity(productDto)).thenReturn(product);
+        Product result = productService.create(productDto);
+        verify(productMapper, times(1)).toEntity(productDto);
+        verify(productRepository, times(1)).save(product);
     }
 
     @Test
-    void Create_WhenProductExistsExceptionTest(){
-        Product product = EntityCreator.getProduct();
-        ProductDto productDto = DtoCreator.getProductDto();
+    void Create_WhenProductExistsExceptionTest() {
         when(productRepository.getProductByName(ProductName.valueOf(productDto.getName()))).thenReturn(product);
         Assertions.assertThrows(ProductWithThisNameAlreadyExistsException.class, () -> productService.create(productDto));
         verify(productRepository, never()).save(any());
@@ -74,17 +72,15 @@ class ProductServiceImplTest {
 
     @Test
     void getPBIdTest() {
-        Product product = EntityCreator.getProduct();
-        ProductDto productDto = DtoCreator.getProductDto();
         when(productRepository.findById(product.getId())).thenReturn(Optional.of(product));
         when(productMapperById.toDto(product)).thenReturn(productDto);
 
         ProductDto actualProductDto = productService.getPBId(product.getId());
-        Assert.assertEquals(actualProductDto, productDto);
+        Assertions.assertEquals(actualProductDto, productDto);
     }
 
     @Test
-    void getPBIdThrowExceptionTest(){
+    void getPBIdThrowExceptionTest() {
         UUID id = EntityCreator.getProduct().getId();
         when(productRepository.findById(id)).thenReturn(Optional.empty());
         Assertions.assertThrows(ProductByIdNotFoundException.class, () -> productService.getPBId(id));

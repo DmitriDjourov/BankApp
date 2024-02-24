@@ -7,7 +7,6 @@ import com.djourov.bankapp.mapper.AccountMapper;
 import com.djourov.bankapp.repository.AccountRepository;
 import com.djourov.bankapp.util.DtoCreator;
 import com.djourov.bankapp.util.EntityCreator;
-import org.junit.Assert;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -38,6 +37,8 @@ class AccountServiceImplTest {
         clearInvocations(accountRepository, accountMapper);
     }
 
+    private final Account account = EntityCreator.getAccount();
+
     @Test
     void getAllAccountsTest() {
         List<Account> accountList = new ArrayList<>();
@@ -49,7 +50,6 @@ class AccountServiceImplTest {
 
     @Test
     void getAccByIdTest() {
-        Account account = EntityCreator.getAccount();
         when(accountRepository.getReferenceById(account.getId())).thenReturn(account);
         Account result = accountService.getAccById(account.getId());
         Assertions.assertEquals(account, result);
@@ -57,7 +57,6 @@ class AccountServiceImplTest {
 
     @Test
     void findAccountByAccountNumberTest() {
-        Account account = EntityCreator.getAccount();
         when(accountRepository.findAccountByAccountNumber(account.getAccountNumber())).thenReturn(account);
         Account result = accountService.findAccountByAccountNumber((account.getAccountNumber()));
         Assertions.assertEquals(account, result);
@@ -65,13 +64,12 @@ class AccountServiceImplTest {
 
     @Test
     void getACMIdTest() {
-        Account account = EntityCreator.getAccount();
         AccountDto accountDto = DtoCreator.getAccountDto();
         when(accountRepository.findById(account.getId())).thenReturn(Optional.of(account));
         when(accountMapper.toDto(account)).thenReturn(accountDto);
 
         AccountDto actualAccountDto = accountService.getACMId(account.getId());
-        Assert.assertEquals(actualAccountDto, accountDto);
+        Assertions.assertEquals(actualAccountDto, accountDto);
     }
 
     @Test

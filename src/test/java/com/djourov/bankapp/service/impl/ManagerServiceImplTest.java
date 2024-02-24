@@ -10,7 +10,6 @@ import com.djourov.bankapp.mapper.ManagerMapper;
 import com.djourov.bankapp.repository.ManagerRepository;
 import com.djourov.bankapp.util.DtoCreator;
 import com.djourov.bankapp.util.EntityCreator;
-import org.junit.Assert;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -41,6 +40,9 @@ class ManagerServiceImplTest {
         clearInvocations(managerRepository, managerMapper);
     }
 
+    private final Manager manager = EntityCreator.getManager();
+    private final UUID id = EntityCreator.getManager().getId();
+
     @Test
     void getAllManagersTest() {
         List<Manager> managerList = new ArrayList<>();
@@ -52,7 +54,6 @@ class ManagerServiceImplTest {
 
     @Test
     void getManagerByIdTest() {
-        Manager manager = EntityCreator.getManager();
         when(managerRepository.findById(manager.getId())).thenReturn(Optional.of(manager));
         Manager result = managerService.getManagerById(manager.getId());
         Assertions.assertEquals(manager, result);
@@ -60,14 +61,12 @@ class ManagerServiceImplTest {
 
     @Test
     void getMangerByIdExceptionTest() {
-        UUID id = EntityCreator.getManager().getId();
         when(managerRepository.findById(id)).thenReturn(Optional.empty());
         Assertions.assertThrows(ManagerNotFoundException.class, () -> managerService.getManagerById(id));
     }
 
     @Test
     void postCreateManagerTest() {
-        Manager manager = EntityCreator.getManager();
         when(managerRepository.save(any(Manager.class))).thenReturn(manager);
         Manager result = managerService.postCreateManager(manager);
         Assertions.assertNotNull(result);
@@ -76,7 +75,6 @@ class ManagerServiceImplTest {
 
     @Test
     void deleteByIdTest() {
-        Manager manager = EntityCreator.getManager();
         when(managerRepository.findById(manager.getId())).thenReturn(Optional.of(manager));
         Manager result = managerService.deleteById(manager.getId());
         verify(managerRepository, times(1)).deleteById(manager.getId());
@@ -85,14 +83,12 @@ class ManagerServiceImplTest {
 
     @Test
     void deleteByIdExceptionTest() {
-        UUID id = EntityCreator.getManager().getId();
         when(managerRepository.findById(id)).thenReturn(Optional.empty());
         Assertions.assertThrows(ManagerForDeleteNotFoundException.class, () -> managerService.deleteById(id));
     }
 
     @Test
     void updateManagerStatusSeniorByIdTest() {
-        Manager manager = EntityCreator.getManager();
         when(managerRepository.findById(manager.getId())).thenReturn(Optional.of(manager));
         Manager result = managerService.updateManagerStatusSeniorById(manager.getId());
         Assertions.assertEquals(ManagerStatus.SENIOR_MANAGER, result.getStatus());
@@ -100,14 +96,12 @@ class ManagerServiceImplTest {
 
     @Test
     void updateManagerStatusSeniorByIdExceptionTest() {
-        UUID id = EntityCreator.getManager().getId();
         when(managerRepository.findById(id)).thenReturn(Optional.empty());
         Assertions.assertThrows(ManagerForUpdateNotFoundException.class, () -> managerService.updateManagerStatusSeniorById(id));
     }
 
     @Test
     void getManagerReferenceByIdTest() {
-        Manager manager = EntityCreator.getManager();
         when(managerRepository.getReferenceById(manager.getId())).thenReturn(manager);
         Manager result = managerService.getManagerReferenceById(manager.getId());
         Assertions.assertEquals(manager, result);
@@ -115,17 +109,15 @@ class ManagerServiceImplTest {
 
     @Test
     void getManagerByIdFirstLastNameTest() {
-        Manager manager = EntityCreator.getManager();
         ManagerDTO managerDTO = DtoCreator.getManagerDTO();
         when(managerRepository.findById(manager.getId())).thenReturn(Optional.of(manager));
         when(managerMapper.toDto(manager)).thenReturn(managerDTO);
         ManagerDTO actualManagerDto = managerService.getManagerByIdFirstLastName(manager.getId());
-        Assert.assertEquals(actualManagerDto, managerDTO);
+        Assertions.assertEquals(actualManagerDto, managerDTO);
     }
 
     @Test
     void getManagerByIdFirstLastNameExceptionTest() {
-        UUID id = EntityCreator.getManager().getId();
         when(managerRepository.findById(id)).thenReturn(Optional.empty());
         Assertions.assertThrows(ManagerNotFoundException.class, () -> managerService.getManagerByIdFirstLastName(id));
     }
