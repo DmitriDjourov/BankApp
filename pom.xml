@@ -120,6 +120,48 @@
                     </excludes>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.11</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>org.jacoco.agent</artifactId>
+                        <version>0.8.11</version>
+                        <scope>compile</scope>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <outputDirectory>
+                        ${project.basedir}/target/site
+                    </outputDirectory>
+                    <excludes>
+                        <exclude>com/example/hibernatecasacde/aspect/*</exclude>
+                        <exclude>com/example/hibernatecasacde/controller/exception_handler/*</exclude>
+                        <exclude>com/example/hibernatecasacde/dto/*</exclude>
+                        <exclude>com/example/hibernatecasacde/exceptions/*</exclude>
+                        <exclude>com/example/hibernatecasacde/exceptions/error_messages/*</exclude>
+                        <exclude>com/example/hibernatecasacde/model/*</exclude>
+                        <exclude>com/example/hibernatecasacde/HibernateCasacdeApplication.class</exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>jacoco-initialize</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>jacoco-site</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 </project>
