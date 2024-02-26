@@ -137,13 +137,14 @@
                         ${project.basedir}/target/site
                     </outputDirectory>
                     <excludes>
-                        <exclude>com/example/hibernatecasacde/aspect/*</exclude>
-                        <exclude>com/example/hibernatecasacde/controller/exception_handler/*</exclude>
-                        <exclude>com/example/hibernatecasacde/dto/*</exclude>
-                        <exclude>com/example/hibernatecasacde/exceptions/*</exclude>
-                        <exclude>com/example/hibernatecasacde/exceptions/error_messages/*</exclude>
-                        <exclude>com/example/hibernatecasacde/model/*</exclude>
-                        <exclude>com/example/hibernatecasacde/HibernateCasacdeApplication.class</exclude>
+                        <exclude>com/djourov/bankapp/aspect/*</exclude>
+                        <exclude>com/djourov/bankapp/controller/rest/exception_handler/*</exclude>
+                        <exclude>com/djourov/bankapp/dto/*</exclude>
+                        <exclude>com/djourov/bankapp/exception/*</exclude>
+                        <exclude>com/djourov/bankapp/exception/message/*</exclude>
+                        <exclude>com/djourov/bankapp/entity/*</exclude>
+                        <exclude>com/djourov/bankapp/entity/enums/*</exclude>
+                        <exclude>com/djourov/bankapp/BankAppApplication.class</exclude>
                     </excludes>
                 </configuration>
                 <executions>
@@ -159,6 +160,41 @@
                         <goals>
                             <goal>report</goal>
                         </goals>
+                    </execution>
+                    <execution>
+                        <id>jacoco-check</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <rule>
+                                    <element>BUNDLE</element>
+                                    <limits>
+                                        <limit>
+                                            <counter>INSTRUCTION</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>0.80</minimum>
+                                        </limit>
+                                        <limit>
+                                            <counter>LINE</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>0.80</minimum>
+                                        </limit>
+                                        <limit>
+                                            <counter>BRANCH</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>0.80</minimum>
+                                        </limit>
+                                        <limit>
+                                            <counter>CLASS</counter>
+                                            <value>MISSEDCOUNT</value>
+                                            <maximum>0</maximum>
+                                        </limit>
+                                    </limits>
+                                </rule>
+                            </rules>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
