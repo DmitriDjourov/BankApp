@@ -74,7 +74,7 @@ public class EntityCreator {
         return product;
     }
 
-    public static Transaction transaction() {
+    public static Transaction getTransaction() {
         Transaction transaction = new Transaction();
         transaction.setId(UUID.fromString("1b1a91cf-c45d-11ee-bf28-00155d558666"));
         transaction.setType(TransactionTypeStatus.CASH);

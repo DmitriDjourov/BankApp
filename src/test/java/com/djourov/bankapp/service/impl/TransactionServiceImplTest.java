@@ -25,7 +25,7 @@ class TransactionServiceImplTest {
     @Test
     void getAllTransactionsTest() {
         List<Transaction> transactionList = new ArrayList<>();
-        transactionList.add(EntityCreator.transaction());
+        transactionList.add(EntityCreator.getTransaction());
         when(transactionRepository.findAll()).thenReturn(transactionList);
         List<Transaction> result = transactionService.getAllTransactions();
         Assertions.assertNotNull(result);
