@@ -39,9 +39,10 @@ class ProductControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+    private final Product product = EntityCreator.getProduct();;
+
     @Test
     void getProductByIdTest() throws Exception {
-        Product product = EntityCreator.getProduct();
         ProductDto productDto = DtoCreator.getProductDto();
         when(productService.getPBId(product.getId())).thenReturn(productDto);
         mockMvc.perform(get("/app/product/{id}", product.getId()))
@@ -56,7 +57,6 @@ class ProductControllerTest {
 
     @Test
     void getAllProductsTest() throws Exception {
-        Product product = EntityCreator.getProduct();
         List<Product> products = new ArrayList<>();
         products.add(product);
         when(productService.getAllProducts()).thenReturn(products);
