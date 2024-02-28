@@ -72,18 +72,27 @@ class ClientServiceImplTest {
         Assertions.assertThrows(ClientByIdNotFountException.class, () -> clientService.getClientById(id));
     }
 
-    @Test
-    void getClientActiveDtoTest() {
-        Integer status = 0;
+    @ParameterizedTest
+    @CsvSource({
+            "0, ACTIVE",
+            "1, FROZEN",
+            "2, OVERDUE",
+            "3, PRIVILEGED",
+            "4, CLOSED",
+            "5, "
+    })
+    void getClientActiveDtoTest(Integer input, String status) {
         List<Client> clients = new ArrayList<>();
         clients.add(EntityCreator.getClient());
         List<ClientActiveDto> clientActiveDtoList = new ArrayList<>();
         clientActiveDtoList.add(DtoCreator.getClientActiveDto());
-        when(clientRepository.findClientByStatus(ClientStatus.ACTIVE)).thenReturn(clients);
+        ClientStatus expectedStatus = (status == null || status.isEmpty()) ? null : ClientStatus.valueOf(status);
+        when(clientRepository.findClientByStatus(expectedStatus)).thenReturn(clients);
         when(clientActiveMapper.toDtoList(clients)).thenReturn(clientActiveDtoList);
-        List<ClientActiveDto> actualClientDto = clientService.getClientActiveDto(status);
+        List<ClientActiveDto> actualClientDto = clientService.getClientActiveDto(input);
         Assertions.assertNotNull(actualClientDto);
-        Assertions.assertEquals(actualClientDto, clientActiveDtoList);
+        Assertions.assertEquals(clientActiveDtoList, actualClientDto);
+        Assertions.assertEquals(expectedStatus, findStatus(input));
     }
 
     private ClientStatus findStatus(Integer status) {
@@ -97,17 +106,4 @@ class ClientServiceImplTest {
         };
     }
 
-    @ParameterizedTest
-    @CsvSource({
-            "0, ACTIVE",
-            "1, FROZEN",
-            "2, OVERDUE",
-            "3, PRIVILEGED",
-            "4, CLOSED",
-            "5, "
-    })
-    void testFindStatus(Integer input, String status) {
-        ClientStatus expected_null = (status == null || status.isEmpty()) ? null : ClientStatus.valueOf(status);
-        Assertions.assertEquals(expected_null, findStatus(input));
-    }
 }
