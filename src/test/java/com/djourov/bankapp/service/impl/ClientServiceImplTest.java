@@ -14,6 +14,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -40,7 +42,7 @@ class ClientServiceImplTest {
 
     @AfterEach
     public void clearMocks() {
-        clearInvocations(clientRepository, clientMapper,clientActiveMapper);
+        clearInvocations(clientRepository, clientMapper, clientActiveMapper);
     }
 
     @Test
@@ -82,6 +84,30 @@ class ClientServiceImplTest {
         List<ClientActiveDto> actualClientDto = clientService.getClientActiveDto(status);
         Assertions.assertNotNull(actualClientDto);
         Assertions.assertEquals(actualClientDto, clientActiveDtoList);
+    }
 
+    private ClientStatus findStatus(Integer status) {
+        return switch (status) {
+            case 0 -> ClientStatus.ACTIVE;
+            case 1 -> ClientStatus.FROZEN;
+            case 2 -> ClientStatus.OVERDUE;
+            case 3 -> ClientStatus.PRIVILEGED;
+            case 4 -> ClientStatus.CLOSED;
+            default -> null;
+        };
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "0, ACTIVE",
+            "1, FROZEN",
+            "2, OVERDUE",
+            "3, PRIVILEGED",
+            "4, CLOSED",
+            "5, "
+    })
+    void testFindStatus(Integer input, String status) {
+        ClientStatus expected_null = (status == null || status.isEmpty()) ? null : ClientStatus.valueOf(status);
+        Assertions.assertEquals(expected_null, findStatus(input));
     }
 }
