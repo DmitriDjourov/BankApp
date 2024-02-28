@@ -19,8 +19,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @AutoConfigureMockMvc
@@ -51,7 +54,14 @@ class ManagerControllerTest {
         managers.add(manager);
         when(managerService.getAllManagers()).thenReturn(managers);
         mockMvc.perform(get("/app/manager/managers"))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$[0].id").value(manager.getId().toString()))
+                .andExpect(jsonPath("$[0].firstName").value(manager.getFirstName()))
+                .andExpect(jsonPath("$[0].lastName").value(manager.getLastName()))
+                .andExpect(jsonPath("$[0].status").value(manager.getStatus().toString()))
+                .andExpect(jsonPath("$[0].createdAt").value(manager.getCreatedAt().toString()))
+                .andExpect(jsonPath("$[0].updatedAt").value(manager.getUpdatedAt().toString()));
     }
 
     @Test
@@ -59,14 +69,25 @@ class ManagerControllerTest {
         ManagerDTO managerDTO = DtoCreator.getManagerDTO();
         when(managerService.getManagerByIdFirstLastName(manager.getId())).thenReturn(managerDTO);
         mockMvc.perform(get("/app/manager/first_last_name/{id}", manager.getId()))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.firstName", is(managerDTO.getFirstName())))
+                .andExpect(jsonPath("$.lastName", is(managerDTO.getLastName())))
+                .andExpect(jsonPath("$.createdAt", is(managerDTO.getCreatedAt().toString())))
+                .andExpect(jsonPath("$.status", is(managerDTO.getStatus().toString())))
+                .andExpect(jsonPath("$.clients", hasSize(managerDTO.getClients().size())));
     }
 
     @Test
     void getManagerByIdTest() throws Exception {
         when(managerService.getManagerById(manager.getId())).thenReturn(manager);
         mockMvc.perform(get("/app/manager/{id}", manager.getId()))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id", is(manager.getId().toString())))
+                .andExpect(jsonPath("$.firstName", is(manager.getFirstName())))
+                .andExpect(jsonPath("$.lastName", is(manager.getLastName())))
+                .andExpect(jsonPath("$.status", is(manager.getStatus().toString())))
+                .andExpect(jsonPath("$.createdAt", is(manager.getCreatedAt().toString())))
+                .andExpect(jsonPath("$.updatedAt", is(manager.getUpdatedAt().toString())));
     }
 
     @Test
@@ -130,6 +151,8 @@ class ManagerControllerTest {
     void updateManagerStatusSeniorByIdTest() throws Exception {
         when(managerService.updateManagerStatusSeniorById(manager.getId())).thenReturn(manager);
         mockMvc.perform(put("/app/manager/upd/manager_status_senior/{id}", manager.getId()))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id", is(manager.getId().toString())))
+                .andExpect(jsonPath("$.status", is(manager.getStatus().toString())));
     }
 }

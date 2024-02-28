@@ -18,6 +18,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -45,7 +47,18 @@ class ClientControllerTest {
         clients.add(client);
         when(clientService.getAllClients()).thenReturn(clients);
         mockMvc.perform(get("/app/client/clients"))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$[0].id").value(client.getId().toString()))
+                .andExpect(jsonPath("$[0].status").value(client.getStatus().toString()))
+                .andExpect(jsonPath("$[0].taxCode").value(client.getTaxCode()))
+                .andExpect(jsonPath("$[0].firstName").value(client.getFirstName()))
+                .andExpect(jsonPath("$[0].lastName").value(client.getLastName()))
+                .andExpect(jsonPath("$[0].email").value(client.getEmail()))
+                .andExpect(jsonPath("$[0].address").value(client.getAddress()))
+                .andExpect(jsonPath("$[0].phone").value(client.getPhone()))
+                .andExpect(jsonPath("$[0].createdAt").value(client.getCreatedAt().toString()))
+                .andExpect(jsonPath("$[0].updatedAt").value(client.getUpdatedAt().toString()));
     }
 
     @Test
@@ -53,8 +66,12 @@ class ClientControllerTest {
         ClientDto clientDto = DtoCreator.getClientDto();
         when(clientService.getClientById(client.getId())).thenReturn(clientDto);
         mockMvc.perform(get("/app/client/{id}", client.getId()))
-                .andExpect(status().isOk());
-
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.firstName", is(clientDto.getFirstName())))
+                .andExpect(jsonPath("$.lastName", is(clientDto.getLastName())))
+                .andExpect(jsonPath("$.firstNameManager", is(clientDto.getFirstNameManager())))
+                .andExpect(jsonPath("$.lastNameManager", is(clientDto.getLastNameManager())))
+                .andExpect(jsonPath("$.status", is(clientDto.getStatus().toString())));
     }
 
     @Test
@@ -64,4 +81,5 @@ class ClientControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").isArray());
     }
+
 }
