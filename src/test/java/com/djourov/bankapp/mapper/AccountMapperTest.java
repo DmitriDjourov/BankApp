@@ -30,4 +30,10 @@ class AccountMapperTest {
         Assertions.assertEquals("Doe", accountDto.getLastName());
         Assertions.assertEquals(ManagerStatus.SENIOR_MANAGER, accountDto.getStatus());
     }
+    @Test
+    void toDtoMapperAccountNullTest(){
+        Account account = null;
+        AccountDto accountDto = accountMapper.toDto(account);
+        Assertions.assertNull(accountDto);
+    }
 }
