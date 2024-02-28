@@ -9,6 +9,8 @@ import com.djourov.bankapp.util.EntityCreator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertNull;
+
 class AccountMapperTest {
 
     private final AccountMapper accountMapper = new AccountMapperImpl();
@@ -30,10 +32,34 @@ class AccountMapperTest {
         Assertions.assertEquals("Doe", accountDto.getLastName());
         Assertions.assertEquals(ManagerStatus.SENIOR_MANAGER, accountDto.getStatus());
     }
+
     @Test
-    void toDtoMapperAccountNullTest(){
+    void toDtoMapperAccountNullTest() {
         Account account = null;
         AccountDto accountDto = accountMapper.toDto(account);
-        Assertions.assertNull(accountDto);
+        assertNull(accountDto);
+    }
+
+    @Test
+    void toDtoReturnsNullWhenClientIsNull() {
+        Account account = new Account();
+        AccountDto accountDto = accountMapper.toDto(account);
+        assertNull(accountDto.getId());
+        assertNull(accountDto.getAccountNumber());
+        assertNull(accountDto.getFirstName());
+        assertNull(accountDto.getLastName());
+        assertNull(accountDto.getStatus());
+    }
+
+    @Test
+    void toDtoReturnsNullWhenManagerIsNull() {
+        Account account = new Account();
+        account.setClient(new Client());
+        AccountDto accountDto = accountMapper.toDto(account);
+        assertNull(accountDto.getId());
+        assertNull(accountDto.getAccountNumber());
+        assertNull(accountDto.getFirstName());
+        assertNull(accountDto.getLastName());
+        assertNull(accountDto.getStatus());
     }
 }
