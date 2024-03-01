@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.Hibernate;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -99,7 +100,7 @@ public class ManagerController {
      * "status": "CREDIT_MANAGER"
      * }
      */
-    @PostMapping("/createManager")// localhost:8080/app/manager/createManager
+    @PostMapping(value = "/createManager", consumes = MediaType.APPLICATION_JSON_VALUE)// localhost:8080/app/manager/createManager
     @Operation(summary = "Method for creating a new manager",
             description = "This method creates a new manager and enters all the necessary data into the managers table.",
             tags = "Managers",

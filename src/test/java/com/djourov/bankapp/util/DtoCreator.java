@@ -91,9 +91,9 @@ public class DtoCreator {
         return clients;
     }
 
-    public static ProductDto getPeodustDto() {
+    public static ProductDto getProductDto() {
         return ProductDto.builder()
-                       .name("DEBIT_CARD")
+                       .name("CURRENT_ACCOUNT")
                        .managerId("9130963b-c928-11ee-87e5-00155d26ef58")
                        .limit("1000")
                        .interestRate("2.2500")
