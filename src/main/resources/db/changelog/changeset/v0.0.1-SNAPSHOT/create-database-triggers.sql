@@ -61,3 +61,15 @@ CREATE TRIGGER IF NOT EXISTS before_update_agreement
     BEFORE UPDATE ON bankapp.agreement
     FOR EACH ROW
     SET NEW.ag_update_at = CURRENT_TIMESTAMP;
+
+-- roles
+CREATE TRIGGER IF NOT EXISTS before_insert_roles
+    BEFORE INSERT ON bankapp.roles
+    FOR EACH ROW
+    SET NEW.r_id = IFNULL(NEW.r_id, UUID_TO_BIN(UUID()));
+
+-- authorities
+CREATE TRIGGER IF NOT EXISTS before_insert_authorities
+    BEFORE INSERT ON bankapp.authorities
+    FOR EACH ROW
+    SET NEW.au_id = IFNULL(NEW.au_id, UUID_TO_BIN(UUID()));

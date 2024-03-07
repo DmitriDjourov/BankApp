@@ -94,12 +94,12 @@ create table IF NOT EXISTS agreement
 );
 
 CREATE TABLE IF NOT EXISTS roles (
-       id binary(16) PRIMARY KEY,
+       r_id binary(16) PRIMARY KEY,
        role_name VARCHAR(255) NOT NULL
     );
 
 CREATE TABLE IF NOT EXISTS authorities (
-       id binary(16) PRIMARY KEY,
+       au_id binary(16) PRIMARY KEY,
        authority VARCHAR(255) NOT NULL
     );
 
@@ -108,13 +108,13 @@ CREATE TABLE IF NOT EXISTS manager_role (
        role_id binary(16) NOT NULL,
        PRIMARY KEY (manager_id, role_id),
        FOREIGN KEY (manager_id) REFERENCES manager (m_id),
-       FOREIGN KEY (role_id) REFERENCES roles (id)
+       FOREIGN KEY (role_id) REFERENCES roles (r_id)
     );
 
 CREATE TABLE role_authority (
        role_id binary(16) NOT NULL,
        authority_id binary(16) NOT NULL,
        PRIMARY KEY (role_id, authority_id),
-       FOREIGN KEY (role_id) REFERENCES roles (id),
-       FOREIGN KEY (authority_id) REFERENCES authorities (id)
+       FOREIGN KEY (role_id) REFERENCES roles (r_id),
+       FOREIGN KEY (authority_id) REFERENCES authorities (au_id)
 );

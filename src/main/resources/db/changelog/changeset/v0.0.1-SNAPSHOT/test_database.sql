@@ -387,3 +387,23 @@ ORDER BY RAND()
 -- insert into bankapp.transaction (t_id, t_debit_account_id, t_credit_account_id, t_type, t_amount, t_description, t_create_at) values ('d52517d7-5f44-481d-bb0e-9befdd36270f', '4864f038-580e-452e-a661-8a49f0e11cd9', '23a1d7a0-995f-44d2-b401-c56e1b2c6023', 1, 2000.0000, 'pay', '2023-12-28 21:06:21');
 -- insert into bankapp.transaction (t_id, t_debit_account_id, t_credit_account_id, t_type, t_amount, t_description, t_create_at) values ('d965c068-4d54-4382-ac62-7f2db627dc6c', '23a1d7a0-995f-44d2-b401-c56e1b2c6023', '4864f038-580e-452e-a661-8a49f0e11cd9', 1, 4045.0000, 'my pay', '2023-12-28 20:31:08');
 -- insert into bankapp.transaction (t_id, t_debit_account_id, t_credit_account_id, t_type, t_amount, t_description, t_create_at) values ('f6953ab9-7bdb-413b-b253-7e150790e8c4', 'b9f69f21-b390-4783-b5f1-3c700be89bc4', 'b3ce2779-8dbf-487f-b43e-b7af5c1dac97', 0, 10000.0000, 'transfer', '2023-12-28 20:59:09');
+
+-- Вставка ролей
+INSERT INTO roles (role_name) VALUES ('ROLE_USER');
+INSERT INTO roles (role_name) VALUES ('ROLE_ADMIN');
+
+-- Вставка прав
+INSERT INTO authorities (authority) VALUES ('READ_PRIVILEGE');
+INSERT INTO authorities (authority) VALUES ('WRITE_PRIVILEGE');
+
+-- Связывание менеджеров и ролей
+insert into bankapp.manager_role (manager_id, role_id) values ((SELECT m_id AS manager_id FROM manager LIMIT 1),(SELECT roles.r_id FROM roles where roles.role_name = "ROLE_ADMIN")); -- admin is a ROLE_ADMIN
+insert into bankapp.manager_role (manager_id, role_id) values ((SELECT m_id AS manager_id FROM manager LIMIT 1  offset 1),(SELECT roles.r_id FROM roles where roles.role_name = "ROLE_USER"));-- user is a ROLE_USER
+insert into bankapp.manager_role (manager_id, role_id) values ((SELECT m_id AS manager_id FROM manager LIMIT 1  offset 2),(SELECT roles.r_id FROM roles where roles.role_name = "ROLE_USER"));-- user is a ROLE_USER
+
+-- Связывание ролей и прав
+insert into bankapp.role_authority (role_id, authority_id) values ((SELECT roles.r_id FROM roles where roles.role_name = "ROLE_ADMIN"),(SELECT au_id FROM authorities where authorities.authority = 'READ_PRIVILEGE')); -- ROLE_ADMIN has READ_PRIVILEGE
+insert into bankapp.role_authority (role_id, authority_id) values ((SELECT roles.r_id FROM roles where roles.role_name = "ROLE_ADMIN"),(SELECT au_id FROM authorities where authorities.authority = 'WRITE_PRIVILEGE')); -- ROLE_ADMIN has WRITE_PRIVILEGE
+insert into bankapp.role_authority (role_id, authority_id) values ((SELECT roles.r_id FROM roles where roles.role_name = "ROLE_USER"),(SELECT au_id FROM authorities where authorities.authority = 'READ_PRIVILEGE'));-- ROLE_USER has READ_PRIVILEGE
+
+
