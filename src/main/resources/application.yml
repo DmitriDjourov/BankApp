@@ -20,7 +20,7 @@ spring:
   liquibase:
     enabled: true
     change-log: classpath:db/changelog/db.changelog-master.yaml
-    drop-first: false
+    drop-first: true
 
   datasource:
     url: ${DATASOURCE.URL}
@@ -28,7 +28,7 @@ spring:
     password: ${DATASOURCE.PASSWORD}
 
   jpa:
-    show-sql: false
+    show-sql: true
     database-platform: org.hibernate.dialect.MySQLDialect
     hibernate:
       ddl-auto: none

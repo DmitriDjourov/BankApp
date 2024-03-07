@@ -23,6 +23,9 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
+                  name: m_password
+                  type: varchar(50)
+              - column:
                   name: m_create_at
                   type: timestamp
                   constraints:

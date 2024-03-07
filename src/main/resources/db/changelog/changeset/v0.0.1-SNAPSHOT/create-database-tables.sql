@@ -5,6 +5,7 @@ create table IF NOT EXISTS manager
     m_first_name varchar(50),
     m_last_name  varchar(50),
     m_status     tinyint,
+    m_password   varchar(50),
     m_create_at  timestamp              NOT NULL DEFAULT CURRENT_TIMESTAMP,
     m_update_at  timestamp
 );
