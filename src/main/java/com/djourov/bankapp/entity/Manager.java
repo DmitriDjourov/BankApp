@@ -13,6 +13,7 @@ import org.hibernate.annotations.UuidGenerator;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -55,6 +56,12 @@ public class Manager {
     @OneToMany(mappedBy = "manager")
     @JsonManagedReference("fk_client_manager")
     private List<Client> clients;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "manager_role",
+            joinColumns = @JoinColumn(name = "manager_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
 
     @Override
     public boolean equals(Object o) {
