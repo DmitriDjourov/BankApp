@@ -342,3 +342,96 @@ databaseChangeLog:
             tableName: Agreement
             columnName: ag_create_at
             defaultValueDate: current_timestamp
+  - changeSet:
+      id: create-roles-table
+      author: DmitriDjourov
+      changes:
+        - createTable:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  type: INT
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: role_name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+
+  - changeSet:
+      id: create-authorities-table
+      author: your_name
+      changes:
+        - createTable:
+            tableName: authorities
+            columns:
+              - column:
+                  name: id
+                  type: INT
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: authority
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+
+  - changeSet:
+      id: create-manager-role-table
+      author: DmitriDjourov
+      changes:
+        - createTable:
+            tableName: manager_role
+            columns:
+              - column:
+                  name: manager_id
+                  type: INTEGER
+                  constraints:
+                    primaryKey: true
+                    foreignKeyName: fk_manager_role_manager
+                    referencedTableName: manager
+                    referencedColumnNames: m_id
+                    nullable: true
+              - column:
+                  name: role_id
+                  type: INTEGER
+                  constraints:
+                    primaryKey: true
+                    foreignKeyName: fk_manager_role_roles
+                    referencedTableName: roles
+                    referencedColumnNames: id
+                    nullable: true
+
+  - changeSet:
+      id: create-role-authority-table
+      author: DmitriDjourov
+      changes:
+        - createTable:
+            tableName: role_authority
+            columns:
+              - column:
+                  name: role_id
+                  type: INTEGER
+                  constraints:
+                    primaryKey: true
+                    foreignKeyName: fk_role_authority_roles
+                    referencedTableName: roles
+                    referencedColumnNames: id
+                    nullable: true
+              - column:
+                  name: authority_id
+                  type: INTEGER
+                  constraints:
+                    primaryKey: true
+                    foreignKeyName: fk_role_authority_authorities
+                    referencedTableName: authorities
+                    referencedColumnNames: id
+                    nullable: true
+
+
+
+
+
+

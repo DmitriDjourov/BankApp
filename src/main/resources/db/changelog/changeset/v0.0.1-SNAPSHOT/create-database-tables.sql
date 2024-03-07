@@ -92,3 +92,29 @@ create table IF NOT EXISTS agreement
     constraint fk_agreement_product
         foreign key (ag_product_id) references product (p_id)
 );
+
+CREATE TABLE IF NOT EXISTS roles (
+       id binary(16) PRIMARY KEY,
+       role_name VARCHAR(255) NOT NULL
+    );
+
+CREATE TABLE IF NOT EXISTS authorities (
+       id binary(16) PRIMARY KEY,
+       authority VARCHAR(255) NOT NULL
+    );
+
+CREATE TABLE IF NOT EXISTS manager_role (
+       manager_id binary(16) NOT NULL,
+       role_id binary(16) NOT NULL,
+       PRIMARY KEY (manager_id, role_id),
+       FOREIGN KEY (manager_id) REFERENCES manager (m_id),
+       FOREIGN KEY (role_id) REFERENCES roles (id)
+    );
+
+CREATE TABLE role_authority (
+       role_id binary(16) NOT NULL,
+       authority_id binary(16) NOT NULL,
+       PRIMARY KEY (role_id, authority_id),
+       FOREIGN KEY (role_id) REFERENCES roles (id),
+       FOREIGN KEY (authority_id) REFERENCES authorities (id)
+);
