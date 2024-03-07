@@ -2,9 +2,9 @@
 -- insert into bankapp.manager (m_id, m_first_name, m_last_name, m_status, m_create_at, m_update_at) values ('caed40d0-5401-11ee-8c99-0242ac120002', 'Jon', 'Smith', 2, '2023-12-25 13:27:41', '2023-12-27 13:27:50');
 -- insert into bankapp.manager (m_id, m_first_name, m_last_name, m_status, m_create_at, m_update_at) values ('f74cf29c-5401-11ee-8c99-0242ac120002', 'Michail', 'Lei', 3, '2023-12-25 13:29:25', null);
 
-insert into bankapp.manager (m_first_name, m_last_name, m_status) values ( 'Vasiliy', 'Pupkin', 1);
-insert into bankapp.manager (m_first_name, m_last_name, m_status) values ( 'Jon', 'Smith', 2);
-insert into bankapp.manager (m_first_name, m_last_name, m_status) values ( 'Michail', 'Lei', 3);
+insert into bankapp.manager (m_first_name, m_last_name, m_status, m_password) values ( 'Vasiliy', 'Pupkin', 1,'$2y$10$/E7lBz5rK/Z/EXdTRGHjm.3lRxxkGsWyBjT.0oYAc.nNAKEoVt/9K');-- 111
+insert into bankapp.manager (m_first_name, m_last_name, m_status, m_password) values ( 'Jon', 'Smith', 2,'$2y$10$8S5mqtrCGb9HYGNmZEg/2OqOsZ7OYJY4ejEcUuuhH6d5.oR8UVNMS');-- 222
+insert into bankapp.manager (m_first_name, m_last_name, m_status, m_password) values ( 'Michail', 'Lei', 3,'$2a$12$ww8YsPoTkOf3P9PxTEwrx.GjSYyhM0KPb2P1bmbZhn2n4qxNP2DlW');-- 333
 --
 -- insert into bankapp.product (p_id, p_manager_id, p_name, p_status, p_currency_code, p_interest_rate, p_limit_, p_create_at, p_update_at) values ('06c2f173-4fac-4520-8666-58c379171019', 'caed40d0-5401-11ee-8c99-0242ac120002', 'DEBIT_CARD', 1, 2, 2.2500, 20000, '2023-12-28 14:29:42', null);
 -- insert into bankapp.product (p_id, p_manager_id, p_name, p_status, p_currency_code, p_interest_rate, p_limit_, p_create_at, p_update_at) values ('261241cb-f206-4b29-a779-6fe116538763', '1763f054-5393-11ee-8c99-0242ac120002', 'DEPOSIT', 1, 1, 2.7500, 10000, '2023-12-28 14:01:01', null);

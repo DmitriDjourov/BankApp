@@ -8,9 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.UuidGenerator;
-import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -39,6 +37,9 @@ public class Manager {
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "m_status")
     private ManagerStatus status;
+
+    @Column(name = "m_password")
+    private String password;
 
     @Column(name = "m_create_at")
     private LocalDate createdAt;
