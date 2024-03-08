@@ -19,7 +19,7 @@ import java.util.List;
 public class TransactionController {
     private final TransactionService transactionService;
 
-    @GetMapping("/transactions")//http:/localhost:8080/app/transaction/transactions
+    @GetMapping("/transactions")//localhost:8080/app/transaction/transactions
     @Operation(summary = "The method returns information about transactions from the agreements table",
             description = "The method returns the values of all fields of all records from the transactions table",
             tags = "Transactions",

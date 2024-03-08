@@ -52,9 +52,8 @@ public class SecurityConfig {
                                                               .requestMatchers("/app/product/create").hasRole("ADMIN")// localhost:8080/app/product/create
 
                                                               .requestMatchers("/app/transaction/transactions").hasRole("ADMIN")//localhost:8080/app/transaction/transactions
-                       )
-                       //.requestMatchers("/page_for_users").hasRole("USER")
-                       //.requestMatchers("/read_secret").hasAuthority("READ_SECRET"))
+                                                             // .requestMatchers("/app/transaction/transactions").hasAuthority("READ_SECRET")
+                                                              )
                        .formLogin(Customizer.withDefaults())
                        .logout(logoutPage -> logoutPage.logoutSuccessUrl("/"))
                        .build();
@@ -74,7 +73,6 @@ public class SecurityConfig {
                                     .passwordEncoder(new BCryptPasswordEncoder()::encode)
                                     .username("admin")
                                     .password("admin")//{bcrypt}
-                                    .authorities("READ_SECRET")
                                     .roles("ADMIN", "USER")
                                     .build();
         return new InMemoryUserDetailsManager(user, admin);
