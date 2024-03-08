@@ -397,9 +397,10 @@ INSERT INTO authorities (authority) VALUES ('READ_PRIVILEGE');
 INSERT INTO authorities (authority) VALUES ('WRITE_PRIVILEGE');
 
 -- Связывание менеджеров и ролей
-insert into bankapp.manager_role (manager_id, role_id) values ((SELECT m_id AS manager_id FROM manager LIMIT 1),(SELECT roles.r_id FROM roles where roles.role_name = "ROLE_ADMIN")); -- admin is a ROLE_ADMIN
-insert into bankapp.manager_role (manager_id, role_id) values ((SELECT m_id AS manager_id FROM manager LIMIT 1  offset 1),(SELECT roles.r_id FROM roles where roles.role_name = "ROLE_USER"));-- user is a ROLE_USER
-insert into bankapp.manager_role (manager_id, role_id) values ((SELECT m_id AS manager_id FROM manager LIMIT 1  offset 2),(SELECT roles.r_id FROM roles where roles.role_name = "ROLE_USER"));-- user is a ROLE_USER
+insert into bankapp.manager_role (manager_id, role_id) values ((SELECT m_id AS manager_id FROM manager LIMIT 1),(SELECT roles.r_id FROM roles where roles.role_name = 'ROLE_ADMIN')); -- admin is a ROLE_ADMIN
+insert into bankapp.manager_role (manager_id, role_id) values ((SELECT m_id AS manager_id FROM manager LIMIT 1),(SELECT roles.r_id FROM roles where roles.role_name = 'ROLE_USER')); -- admin is a ROLE_USER
+insert into bankapp.manager_role (manager_id, role_id) values ((SELECT m_id AS manager_id FROM manager LIMIT 1  offset 1),(SELECT roles.r_id FROM roles where roles.role_name = 'ROLE_USER'));-- user is a ROLE_USER
+insert into bankapp.manager_role (manager_id, role_id) values ((SELECT m_id AS manager_id FROM manager LIMIT 1  offset 2),(SELECT roles.r_id FROM roles where roles.role_name = 'ROLE_USER'));-- user is a ROLE_USER
 
 -- Связывание ролей и прав
 insert into bankapp.role_authority (role_id, authority_id) values ((SELECT roles.r_id FROM roles where roles.role_name = "ROLE_ADMIN"),(SELECT au_id FROM authorities where authorities.authority = 'READ_PRIVILEGE')); -- ROLE_ADMIN has READ_PRIVILEGE
