@@ -53,3 +53,7 @@ springdoc:
   api-docs:
     enabled: true
     path: /bankapp/v3/api-docs
+
+variables:
+  jwtSecret: "secret"
+  jwtExpirationMS: 864_000_000
