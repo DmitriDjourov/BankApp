@@ -9,6 +9,7 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -37,7 +38,9 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.authorizeHttpRequests(auth -> auth
+        return http
+                       .sessionManagement(man -> man.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                       .authorizeHttpRequests(auth -> auth
                                                           .requestMatchers("/app/account/accounts").hasRole("USER")//localhost:8080/app/account/accounts
                                                           .requestMatchers("/app/account/account_client_manager/{id}").hasRole("USER")//localhost:8080/app/account/account_client_manager/91384699-c928-11ee-87e5-00155d26ef58
                                                           .requestMatchers("/app/account/{id}").hasRole("USER")//localhost:8080/app/account/91384699-c928-11ee-87e5-00155d26ef58
