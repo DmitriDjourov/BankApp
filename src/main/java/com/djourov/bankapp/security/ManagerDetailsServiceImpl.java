@@ -1,4 +1,4 @@
-package com.djourov.bankapp.service.impl;
+package com.djourov.bankapp.security;
 
 import com.djourov.bankapp.entity.Manager;
 import com.djourov.bankapp.entity.Role;
