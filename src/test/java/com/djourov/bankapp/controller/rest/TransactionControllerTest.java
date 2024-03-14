@@ -7,9 +7,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -24,7 +27,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @AutoConfigureMockMvc
 @RunWith(SpringRunner.class)
-@WebMvcTest(TransactionController.class)
+@WebMvcTest(controllers = TransactionController.class,
+        excludeAutoConfiguration = {
+                UserDetailsServiceAutoConfiguration.class, SecurityAutoConfiguration.class
+        })
 @DisplayName("TransactionController test class")
 class TransactionControllerTest {
     @Autowired
@@ -37,6 +43,7 @@ class TransactionControllerTest {
     private MockMvc mockMvc;
 
     @Test
+    @WithMockUser(username = "admin", password = "111", roles = {"ADMIN"})
     void getAllTransactionsTest() throws Exception {
         Transaction transaction = EntityCreator.getTransaction();
         List<Transaction> transactions = new ArrayList<>();

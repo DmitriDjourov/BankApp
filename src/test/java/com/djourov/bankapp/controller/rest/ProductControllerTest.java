@@ -9,9 +9,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -27,7 +30,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @AutoConfigureMockMvc
 @RunWith(SpringRunner.class)
-@WebMvcTest(ProductController.class)
+@WebMvcTest(controllers = ProductController.class,
+        excludeAutoConfiguration = {
+                UserDetailsServiceAutoConfiguration.class, SecurityAutoConfiguration.class
+        })
 @DisplayName("ProductController test class")
 class ProductControllerTest {
     @Autowired
@@ -42,6 +48,7 @@ class ProductControllerTest {
     private final Product product = EntityCreator.getProduct();;
 
     @Test
+    @WithMockUser(username = "admin", password = "111", roles = {"ADMIN"})
     void getProductByIdTest() throws Exception {
         ProductDto productDto = DtoCreator.getProductDto();
         when(productService.getPBId(product.getId())).thenReturn(productDto);
@@ -56,6 +63,7 @@ class ProductControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "admin", password = "111", roles = {"ADMIN"})
     void getAllProductsTest() throws Exception {
         List<Product> products = new ArrayList<>();
         products.add(product);
@@ -73,6 +81,7 @@ class ProductControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "admin", password = "111", roles = {"ADMIN"})
     void createProductTest() throws Exception {
         Product product = EntityCreator.getProduct();
         ProductDto productDto = DtoCreator.getProductDto();

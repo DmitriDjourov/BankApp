@@ -52,14 +52,25 @@ public class EntityCreator {
 
     public static Manager getManager() {
         Manager manager = new Manager();
-        manager.setId(UUID.fromString("912f26ae-c928-11ee-87e5-00155d26ef58"));
+        manager.setId(UUID.fromString("da03cccc-e0ab-11ee-8cf8-00ffe0e1a544"));
         manager.setFirstName("Coco");
-        manager.setLastName("Chanel");
+        manager.setLastName("Schanel");
         manager.setStatus(ManagerStatus.SENIOR_MANAGER);
         manager.setCreatedAt(LocalDate.of(2024, Month.FEBRUARY, 11));
         manager.setUpdatedAt(LocalDate.of(2024, Month.FEBRUARY, 12));
         return manager;
     }
+
+//    public static Manager getManager() {
+//        Manager manager = new Manager();
+//        manager.setId(UUID.fromString("912f26ae-c928-11ee-87e5-00155d26ef58"));
+//        manager.setFirstName("Coco");
+//        manager.setLastName("Chanel");
+//        manager.setStatus(ManagerStatus.SENIOR_MANAGER);
+//        manager.setCreatedAt(LocalDate.of(2024, Month.FEBRUARY, 11));
+//        manager.setUpdatedAt(LocalDate.of(2024, Month.FEBRUARY, 12));
+//        return manager;
+//    }
 
     public static Product getProduct() {
         Product product = new Product();

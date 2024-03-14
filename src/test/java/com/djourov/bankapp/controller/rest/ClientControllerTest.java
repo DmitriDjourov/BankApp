@@ -9,9 +9,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -27,7 +30,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @AutoConfigureMockMvc
 @RunWith(SpringRunner.class)
-@WebMvcTest(ClientController.class)
+@WebMvcTest(controllers = ClientController.class,
+        excludeAutoConfiguration = {
+                UserDetailsServiceAutoConfiguration.class, SecurityAutoConfiguration.class
+        })
 @DisplayName("ClientController test class")
 class ClientControllerTest {
 
@@ -42,6 +48,7 @@ class ClientControllerTest {
     private final Client client = EntityCreator.getClient();
 
     @Test
+    @WithMockUser(username = "admin", password = "111", roles = {"ADMIN"})
     void getAllClientsTest() throws Exception {
         List<Client> clients = new ArrayList<>();
         clients.add(client);
@@ -62,6 +69,7 @@ class ClientControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "admin", password = "111", roles = {"ADMIN"})
     void getClientByIdTest() throws Exception {
         ClientDto clientDto = DtoCreator.getClientDto();
         when(clientService.getClientById(client.getId())).thenReturn(clientDto);
@@ -75,6 +83,7 @@ class ClientControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "admin", password = "111", roles = {"ADMIN"})
     void getClientActiveTest() throws Exception {
         int status = 0;
         mockMvc.perform(get("/app/client/active/{status}", status))

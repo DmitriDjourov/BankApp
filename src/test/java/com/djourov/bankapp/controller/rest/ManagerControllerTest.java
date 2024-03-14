@@ -10,9 +10,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -28,7 +31,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @AutoConfigureMockMvc
 @RunWith(SpringRunner.class)
-@WebMvcTest(ManagerController.class)
+@WebMvcTest(controllers = ManagerController.class,
+        excludeAutoConfiguration = {
+                UserDetailsServiceAutoConfiguration.class, SecurityAutoConfiguration.class
+        })
 @DisplayName("ManagerController test class")
 class ManagerControllerTest {
 
@@ -49,6 +55,7 @@ class ManagerControllerTest {
     private final Manager manager = EntityCreator.getManager();
 
     @Test
+    @WithMockUser(username = "admin", password = "111", roles = {"ADMIN"})
     void getAllManagersTest() throws Exception {
         List<Manager> managers = new ArrayList<>();
         managers.add(manager);
@@ -65,6 +72,7 @@ class ManagerControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "admin", password = "111", roles = {"ADMIN"})
     void getManagerByIdFirstLastNameTest() throws Exception {
         ManagerDTO managerDTO = DtoCreator.getManagerDTO();
         when(managerService.getManagerByIdFirstLastName(manager.getId())).thenReturn(managerDTO);
@@ -78,6 +86,7 @@ class ManagerControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "admin", password = "111", roles = {"ADMIN"})
     void getManagerByIdTest() throws Exception {
         when(managerService.getManagerById(manager.getId())).thenReturn(manager);
         mockMvc.perform(get("/app/manager/{id}", manager.getId()))
@@ -91,6 +100,7 @@ class ManagerControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "admin", password = "111", roles = {"ADMIN"})
     void postCreateManagerTest() throws Exception {
         Manager newManager = new Manager();
         newManager.setFirstName("Patrik");
@@ -141,6 +151,7 @@ class ManagerControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "admin", password = "111", roles = {"ADMIN"})
     void deleteManagerByIdTest() throws Exception {
         when(managerService.deleteById(manager.getId())).thenReturn(manager);
         mockMvc.perform(delete("/app/manager/del/{id}", manager.getId()))
@@ -148,6 +159,7 @@ class ManagerControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "admin", password = "111", roles = {"ADMIN"})
     void updateManagerStatusSeniorByIdTest() throws Exception {
         when(managerService.updateManagerStatusSeniorById(manager.getId())).thenReturn(manager);
         mockMvc.perform(put("/app/manager/upd/manager_status_senior/{id}", manager.getId()))

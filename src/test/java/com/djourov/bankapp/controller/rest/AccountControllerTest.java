@@ -13,11 +13,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -40,7 +43,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @AutoConfigureMockMvc
 @RunWith(SpringRunner.class)
-@WebMvcTest(AccountController.class)
+@WebMvcTest(controllers = AccountController.class,
+        excludeAutoConfiguration = {
+                UserDetailsServiceAutoConfiguration.class, SecurityAutoConfiguration.class
+        })
 @DisplayName("AccountController test class")
 class AccountControllerTest {
     @Autowired
@@ -50,8 +56,8 @@ class AccountControllerTest {
     @Autowired
     private MockMvc mockMvc;
     private final Account account = EntityCreator.getAccount();
-
-    @Test
+  @Test
+  @WithMockUser(username = "admin", password = "111", roles = {"ADMIN"})
     void getAllAccountsTest() throws Exception {
         List<Account> accounts = new ArrayList<>();
         accounts.add(account);
@@ -70,6 +76,7 @@ class AccountControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "admin", password = "111", roles = {"ADMIN"})
     void getAccountAndClientAndMangerTest() throws Exception {
         AccountDto accountDto = DtoCreator.getAccountDto();
         when(accountService.getACMId(account.getId())).thenReturn(accountDto);
@@ -84,6 +91,7 @@ class AccountControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "admin", password = "111", roles = {"ADMIN"})
     void getAccountByIDTest() throws Exception {
         when(accountService.getAccById(account.getId())).thenReturn(account);
         mockMvc.perform(get("/app/account/{id}", account.getId()))
@@ -99,6 +107,7 @@ class AccountControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "admin", password = "111", roles = {"ADMIN"})
     void findAccountByAccountNumberTest() throws Exception {
         String accountNumber = "123456789";
         Account account = new Account();
@@ -124,6 +133,7 @@ class AccountControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "admin", password = "111", roles = {"ADMIN"})
     void findAccountByAccountNumberReturnsNotFoundWhenAccountIsNull() {
         AccountService accountServiceMock = mock(AccountService.class);
         when(accountServiceMock.findAccountByAccountNumber("123456789")).thenReturn(null);
