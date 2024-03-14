@@ -7,9 +7,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -22,7 +25,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @AutoConfigureMockMvc
 @RunWith(SpringRunner.class)
-@WebMvcTest(ManagerPageController.class)
+@WebMvcTest(controllers = ManagerPageController.class,
+        excludeAutoConfiguration = {
+                UserDetailsServiceAutoConfiguration.class, SecurityAutoConfiguration.class
+        })
 @DisplayName("ManagerPageController test class")
 class ManagerPageControllerTest {
     @Autowired
@@ -35,6 +41,7 @@ class ManagerPageControllerTest {
     private MockMvc mockMvc;
 
     @Test
+    @WithMockUser(username = "admin", password = "111", roles = {"ADMIN"})
     void getAllManagersPageTest() throws Exception {
         List<Manager> managers = new ArrayList<>();
         managers.add(EntityCreator.getManager());
@@ -47,6 +54,7 @@ class ManagerPageControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "admin", password = "111", roles = {"ADMIN"})
     void getManagerByIdPageTest() throws Exception {
         Manager manager = EntityCreator.getManager();
         when(managerService.getManagerById(manager.getId())).thenReturn(manager);
