@@ -17,6 +17,12 @@ DROP TABLE IF EXISTS product;
 -- Drop manager table
 DROP TABLE IF EXISTS manager;
 
+-- Drop roles table
+DROP TABLE IF EXISTS roles;
+
+-- Drop users table
+DROP TABLE IF EXISTS users;
+
 -- -- Drop databasechangelog table
 -- DROP TABLE IF EXISTS databasechangelog;
 --

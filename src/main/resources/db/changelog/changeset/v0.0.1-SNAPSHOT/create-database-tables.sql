@@ -91,3 +91,18 @@ create table IF NOT EXISTS agreement
     constraint fk_agreement_product
         foreign key (ag_product_id) references product (p_id)
 );
+
+CREATE TABLE IF NOT EXISTS roles (
+    r_id int primary key NOT NULL,
+    r_role_name varchar(255) UNIQUE NOT NULL
+    );
+
+CREATE TABLE  IF NOT EXISTS users (
+                       u_id int PRIMARY KEY,
+                       u_username varchar(255) UNIQUE NOT NULL,
+                       u_password varchar(255) NOT NULL,
+                       u_email varchar(255) UNIQUE NOT NULL,
+                       u_role varchar(50) NOT NULL,
+    constraint fk_role
+    foreign key (u_role) references roles (r_role_name)
+);
