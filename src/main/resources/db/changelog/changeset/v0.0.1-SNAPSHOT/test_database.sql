@@ -393,4 +393,4 @@ INSERT INTO bankapp.roles (r_id, r_role_name) VALUES (2, 'ROLE_USER');
 INSERT INTO bankapp.roles (r_id, r_role_name) VALUES (1, 'ROLE_ADMIN');
 
 INSERT INTO users (u_id, u_username, u_password, u_email, u_role)
-VALUES (1, 'Dima', '111', 'example@example.com', 'ROLE_ADMIN');
+VALUES (1, 'Dima', '$2a$12$06emTpgPhnOrZKYt8nGav.9Y8cpjWHo9n.wHOLtWX1qSFTvyTTEUi', 'example@example.com', 'ROLE_ADMIN');

@@ -53,3 +53,7 @@ springdoc:
   api-docs:
     enabled: true
     path: /bankapp/v3/api-docs
+
+token:
+  signing:
+    key: CpFE0+mq1I5J4KBuf+IfFD/PxOgfgyfRNDyWMVR6L+c=
