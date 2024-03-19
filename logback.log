@@ -1,0 +1,11 @@
+20.03.2024 00:30:02.019 [restartedMain] WARN  l.lockservice - Failed to release change log lock
+20.03.2024 00:30:02.499 [restartedMain] WARN  liquibase.executor - Unknown table 'bankapp.agreement'
+20.03.2024 00:30:02.504 [restartedMain] WARN  liquibase.executor - Unknown table 'bankapp.transaction'
+20.03.2024 00:30:02.509 [restartedMain] WARN  liquibase.executor - Unknown table 'bankapp.account'
+20.03.2024 00:30:02.513 [restartedMain] WARN  liquibase.executor - Unknown table 'bankapp.client'
+20.03.2024 00:30:02.517 [restartedMain] WARN  liquibase.executor - Unknown table 'bankapp.product'
+20.03.2024 00:30:02.523 [restartedMain] WARN  liquibase.executor - Unknown table 'bankapp.manager'
+20.03.2024 00:30:02.528 [restartedMain] WARN  liquibase.executor - Unknown table 'bankapp.users'
+20.03.2024 00:30:03.626 [restartedMain] WARN  o.h.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+20.03.2024 00:30:07.875 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+20.03.2024 00:30:21.245 [http-nio-8080-exec-1] WARN  o.s.w.s.h.HandlerMappingIntrospector - Cache miss for REQUEST dispatch to '/bankapp/v3/swagger-ui.html' (previous null). Performing MatchableHandlerMapping lookup. This is logged once only at WARN level, and every time at TRACE.
