@@ -22,26 +22,26 @@ public class AuthenticationService {
     // Регистрация пользователя
     public JwtAuthenticationResponse signUp(SignUpRequest request) {
 
-        User user = new User();
-        user.setUsername(request.getUsername());
-        user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setRole(Role.ROLE_USER);
-
-        userService.create(user);
-
-        String jwt = jwtService.generateToken(user);
-        return new JwtAuthenticationResponse(jwt);
-
-//        User user = User.builder()
-//                .login(request.getUsername())
-//                .password(passwordEncoder.encode(request.getPassword()))
-//                .role(Role.ROLE_USER)
-//                .build();
+//        User user = new User();
+//        user.setUsername(request.getUsername());
+//        user.setPassword(passwordEncoder.encode(request.getPassword()));
+//        user.setRole(Role.ROLE_USER);
 //
-//        userService.create(user)
-//;
+//        userService.create(user);
+//
 //        String jwt = jwtService.generateToken(user);
 //        return new JwtAuthenticationResponse(jwt);
+
+        User user = User.builder()
+                .username(request.getUsername())
+                .password(passwordEncoder.encode(request.getPassword()))
+                .role(Role.ROLE_USER)
+                .build();
+
+        userService.create(user)
+;
+        String jwt = jwtService.generateToken(user);
+        return new JwtAuthenticationResponse(jwt);
     }
 
     // Аутентификация пользователя
