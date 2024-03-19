@@ -388,9 +388,5 @@ ORDER BY RAND()
 -- insert into bankapp.transaction (t_id, t_debit_account_id, t_credit_account_id, t_type, t_amount, t_description, t_create_at) values ('d965c068-4d54-4382-ac62-7f2db627dc6c', '23a1d7a0-995f-44d2-b401-c56e1b2c6023', '4864f038-580e-452e-a661-8a49f0e11cd9', 1, 4045.0000, 'my pay', '2023-12-28 20:31:08');
 -- insert into bankapp.transaction (t_id, t_debit_account_id, t_credit_account_id, t_type, t_amount, t_description, t_create_at) values ('f6953ab9-7bdb-413b-b253-7e150790e8c4', 'b9f69f21-b390-4783-b5f1-3c700be89bc4', 'b3ce2779-8dbf-487f-b43e-b7af5c1dac97', 0, 10000.0000, 'transfer', '2023-12-28 20:59:09');
 
--- Вставляем возможные значения ролей
-INSERT INTO bankapp.roles (r_id, r_role_name) VALUES (2, 'ROLE_USER');
-INSERT INTO bankapp.roles (r_id, r_role_name) VALUES (1, 'ROLE_ADMIN');
-
 INSERT INTO users (u_id, u_username, u_password, u_email, u_role)
 VALUES (1, 'Dima', '$2a$12$06emTpgPhnOrZKYt8nGav.9Y8cpjWHo9n.wHOLtWX1qSFTvyTTEUi', 'example@example.com', 'ROLE_ADMIN');
